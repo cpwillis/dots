@@ -73,8 +73,12 @@ brew cleanup
 
 # OS UPDATE/RESTART ----------------------------------------------------------------------------------------------------
 cecho "All Done! - cpwillis :)" $green
-if read -rp "$(cecho 'Some change require a restart to take effect. Install macOS updates and restart? (y/n)? ' "$yellow")" response && [[ $response =~ ^[yY]$ ]]; then
-    softwareupdate -i -a --restart
+if read -rp "$(cecho 'Some change require a restart to take effect. Install macOS updates and restart? (y/n) ' "$yellow")" response && [[ $response =~ ^[yY]$ ]]; then
+    if sudo softwareupdate -l | grep -E '(\*|#) '; then
+        sudo softwareupdate -ia --restart
+    else
+        sudo shutdown -r now
+    fi
 else
     exit
 fi
