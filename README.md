@@ -1,2 +1,5 @@
 # new computer
- New mac? A personalized script for configuring apps, tools, and dotfiles.
+
+```sh
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/cpwillis/new-computer/main/install.sh)"
+```
