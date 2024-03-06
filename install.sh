@@ -37,10 +37,8 @@ cd "$INSTALL_DIR" || { echo "Failed to change directory to $INSTALL_DIR"; exit 1
 if [ -f "setup.sh" ]; then
     echo "Running setup.sh..."
     chmod +x setup.sh
-    ./setup.sh || { echo "Failed to execute setup.sh"; exit 1; }
+    ./setup.sh
 else
     echo "setup.sh not found in the repository."
     exit 1
 fi
-
-echo "Installation complete."

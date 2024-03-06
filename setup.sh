@@ -42,6 +42,14 @@ fi
 brew upgrade
 brew update
 
+# XCODE ----------------------------------------------------------------------------------------------------------------
+if ! command -v xcode-select >/dev/null; then
+    echo "Installing Xcode Command Line Tools..."
+    xcode-select --install
+else
+    echo "Xcode Command Line Tools are already installed."
+fi
+
 # BUNDLE: TAP/BREW/CASK/MAS/VSCODE -------------------------------------------------------------------------------------
 echo "Starting app install..."
 while true; do
@@ -52,33 +60,36 @@ while true; do
         break
     fi
 done
-brew bundle #Commands: https://linuxcommandlibrary.com/man/brew-bundle
+brew bundle # https://github.com/Homebrew/homebrew-bundle
 brew cleanup
 
-# To install useful key bindings and fuzzy completion:
-# $(brew --prefix)/opt/fzf/install
-
 # Oh My Zsh ------------------------------------------------------------------------------------------------------------
-# https://ohmyz.sh/
-# zshrc plugins/aliases
-# sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+echo "Installing Oh My Zsh..." # https://ohmyz.sh/
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+echo "Copying .zshrc to the home directory..."
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+cp -i "$SCRIPT_DIR/.zshrc" ~/.zshrc
 
 # TODO -----------------------------------------------------------------------------------------------------------------
-
-# macOS settings
-# .zshrc
-# iStat Menus
-# Alfred
-# Insta360, https://www.insta360.com/download/insta360-link
+# macOS settings (dock, keyboard-alfred/shottr, trackpad) --> https://github.com/mathiasbynens/dotfiles/blob/master/.macos
+# uninstall default apple applications that are unwanted, if present: garageband, pages, numbers, keynote
+# generate ssh keys & add to ssh-agent, add ssh-key to GitHub via api
+# dotfiles: https://github.com/Lissy93/dotfiles#directory-structure
 
 # OS UPDATE/RESTART ----------------------------------------------------------------------------------------------------
-cecho "All Done! - cpwillis :)" $green
-if read -rp "$(cecho 'Some change require a restart to take effect. Install macOS updates and restart? (y/n) ' "$yellow")" response && [[ $response =~ ^[yY]$ ]]; then
+if read -rp "$(cecho 'Would you like to install macOS updates and restart? (y/n) ' "$yellow")" response && [[ $response =~ ^[yY]$ ]]; then
     if sudo softwareupdate -l | grep -E '(\*|#) '; then
         sudo softwareupdate -ia --restart
     else
         sudo shutdown -r now
     fi
 else
+    cecho "All Done! - cpwillis :)" $green
     exit
 fi
+
+# POST-INSTALLATION ----------------------------------------------------------------------------------------------------
+# iStat Menus, Import Preferences (~/Documents/Misc)
+# Alfred, Set Preferences Folder (~/Documents/Misc)
+# Insta360 Link Controller, https://www.insta360.com/download/insta360-link
