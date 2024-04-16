@@ -1,11 +1,11 @@
-# new-computer
+# new-mac
 
 This script is tailored to swiftly set up my essential tools and applications on macOS.
 
 ### Quick Install
 
 ```sh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/cpwillis/new-computer/main/install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/cpwillis/new-mac/main/install.sh)"
 ```
 
 <details>

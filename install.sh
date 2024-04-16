@@ -1,10 +1,10 @@
 #!/bin/sh
 
 # Define the repository URL
-REPO_URL="https://github.com/cpwillis/new-computer.git"
+REPO_URL="https://github.com/cpwillis/new-mac.git"
 
 # Define the directory where you want to clone the repository
-INSTALL_DIR="$HOME/Downloads/new-computer"
+INSTALL_DIR="$HOME/Downloads/new-mac"
 
 # If the installation directory already exists, prompt the user to remove it
 if [ -d "$INSTALL_DIR" ]; then
