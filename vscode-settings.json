@@ -1,0 +1,168 @@
+// Signing in with GitHub (or alternatives) allows settings sync. This file is redundant (and most likely outdated) but may be helpful for new users.
+
+{
+  // Editor Settings
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff",
+    "editor.formatOnType": true
+  },
+  "[jinja]": {
+    "editor.defaultFormatter": "monosans.djlint"
+  },
+  "[django-html]": {
+    "editor.defaultFormatter": "monosans.djlint"
+  },
+
+  // Editor Preferences
+  "editor.accessibilitySupport": "off",
+  "editor.fontFamily": "'Cascadia Code', 'Fira Code', Monaco",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 14,
+  "editor.inlineSuggest.enabled": true,
+  "editor.linkedEditing": true,
+  "editor.renderControlCharacters": true,
+  "editor.rulers": [120], // Vertical Line
+  "editor.suggestSelection": "first",
+  "editor.renderWhitespace": "all",
+  "editor.minimap.enabled": false,
+  "editor.formatOnSave": true,
+
+  // Terminal Settings
+  "terminal.integrated.env.osx": {
+    "FIG_NEW_SESSION": "1",
+    "CW_NEW_SESSION": "1"
+  },
+  "terminal.integrated.defaultProfile.osx": "zsh",
+
+  // Git Settings
+  "git.autofetch": true,
+  "git.confirmSync": false,
+  "git.openRepositoryInParentFolders": "never",
+  "gitlens.advanced.messages": {
+    "suppressGitMissingWarning": true
+  },
+  "git.ignoreRebaseWarning": true,
+
+  // Python Settings
+  "python.analysis.diagnosticSeverityOverrides": {
+    "reportMissingImports": "none"
+  },
+  "flake8.args": [
+    "--max-line-length=120",
+    "--ignore=E122,E128,E201,E202,E261,E303,E402,E501,W291,W503,W605,E711,E712"
+    // E122: Missing indentation, E128: Mixed indentation (tabs and spaces), E201: Whitespace after '(', E202: Whitespace before ')', E261: Space before inline comment
+    // E303: Too many blank lines, E402: Module level import not at top, E501: Line too long, W291: Trailing whitespace, W503: Line break occurred before a binary operator
+    // W605: Invalid escape sequence, E711: Comparison to False should be 'if cond is False', E712: Comparison to None should be 'if cond is not None:'
+  ],
+
+  // Explorer Settings
+  "explorer.confirmDragAndDrop": false,
+  "files.associations": {
+    "www": "javascript"
+  },
+
+  // Emmet Settings
+  "emmet.showAbbreviationSuggestions": false,
+
+  // GitLens Settings
+  "gitlens.views.repositories.showContributors": false,
+  "gitlens.views.repositories.showWorktrees": false,
+  "gitlens.views.repositories.showTags": false,
+
+  // VS Code Pets Settings
+  "vscode-pets.theme": "forest",
+  "vscode-pets.petSize": "small",
+  "vscode-pets.throwBallWithMouse": true,
+
+  // Settings Sync
+  "settingsSync.ignoredSettings": ["-python.interpreter.infoVisibility"],
+  "settingsSync.ignoredExtensions": [],
+
+  // Workbench Settings
+  "workbench.startupEditor": "newUntitledFile",
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.editor.empty.hint": "hidden",
+
+  // VS Code Extensions Settings
+  "extensions.ignoreRecommendations": true,
+
+  // Todo Highlight Settings
+  "todohighlight.isEnable": true,
+  "todohighlight.keywords": [
+    {
+      "text": "TODO",
+      "color": "#ecf0f1",
+      "border": "1px solid #f39c12",
+      "borderRadius": "4px",
+      "backgroundColor": "#f1c40f"
+    },
+    {
+      "text": "FIXME",
+      "color": "#ecf0f1",
+      "border": "1px solid #8e44ad",
+      "borderRadius": "4px",
+      "backgroundColor": "#9b59b6"
+    },
+    {
+      "text": "BUG",
+      "color": "#ecf0f1",
+      "border": "1px solid #c0392b",
+      "borderRadius": "4px",
+      "backgroundColor": "#e74c3c"
+    },
+    {
+      "text": "NOTE",
+      "color": "#ecf0f1",
+      "border": "1px solid #2980b9",
+      "borderRadius": "4px",
+      "backgroundColor": "#3498db"
+    },
+    {
+      "text": "MISC",
+      "color": "#ecf0f1",
+      "border": "1px solid #27ae60",
+      "borderRadius": "4px",
+      "backgroundColor": "#2ecc71"
+    }
+  ],
+
+  // GitHub Pull Requests Settings
+  "githubPullRequests.assignCreated": "${user}",
+  "githubPullRequests.pullBranch": "never",
+  "githubPullRequests.queries": [
+    {
+      "label": "Waiting For My Review",
+      "query": "is:open review-requested:${user}"
+    },
+    {
+      "label": "Involves Me",
+      "query": "is:open involves:${user}"
+    },
+    {
+      "label": "Created By Me",
+      "query": "is:open author:${user}"
+    }
+  ],
+
+  // Miscellaneous Settings
+  "update.showReleaseNotes": false,
+  "terminal.integrated.tabs.enabled": true,
+  "outline.collapseItems": "alwaysCollapse",
+  "redhat.telemetry.enabled": false,
+  "liveServer.settings.donotShowInfoMsg": true
+}
