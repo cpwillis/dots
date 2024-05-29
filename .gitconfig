@@ -15,3 +15,7 @@
 	st = status -sb
 	lg = log --graph --oneline --pretty=format:\"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset\" --abbrev-commit
 	br = for-each-ref --count=10 --sort=-committerdate --format='%(color:red)%(objectname:short)%(color:reset) - %(color:white)%(if)%(*HEAD)%(then)%(color:yellow)%(refname:short)%(color:reset)%(else)%(refname:short)%(end)%(color:reset) (%(color:green)%(committerdate:relative)%(color:reset))' refs/heads
+[pull]
+	rebase = true
+[oh-my-zsh]
+	prefix-regex = [^-]*-
