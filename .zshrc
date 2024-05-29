@@ -33,7 +33,7 @@ eval "$(pyenv init -)"
 # Misc
 alias python=python3
 alias pip=pip3
-alias remote='open "$(git remote get-url origin | sed "s/\.git$//")"' # open git remote in browser
+alias remote='open $(git remote get-url origin | sed "s/\.git$//" | awk -v branch=$(git rev-parse --abbrev-ref HEAD) "{print \$0 \"/tree/\" branch}")' # Open Remote Repo URL
 alias uuid='c=${1:-1};python3 -c "import timeflake" >/dev/null 2>&1||{ echo -n "Install timeflake? [y/n] ";read -r i;[ "$i" != "y" ]&&exit;pip3 install timeflake;};for ((j=0;j<c;j++));do python3 -c "import timeflake;print(timeflake.random().hex.lower())";done' # Generate Timeflake UUID
 eval $(thefuck --alias)
 eval "$(direnv hook zsh)"
