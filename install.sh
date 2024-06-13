@@ -1,44 +1,90 @@
 #!/bin/sh
 
-# Define the repository URL
-REPO_URL="https://github.com/cpwillis/new-mac.git"
+# COLOUR_ECHO ----------------------------------------------------------------------------------------------------------
+black=$(tput setaf 0) red=$(tput setaf 1) green=$(tput setaf 2) yellow=$(tput setaf 3) blue=$(tput setaf 4) magenta=$(tput setaf 5) cyan=$(tput setaf 6) white=$(tput setaf 7) reset=$(tput sgr0)
+cecho() { echo "${2}${1}${reset}"; } # $1=msg $2=col
 
-# Define the directory where you want to clone the repository
-INSTALL_DIR="$HOME/Downloads/new-mac"
+# WARNINGS -------------------------------------------------------------------------------------------------------------
+echo "" # Font: ANSI Shadow
+echo " ██████╗██████╗ ██╗    ██╗██╗██╗     ██╗     ██╗███████╗"
+echo "██╔════╝██╔══██╗██║    ██║██║██║     ██║     ██║██╔════╝"
+echo "██║     ██████╔╝██║ █╗ ██║██║██║     ██║     ██║███████╗"
+echo "██║     ██╔═══╝ ██║███╗██║██║██║     ██║     ██║╚════██║"
+echo "╚██████╗██║     ╚███╔███╔╝██║███████╗███████╗██║███████║"
+echo " ╚═════╝╚═╝      ╚══╝╚══╝ ╚═╝╚══════╝╚══════╝╚═╝╚══════╝"
+echo "--------------------------------------------------------"
+echo "          Q U I C K   S E T U P   S C R I P T           "
 
-# If the installation directory already exists, prompt the user to remove it
-if [ -d "$INSTALL_DIR" ]; then
-    printf "The installation directory already exists at %s.\n" "$INSTALL_DIR"
-    printf "Do you want to remove it and proceed with the installation? (y/n) "
-    read -r REPLY
-    case "$(printf "%s" "$REPLY" | tr '[:upper:]' '[:lower:]')" in
-    y | yes)
-        rm -rf "$INSTALL_DIR" || {
-            echo "Failed to remove the existing directory. Check your permissions." >&2
-            exit 1
-        }
-        printf "Existing installation directory removed successfully.\n"
-        ;;
-    *)
-        echo "Installation cancelled by the user."
-        exit 1
-        ;;
-    esac
+cecho "
+*********************************************************
+*  WARNING: Review script thoroughly before running.    *
+*  Unforeseen changes may occur. Use at your own risk.  *
+*********************************************************
+" $red # Font: Term (https://www.asciiart.eu/text-to-ascii-art)
+
+if ! read -rp "$(cecho 'Have you reviewed the script and understood its impact? (y/n) ' "$yellow")" response || [[ ! $response =~ ^[yY]$ ]]; then
+    cecho "Please review and make changes before continuing. It only takes a few minutes." "$red"
+    exit
 fi
 
-# Clone the repository
-echo "Cloning repository..."
-git clone "$REPO_URL" "$INSTALL_DIR" || { echo "Failed to clone repository"; exit 1; }
+sudo -v # Refresh sudo credentials and keep them alive while the script is running
+while true; do
+    sudo -n true
+    sleep 60
+    kill -0 "$$" || exit
+done 2>/dev/null &
 
-# Change directory to the cloned repository
-cd "$INSTALL_DIR" || { echo "Failed to change directory to $INSTALL_DIR"; exit 1; }
+# INSTALL BREW (Prerequisite) ------------------------------------------------------------------------------------------
+echo "Installing brew..." # https://brew.sh/
+if ! command -v brew >/dev/null; then
+    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" </dev/null
+fi
+brew upgrade
+brew update
 
-# Run setup.sh
-if [ -f "setup.sh" ]; then
-    echo "Running setup.sh..."
-    chmod +x setup.sh
-    ./setup.sh
+# XCODE ----------------------------------------------------------------------------------------------------------------
+if ! command -v xcode-select >/dev/null; then
+    echo "Installing Xcode Command Line Tools..."
+    xcode-select --install
 else
-    echo "setup.sh not found in the repository."
-    exit 1
+    echo "Xcode Command Line Tools are already installed."
+fi
+
+# BUNDLE: TAP/BREW/CASK/MAS/VSCODE -------------------------------------------------------------------------------------
+echo "Starting app install..."
+while true; do
+    open -a "App Store"
+    if ! read -rp "$(cecho 'Please login to the App Store to continue. Is this complete? (y/n) ' "$yellow")" response || [[ ! $response =~ ^[yY]$ ]]; then
+        cecho "Please try again or exit the script (ctrl+c)." "$red"
+    else
+        break
+    fi
+done
+brew bundle --file=[config/Brewfile] # https://github.com/Homebrew/homebrew-bundle
+brew cleanup
+
+# Oh My Zsh ------------------------------------------------------------------------------------------------------------
+echo "Installing Oh My Zsh..." # https://ohmyz.sh/
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+
+echo "Copying .zshrc to the home directory..."
+SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+cp -i "$SCRIPT_DIR/.zshrc" ~/.zshrc
+
+# TODO -----------------------------------------------------------------------------------------------------------------
+# macOS settings (dock, keyboard-alfred/shottr, trackpad) --> https://github.com/mathiasbynens/dotfiles/blob/master/.macos
+# uninstall default apple applications that are unwanted, if present: garageband, pages, numbers, keynote
+# generate ssh keys & add to ssh-agent, add ssh-key to GitHub via api
+# dotfiles: https://github.com/Lissy93/dotfiles#directory-structure
+
+# OS UPDATE/RESTART ----------------------------------------------------------------------------------------------------
+if read -rp "$(cecho 'Would you like to install macOS updates and restart? (y/n) ' "$yellow")" response && [[ $response =~ ^[yY]$ ]]; then
+    if sudo softwareupdate -l | grep -E '(\*|#) '; then
+        sudo softwareupdate -ia --restart
+    else
+        sudo shutdown -r now
+    fi
+else
+    cecho "All Done! - cpwillis :)" $green
+    exit
 fi

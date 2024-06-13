@@ -25,19 +25,34 @@ code() {
     "$code_path" "$@"
 }
 
-# pyenv
+# Pyenv
 export PYENV_ROOT="$HOME/.pyenv"
 [[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init -)"
 
-# Misc
-alias python=python3
-alias pip=pip3
-alias remote='gh pr view --web || open "$(git remote get-url origin | sed "s/\.git$//" | awk -v branch=$(git rev-parse --abbrev-ref HEAD) "{print \$0 \"/tree/\" branch}")"' # Open PR else Branch URL
+# Helpers
+alias brewup="brew update && brew upgrade && brew cleanup && brew doctor"
+alias remote='gh pr view --web || gh repo view --web -b "$(git branch --show-current)"' # Open PR else Branch
 alias uuid='c=${1:-1};python3 -c "import timeflake" >/dev/null 2>&1||{ echo -n "Install timeflake? [y/n] ";read -r i;[ "$i" != "y" ]&&exit;pip3 install timeflake;};for ((j=0;j<c;j++));do python3 -c "import timeflake;print(timeflake.random().hex.lower())";done' # Generate Timeflake UUID
+alias zsql="mycli -uroot -proot_password -P3307 -h127.0.0.1"
+
+alias dockerps="docker ps --format 'table {{.Names}}\t{{.Ports}}\t{{.Status}}\t{{.CreatedAt}}'"
+alias dockersv='echo "CONTAINER ID \t NAME \t\t SERVICE" && docker ps -q | while read -r container_id; do service=$(docker inspect --format "{{ index .Config.Labels \"com.docker.compose.service\" }}" "$container_id"); name=$(docker inspect --format "{{ .Name }}" "$container_id" | sed "s/\///g"); echo "$container_id \t $name \t $service"; done'
+alias dockerinfo="dockerps; echo ''; dockersv"
+
+alias h='history'
+alias cl='clear'
+alias rm='rm -i' # prompt before deleting
+alias mv='mv -i' # prompt before overwriting
+
+# Tools
 eval $(thefuck --alias)
 eval "$(direnv hook zsh)"
 eval "$(atuin init zsh)"
+
+# Misc
+alias python=python3
+alias pip=pip3
 export GPG_TTY=$(tty)
 
 # Q post block. Keep at the bottom of this file.

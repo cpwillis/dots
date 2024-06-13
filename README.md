@@ -1,19 +1,20 @@
-# new-mac
+# dots
 
-This script is tailored to swiftly set up my essential tools and applications on macOS.
+### Quick Download & Install
 
-### Quick Install
+Use the following command to handle repository download and call the installer script ([install.sh](install.sh)). It is tailored to swiftly set up my essential tools and applications on macOS.
 
 ```sh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/cpwillis/new-mac/main/install.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/cpwillis/dots/main/quick_download.sh)"
 ```
 
-<details>
+<details open>
   <summary>Post-Installation</summary>
 
 - iStat Menus, Import Preferences `(~/Documents/Misc)`
 - Alfred, Set Preferences Folder `(~/Documents/Misc)`
-- Insta360 Link Controller, [Download](https://www.insta360.com/download/insta360-link)
+- Insta360 Link Controller --> [Download](https://www.insta360.com/download/insta360-link)
+- KiCad EDA --> [Download](https://www.kicad.org/download/macos/)
 </details>
 
 ### About
