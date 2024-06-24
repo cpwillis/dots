@@ -3,6 +3,10 @@
 	email = <github_no_reply>
 	signingkey = <public_key>
 
+[core]
+	filemode = false
+	editor = code
+
 [oh-my-zsh]
 	prefix-regex = [^-]*-
 
@@ -27,17 +31,28 @@
 [pull]
 	rebase = false
 
+[push]
+	default = current
+
+[diff]
+	algorithm = histogram
+
 [color]
 	ui = true
+
+[url "git@github.com:"]
+	insteadOf = "https://github.com/"
 
 [alias]
 	st = status -sb
 	lg = log --graph --oneline --pretty=format:\"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset\" --abbrev-commit
 	br = for-each-ref --count=10 --sort=-committerdate --format='%(color:red)%(objectname:short)%(color:reset) - %(color:white)%(if)%(*HEAD)%(then)%(color:yellow)%(refname:short)%(color:reset)%(else)%(refname:short)%(end)%(color:reset) (%(color:green)%(committerdate:relative)%(color:reset))' refs/heads
 	df = !git --no-pager diff --compact-summary --no-prefix
+	difft = !GIT_EXTERNAL_DIFF=difft git diff
 	cm = !git add -A && git commit -m
+	co = checkout
 	amend = commit -a --amend
 	wipe = reset --hard
 	undo = reset HEAD~1 --mixed
 	cleanup = ! "git fetch -p && git for-each-ref --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" {print $1}' | xargs -r git branch -D"
-	sha = "!f() { SHA=$1; printf \"\\033[1;35mCommit Info\\033[0m\\n\"; git --no-pager show $SHA --name-status --pretty=format:\"%CgreenAuth:%Creset %an (%ae)%n%CgreenDate:%Creset %ad (%ar)%n%CgreenHash:%Creset %H (%h)%n%CgreenSubj:%Creset %s%n%n%CgreenFiles Changed:%Creset\"; printf \"\\n\\033[1;35mBranches Containing Commit\\033[0m\\n\"; git fetch -a && git --no-pager branch -a --contains $SHA; }; f"
+	sha = "!f() { SHA=$1; printf '\\033[1;35mCommit Info\\033[0m\\n'; git --no-pager show $SHA --name-status --pretty=format:\"%CgreenAuth:%Creset %an (%ae)%n%CgreenDate:%Creset %ad (%ar)%n%CgreenHash:%Creset %H (%h)%n%CgreenSubj:%Creset %s%n%n%CgreenFiles Changed:%Creset\"; printf '\\n\\033[1;35mBranches Containing Commit\\033[0m\\n'; git fetch -a && git --no-pager branch -a --contains $SHA; }; f"
