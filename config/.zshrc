@@ -33,7 +33,7 @@ export PYENV_ROOT="$HOME/.pyenv"
 eval "$(pyenv init -)"
 
 # Git
-alias todo='git diff main.. | grep "^+.*TODO"'
+alias todo='git diff -U0 main.. | awk "/^@@/ {start=\$2; sub(/^[^+]*[+]/, \"\", start); next} /^+.*TODO/ {gsub(/^[+ ]+/, \"\", \$0); print \$0}" | sed -E "s/(# TODO.*)/\x1b[31m\1\x1b[0m/"'
 alias remote='gh pr view --web || gh repo view --web -b "$(git branch --show-current)"'
 alias mainpull="git checkout main && git pull"
 alias mainpullmerge="git checkout main && git pull && git checkout - && GIT_MERGE_AUTOEDIT=no git merge main"
