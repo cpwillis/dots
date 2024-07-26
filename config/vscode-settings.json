@@ -42,7 +42,6 @@
   "editor.renderWhitespace": "all",
   "editor.minimap.enabled": false,
   "editor.formatOnSave": true,
-  "window.commandCenter": false,
   "window.title": "[${rootNameShort}] ${activeEditorMedium}",
 
   // Terminal Settings
@@ -100,7 +99,6 @@
   "workbench.startupEditor": "none",
   "workbench.iconTheme": "material-icon-theme",
   "workbench.editor.empty.hint": "hidden",
-  "workbench.layoutControl.enabled": false,
 
   // VS Code Extensions Settings
   "extensions.ignoreRecommendations": true,
@@ -164,10 +162,15 @@
     }
   ],
 
-  // Miscellaneous Settings
+  // Miscellaneous Settings (New/Unsorted)
   "update.showReleaseNotes": false,
   "outline.collapseItems": "alwaysCollapse",
   "redhat.telemetry.enabled": false,
   "liveServer.settings.donotShowInfoMsg": true,
-  "arduino.useArduinoCli": true
+  "arduino.useArduinoCli": true,
+  "workbench.layoutControl.enabled": false,
+  "security.promptForLocalFileProtocolHandling": false,
+  "diffEditor.ignoreTrimWhitespace": true,
+  "diffEditor.renderSideBySide": true,
+  "window.commandCenter": false
 }

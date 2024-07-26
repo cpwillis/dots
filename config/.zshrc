@@ -4,9 +4,11 @@
 # Oh My Zsh
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
-plugins=(
+plugins=(                   # https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins
     z                       # shortcut to most visited dirs
-    git                     # aliases/functions
+    aliases                 # list available aliases with `als`
+    colored-man-pages       # colorize man pages
+    command-not-found       # suggest packages when command not found
     python                  # aliases
     last-working-dir        # lwd, keeps track of last working dir
     web-search              # search the web
@@ -47,6 +49,7 @@ alias uuid='c=${1:-1};python3 -c "import timeflake" >/dev/null 2>&1||{ echo -n "
 alias zsql="mycli -uroot -proot_password -P3307 -h127.0.0.1"
 
 # Misc
+alias g='git'
 alias h='history'
 alias cl='clear'
 alias rm='rm -i' # prompt before deleting
@@ -57,7 +60,10 @@ alias sudo='sudo ' # attempt alias expansion
 eval $(thefuck --alias)
 eval "$(direnv hook zsh)"
 eval "$(atuin init zsh)"
-export GPG_TTY=$(tty)
+export GPG_TTY=$(tty) # ttl in ~/.gnupg/gpg-agent.conf
+
+# Colors (using brew coreutils)
+# test -r ~/.dircolors && eval $(gdircolors ~/.dircolors)
 
 # Versioning
 alias python=python3

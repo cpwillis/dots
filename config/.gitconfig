@@ -6,6 +6,10 @@
 [core]
 	filemode = false
 	editor = code
+	# pager = delta
+
+[interactive]
+	diffFilter = delta --color-only --features=interactive
 
 [oh-my-zsh]
 	prefix-regex = [^-]*-
@@ -43,12 +47,56 @@
 [url "git@github.com:"]
 	insteadOf = "https://github.com/"
 
+[delta]
+	features                      = decorations
+	commit-style                  = raw
+	file-style                     = bright-yellow
+	hunk-header-style             = bold syntax
+	minus-style                   = bold red
+	minus-non-emph-style          = bold red
+	minus-emph-style              = bold red 52
+	minus-empty-line-marker-style = normal "#3f0001"
+	zero-style                    = normal
+	plus-style                    = bold green
+	plus-non-emph-style           = bold green
+	plus-emph-style               = bold green 22
+	plus-empty-line-marker-style  = normal "#002800"
+	grep-file-style                = purple
+	grep-line-number-style        = green
+	whitespace-error-style        = reverse purple
+	blame-palette                 = #000000 #222222 #444444
+	true-color                    = always
+	file-added-label               = 'added:'
+	file-modified-label             = ''
+	file-removed-label             = 'removed:'
+	file-renamed-label             = 'renamed:'
+	right-arrow                   = '⟶  '
+	hyperlinks                    = false
+	inspect-raw-lines             = true
+	keep-plus-minus-markers       = true
+	line-numbers                  = true
+	line-numbers-minus-style      = 88
+	line-numbers-zero-style       = "#444444"
+	line-numbers-plus-style       = 28
+	line-numbers-left-style       = blue
+	line-numbers-right-style      = blue
+	max-line-distance             = 0.6
+	max-line-length               = 512
+	diff-stat-align-width         = 48
+	navigate                      = false
+	navigate-regex                =
+	paging                        = auto
+	side-by-side                  = true
+	syntax-theme                  = Monokai Extended
+	tabs                          = 4
+
 [alias]
 	st = status -sb
+	rb = rebase
 	lg = log --graph --oneline --pretty=format:\"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset\" --abbrev-commit
 	br = for-each-ref --count=10 --sort=-committerdate --format='%(color:red)%(objectname:short)%(color:reset) - %(color:white)%(if)%(*HEAD)%(then)%(color:yellow)%(refname:short)%(color:reset)%(else)%(refname:short)%(end)%(color:reset) (%(color:green)%(committerdate:relative)%(color:reset))' refs/heads
 	df = !git --no-pager diff --compact-summary --no-prefix
-	difft = !GIT_EXTERNAL_DIFF=difft git diff
+	difft = !GIT_EXTERNAL_DIFF=difft git diff 
 	cm = !git add -A && git commit -m
 	co = checkout
 	amend = commit -a --amend
