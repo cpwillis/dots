@@ -172,5 +172,6 @@
   "security.promptForLocalFileProtocolHandling": false,
   "diffEditor.ignoreTrimWhitespace": true,
   "diffEditor.renderSideBySide": true,
-  "window.commandCenter": false
+  "window.commandCenter": false,
+  "scm.showHistoryGraph": false
 }

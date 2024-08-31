@@ -95,6 +95,7 @@
 	rb = rebase
 	lg = log --graph --oneline --pretty=format:\"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset\" --abbrev-commit
 	br = for-each-ref --count=10 --sort=-committerdate --format='%(color:red)%(objectname:short)%(color:reset) - %(color:white)%(if)%(*HEAD)%(then)%(color:yellow)%(refname:short)%(color:reset)%(else)%(refname:short)%(end)%(color:reset) (%(color:green)%(committerdate:relative)%(color:reset))' refs/heads
+	pwd = rev-parse --abbrev-ref HEAD
 	df = !git --no-pager diff --compact-summary --no-prefix
 	difft = !GIT_EXTERNAL_DIFF=difft git diff 
 	cm = !git add -A && git commit -m
