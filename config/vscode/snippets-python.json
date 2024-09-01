@@ -1,67 +1,77 @@
 {
-  // Place your snippets for python here. Each snippet is defined under a snippet name and has a prefix, body and
-  // description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
-  // $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the
-  // same ids are connected.
-  // Example:
-  // "Print to console": {
-  // 	"prefix": "log",
-  // 	"body": [
-  // 		"console.log('$1');",
-  // 		"$2"
-  // 	],
-  // 	"description": "Log output to console"
-  // }
-  "Log Timing": {
-    "prefix": "logtime",
-    "body": ["import time", "print(f'[{time.time()}] $0')"]
-  },
-  "Debug": {
-    "prefix": "dbg",
-    "body": ["from devtools import debug", "debug($0)"],
-    "description": "Log output to stderr"
-  },
-  "Debug Query": {
-    "prefix": "dbgq",
-    "body": [
-      "from phineas.database.util import debug_query",
-      "debug_query($0)"
-    ],
-    "description": "Log output to stderr"
-  },
-  "Print Yellow Line": {
-    "prefix": "lne",
-    "body": [
-      "print('\033[93m ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ \033[0m')"
-    ],
-    "description": "Log output to stderr"
-  },
-  "Traceback": {
-    "prefix": "trc",
-    "body": [
-      "from devtools import debug",
-      "import traceback",
-      "debug(traceback.extract_stack())"
-    ],
-    "description": "Log stacktrace to stderr"
-  },
-  "Import sys": {
-    "prefix": "impsys",
-    "body": [
-      "import sys",
-      "print(f'$1: {$2}', file=sys.stderr)",
-      "sys.stderr.flush()"
-    ],
-    "description": "Log output to stderr"
-  },
-  "Debug print a var to stderr": {
-    "prefix": "vprint",
-    "body": ["print(f'$1 = {$2}', file=sys.stderr)"],
-    "description": "Log output to stderr"
-  },
-  "Debug print to stderr": {
-    "prefix": "dprint",
-    "body": ["print(f'$1', file=sys.stderr)"],
-    "description": "Log output to stderr"
-  }
+	// Place your snippets for python here. Each snippet is defined under a snippet name and has a prefix, body and
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the
+	// same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+	"Log Timing": {
+		"prefix": "logtime",
+		"body": [
+			"import time",
+			"print(f'[{time.time()}] $0')"
+		]
+	},
+	"Debug": {
+		"prefix": "dbg",
+		"body": [
+			"from devtools import debug",
+			"debug($0)"
+		],
+		"description": "Log output to stderr"
+	},
+	"Debug Query": {
+		"prefix": "dbgq",
+		"body": [
+			"from phineas.database.util import debug_query",
+			"debug_query($0)"
+		],
+		"description": "Log output to stderr"
+	},
+	"Print Yellow Line": {
+		"prefix": "lne",
+		"body": [
+			"print('\033[93m ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ \033[0m')"
+		],
+		"description": "Log output to stderr"
+	},
+	"Traceback": {
+		"prefix": "trc",
+		"body": [
+			"from devtools import debug",
+			"import traceback",
+			"debug(traceback.extract_stack())"
+		],
+		"description": "Log stacktrace to stderr"
+	},
+	"Import sys": {
+		"prefix": "impsys",
+		"body": [
+			"import sys",
+			"print(f'$1: {$2}', file=sys.stderr)",
+			"sys.stderr.flush()"
+		],
+		"description": "Log output to stderr"
+	},
+	"Debug print a var to stderr": {
+		"prefix": "vprint",
+		"body": [
+			"print(f'$1 = {$2}', file=sys.stderr)"
+		],
+		"description": "Log output to stderr"
+	},
+	"Debug print to stderr": {
+		"prefix": "dprint",
+		"body": [
+			"print(f'$1', file=sys.stderr)"
+		],
+		"description": "Log output to stderr"
+	}
 }
