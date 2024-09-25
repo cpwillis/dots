@@ -38,7 +38,7 @@
 	"Print Yellow Line": {
 		"prefix": "lne",
 		"body": [
-			"print('\033[93m ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ \033[0m')"
+			"print('\\033[93m ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ \\033[0m')"
 		],
 		"description": "Log output to stderr"
 	},

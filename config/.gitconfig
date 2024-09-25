@@ -100,7 +100,7 @@
 	difft = !GIT_EXTERNAL_DIFF=difft git diff 
 	cm = !git add -A && git commit -m
 	co = checkout
-	amend = commit -a --amend
+	amend = commit -a --amend --no-edit
 	wipe = reset --hard
 	undo = reset HEAD~1 --mixed
 	cleanup = ! "git fetch -p && git for-each-ref --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" {print $1}' | xargs -r git branch -D"

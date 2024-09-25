@@ -9,7 +9,6 @@ brew "atuin"
 brew "pycparser"
 brew "cffi"
 brew "cryptography"
-brew "python@3.11"
 brew "awscli"
 brew "libgit2@1.7"
 brew "bat"
@@ -33,6 +32,7 @@ brew "gnupg"
 brew "grep"
 brew "httrack"
 brew "libfido2"
+brew "mariadb-connector-c"
 brew "mas"
 brew "mycli"
 brew "mysql"
@@ -43,8 +43,10 @@ brew "php"
 brew "pipx"
 brew "pyenv"
 brew "pyenv-virtualenv"
+brew "python@3.11"
 brew "thefuck"
 brew "tree"
+brew "ttyplot"
 brew "wget"
 brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
@@ -88,6 +90,7 @@ cask "yubico-yubikey-manager"
 cask "zoom"
 mas "Amphetamine", id: 937984704
 mas "Bitwarden", id: 1352778147
+mas "Chameleon Ultra GUI", id: 6462919364
 mas "Color Picker", id: 1545870783
 mas "CopyClip", id: 595191960
 mas "iMovie", id: 408981434
@@ -96,12 +99,12 @@ mas "Magnet", id: 441258766
 mas "Microsoft Excel", id: 462058435
 mas "Microsoft OneNote", id: 784801555
 mas "Microsoft PowerPoint", id: 462062816
-mas "Microsoft Remote Desktop", id: 1295203466
 mas "Microsoft Word", id: 462054704
 mas "Ping", id: 1532271726
 mas "The Unarchiver", id: 425424353
 mas "Tim", id: 1449619230
 mas "UPDF", id: 1619925971
+mas "Windows App", id: 1295203466
 vscode "alefragnani.bookmarks"
 vscode "amazonwebservices.codewhisperer-for-command-line-companion"
 vscode "andenetalexander.vim-cheatsheet"
@@ -114,6 +117,7 @@ vscode "formulahendry.code-runner"
 vscode "github.copilot"
 vscode "github.copilot-chat"
 vscode "github.vscode-pull-request-github"
+vscode "grimmer.vscode-back-forward-button"
 vscode "ibm.output-colorizer"
 vscode "kamikillerto.vscode-colorize"
 vscode "kevinrose.vsc-python-indent"
@@ -136,6 +140,7 @@ vscode "redhat.vscode-yaml"
 vscode "ritwickdey.liveserver"
 vscode "samuelcolvin.jinjahtml"
 vscode "supermaven.supermaven"
+vscode "tamasfe.even-better-toml"
 vscode "tomoki1207.pdf"
 vscode "tonybaloney.vscode-pets"
 vscode "usernamehw.errorlens"
