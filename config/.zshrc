@@ -36,6 +36,7 @@ eval "$(pyenv init -)"
 alias gp='git pull'
 alias todo='git diff -U0 main.. | awk "/^@@/ {start=\$2; sub(/^[^+]*[+]/, \"\", start); next} /^+.*TODO/ {gsub(/^[+ ]+/, \"\", \$0); print \$0}" | sed -E "s/(# TODO.*)/\x1b[31m\1\x1b[0m/"'
 alias remote='gh pr view --web || gh repo view --web -b "$(git branch --show-current)"'
+alias sc='branch=$(git rev-parse --abbrev-ref HEAD); if [[ $branch =~ sc-([0-9]+) ]]; then story_id=$match[1]; open https://app.shortcut.com/tour-amigo/story/$story_id; else echo "No Shortcut story ID found in branch name."; fi'
 alias mainpull="git checkout main && git pull"
 alias mainpullmerge="git checkout main && git pull && git checkout - && GIT_MERGE_AUTOEDIT=no git merge main"
 
