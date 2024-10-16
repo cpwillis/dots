@@ -21,11 +21,15 @@ echo "zshrc updated"
 
 # brewfile, sometimes MAS items are missing upon dump, check and loop
 for i in {1..3}; do
-  brew bundle dump --file="$BASE_DIR/Brewfile" --force
-  grep -q "^mas " "$BASE_DIR/Brewfile" && break
-  [[ $i -lt 3 ]] && echo "MAS items missing, retrying... (Attempt $((i+1)) of 3)" && brew reinstall mas
+    brew bundle dump --file="$BASE_DIR/Brewfile" --force
+    grep -q "^mas " "$BASE_DIR/Brewfile" && break
+    [[ $i -lt 3 ]] && echo "MAS items missing, retrying... (Attempt $((i+1)) of 3)" && brew reinstall mas
 done
 [[ $i -eq 3 && ! $(grep -q "^mas " "$BASE_DIR/Brewfile") ]] && echo "Warning: MAS items are still missing after 3 attempts." || echo "brewfile updated (w/ mas items)"
+
+# push update to repo
+cd "$(dirname "$BASE_DIR")" && git add . && git commit -m "run update" && git push
+echo "changes pushed to git"
 
 # fin
 echo "--> quick_update.sh completed successfully!"

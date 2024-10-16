@@ -57,3 +57,13 @@ It's advisable to test your script on a fresh Mac VM to ensure proper functional
 - **Apple Silicon (M1/M2)**: Utilize [VirtualBuddy](https://github.com/insidegui/VirtualBuddy) to run Mac OS VMs using Apple's Virtualization framework.
 
 </details>
+
+<details>
+  <summary>GitHub Codespaces</summary>
+
+Settings > Codespaces > Dotfiles > Automatically install dotfiles
+
+- [How to set up your dotfiles for Codespaces](https://docs.github.com/en/codespaces/setting-your-user-preferences/personalizing-github-codespaces-for-your-account#dotfiles)
+- [unofficial guide to dotfiles](https://dotfiles.github.io/)
+
+</details>

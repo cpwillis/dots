@@ -27,12 +27,9 @@ if ! read -rp "$(cecho 'Have you reviewed the script and understood its impact? 
     exit
 fi
 
-sudo -v # Refresh sudo credentials and keep them alive while the script is running
-while true; do
-    sudo -n true
-    sleep 60
-    kill -0 "$$" || exit
-done 2>/dev/null &
+# ADMIN (ask for pwd then keep-alive) ----------------------------------------------------------------------------------
+sudo -v
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 # INSTALL BREW (Prerequisite) ------------------------------------------------------------------------------------------
 echo "Installing brew..." # https://brew.sh/
@@ -71,11 +68,22 @@ echo "Copying .zshrc to the home directory..."
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 cp -i "$SCRIPT_DIR/.zshrc" ~/.zshrc
 
-# TODO -----------------------------------------------------------------------------------------------------------------
-# macOS settings (dock, keyboard-alfred/shottr, trackpad) --> https://github.com/mathiasbynens/dotfiles/blob/master/.macos
+# macOS (https://github.com/mathiasbynens/dotfiles/blob/master/.macos) --------------------------------------------------
+osascript -e 'tell application "System Preferences" to quit' # prevent overriding from settings pane
+# dock size and magnification, smallest
+# keyboard: change spotlight to optn-space, alfred cmd-space, disable screenshots shift-cmd-3 & shift-cmd-4 to be used by shottr
+# trackpad: ensure all toggles are on (eg tap-to-click, gestures)
 # uninstall default apple applications that are unwanted, if present: garageband, pages, numbers, keynote
+
+# GitHub (SSH Keys) ----------------------------------------------------------------------------------------------------
 # generate ssh keys & add to ssh-agent, add ssh-key to GitHub via api
-# dotfiles: https://github.com/Lissy93/dotfiles#directory-structure
+
+# DOTFILES -------------------------------------------------------------------------------------------------------------
+# https://github.com/Lissy93/dotfiles#directory-structure
+# adapt quick_update.sh to use a location file that can be shared among update/dot installer
+
+# LICENSES -------------------------------------------------------------------------------------------------------------
+# using cpwillis/dots repo secrets, auth and then install into various apps (eg alfred, shottr)
 
 # OS UPDATE/RESTART ----------------------------------------------------------------------------------------------------
 if read -rp "$(cecho 'Would you like to install macOS updates and restart? (y/n) ' "$yellow")" response && [[ $response =~ ^[yY]$ ]]; then
