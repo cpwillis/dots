@@ -99,6 +99,7 @@
   "workbench.startupEditor": "none",
   "workbench.iconTheme": "material-icon-theme",
   "workbench.editor.empty.hint": "hidden",
+  "workbench.layoutControl.enabled": false,
 
   // VS Code Extensions Settings
   "extensions.ignoreRecommendations": true,
@@ -167,11 +168,8 @@
   "outline.collapseItems": "alwaysCollapse",
   "redhat.telemetry.enabled": false,
   "liveServer.settings.donotShowInfoMsg": true,
-  "arduino.useArduinoCli": true,
-  "workbench.layoutControl.enabled": false,
   "security.promptForLocalFileProtocolHandling": false,
   "diffEditor.ignoreTrimWhitespace": true,
   "diffEditor.renderSideBySide": true,
-  "window.commandCenter": false,
-  "scm.showHistoryGraph": false
+  "window.commandCenter": false
 }
