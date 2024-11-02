@@ -1,0 +1,18 @@
+# DOCK; icon size, magnification bool/size
+defaults write com.apple.dock tilesize -int 16
+defaults write com.apple.dock magnification -bool 1
+defaults write com.apple.dock largesize -int 30
+
+# KEYBOARD; change spotlight to optn-space, alfred cmd-space, disable screenshots shift-cmd-3 & shift-cmd-4 to be used by shottr
+
+# TRACKPAD; gesture bools
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool 1
+defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -bool 0
+defaults write NSGlobalDomain AppleEnableSwipeNavigateWithScrolls -bool 1
+
+# FINDER; new window location
+defaults write com.apple.finder NewWindowTarget -string "PfDo
+
+# GENERAL; screenshot save location, scroll bars
+defaults write com.apple.screencapture location -string "~/Downloads"
+defaults write NSGlobalDomain AppleShowScrollBars -string "WhenScrolling"

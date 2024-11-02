@@ -5,7 +5,7 @@
 Use the following command to handle repository download and call the installer script ([install.sh](install.sh)). It is tailored to swiftly set up my essential tools and applications on macOS.
 
 ```sh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/cpwillis/dots/main/quick_download.sh)"
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/cpwillis/dots/main/scripts/repo_download.sh)"
 ```
 
 <details open>

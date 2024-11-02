@@ -1,0 +1,9 @@
+# name, repo_path, system_path
+# - name: A descriptive name for the configuration file
+# - repo_path: The path to the file in the repository
+# - system_path: The path where the file should be placed on the system
+
+"gitconfig", "config/.gitconfig", "$HOME/.gitconfig"
+"zshrc", "config/.zshrc", "$HOME/.zshrc"
+"vscode-settings", "config/vscode/settings.json", "$HOME/Library/Application Support/Code/User/settings.json"
+"vscode-snippets-python", "config/vscode/snippets-python.json", "$HOME/Library/Application Support/Code/User/snippets/python.json"
