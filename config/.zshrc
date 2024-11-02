@@ -11,7 +11,6 @@ plugins=(                   # https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins
     command-not-found       # suggest packages when command not found
     python                  # aliases
     last-working-dir        # lwd, keeps track of last working dir
-    web-search              # search the web
     omz-git-branch          # limit git branch name, https://github.com/cpwillis/omz-git-branch
 )
 source $ZSH/oh-my-zsh.sh
@@ -34,7 +33,7 @@ eval "$(pyenv init -)"
 
 # Git
 alias gp='git pull'
-alias todo='git diff -U0 main.. | awk "/^@@/ {start=\$2; sub(/^[^+]*[+]/, \"\", start); next} /^+.*TODO/ {gsub(/^[+ ]+/, \"\", \$0); print \$0}" | sed -E "s/(# TODO.*)/\x1b[31m\1\x1b[0m/"'
+alias todo='git diff -U0 main.. | awk '\''/^diff --git/{file=$3;sub(/^a\//,"",file);sub(/^.*\//,"",file)} /^@@/{start=$2;sub(/^[^+]*[+]/,"",start);linenum=int(start);linenum=linenum>0?linenum:-linenum;next} /^+.*(TODO|FIXME|BUG|NOTE|MISC)/{gsub(/^[+ ]+/,"",$0);split($0,arr,"#");code=arr[1];comment=arr[2];gsub(/^ +| +$/,"",code);gsub(/^ +| +$/,"",comment);col_1=file":"linenum;if(length(code)>0){col_1=col_1"\x1b[35m|\x1b[0m"code}printf "%s\x1b[35m|\x1b[0m%s\n",col_1,comment} /^[^-]/{linenum++}'\'' | sed -E '\''s/(TODO.*)/\x1b[33m\1\x1b[0m/g;s/(FIXME.*)/\x1b[35m\1\x1b[0m/g;s/(BUG.*)/\x1b[31m\1\x1b[0m/g;s/(NOTE.*)/\x1b[94m\1\x1b[0m/g;s/(MISC.*)/\x1b[32m\1\x1b[0m/g'\'''
 alias remote='gh pr view --web || gh repo view --web -b "$(git branch --show-current)"'
 alias sc='branch=$(git rev-parse --abbrev-ref HEAD); if [[ $branch =~ sc-([0-9]+) ]]; then story_id=$match[1]; open https://app.shortcut.com/tour-amigo/story/$story_id; else echo "No Shortcut story ID found in branch name."; fi'
 alias mainpull="git checkout main && git pull"

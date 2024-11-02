@@ -1,5 +1,5 @@
 {
-  // Editor Settings
+  // Language-Specific Formatters
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
@@ -29,7 +29,7 @@
     "editor.defaultFormatter": "ms-vscode.cpptools"
   },
 
-  // Editor Preferences
+  // Editor
   "editor.accessibilitySupport": "off",
   "editor.fontFamily": "'Cascadia Code', 'Fira Code', Monaco",
   "editor.fontLigatures": true,
@@ -42,9 +42,16 @@
   "editor.renderWhitespace": "all",
   "editor.minimap.enabled": false,
   "editor.formatOnSave": true,
-  "window.title": "[${rootNameShort}] ${activeEditorMedium}",
 
-  // Terminal Settings
+  // Workbench
+  "workbench.startupEditor": "none",
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.editor.empty.hint": "hidden",
+  "workbench.layoutControl.enabled": false,
+  "window.title": "[${rootNameShort}] ${activeEditorMedium}",
+  "window.commandCenter": false,
+
+  // Terminal
   "terminal.integrated.env.osx": {
     "FIG_NEW_SESSION": "1",
     "CW_NEW_SESSION": "1",
@@ -54,17 +61,42 @@
   "terminal.integrated.fontFamily": "MesloLGS NF", // OMZ Powerlevel10k Font
   "terminal.integrated.tabs.enabled": true,
 
-  // Git Settings
+  // Git
   "git.autofetch": true,
   "git.confirmSync": false,
   "git.openRepositoryInParentFolders": "never",
-  "gitlens.advanced.messages": {
-    "suppressGitMissingWarning": true
-  },
   "git.ignoreRebaseWarning": true,
   "git.enableSmartCommit": true,
 
-  // Python Settings
+  // GitLens
+  "gitlens.advanced.messages": {
+    "suppressGitMissingWarning": true
+  },
+  "gitlens.views.repositories.showContributors": false,
+  "gitlens.views.repositories.showWorktrees": false,
+  "gitlens.views.repositories.showTags": false,
+  "gitlens.views.repositories.files.layout": "tree",
+
+  // GitHub Pull Requests
+  "githubPullRequests.createOnPublishBranch": "never",
+  "githubPullRequests.assignCreated": "${user}",
+  "githubPullRequests.pullBranch": "never",
+  "githubPullRequests.queries": [
+    {
+      "label": "Waiting For My Review",
+      "query": "is:open review-requested:${user}"
+    },
+    {
+      "label": "Involves Me",
+      "query": "is:open involves:${user}"
+    },
+    {
+      "label": "Created By Me",
+      "query": "is:open author:${user}"
+    }
+  ],
+
+  // Python
   "python.analysis.diagnosticSeverityOverrides": {
     "reportMissingImports": "none"
   },
@@ -76,35 +108,7 @@
     // W605: Invalid escape sequence, E711: Comparison to False should be 'if cond is False', E712: Comparison to None should be 'if cond is not None:'
   ],
 
-  // Explorer Settings
-  "explorer.confirmDragAndDrop": false,
-  "files.associations": {
-    "www": "javascript"
-  },
-
-  // Emmet Settings
-  "emmet.showAbbreviationSuggestions": false,
-
-  // GitLens Settings
-  "gitlens.views.repositories.showContributors": false,
-  "gitlens.views.repositories.showWorktrees": false,
-  "gitlens.views.repositories.showTags": false,
-  "gitlens.views.repositories.files.layout": "tree",
-
-  // Settings Sync
-  "settingsSync.ignoredSettings": ["-python.interpreter.infoVisibility"],
-  "settingsSync.ignoredExtensions": [],
-
-  // Workbench Settings
-  "workbench.startupEditor": "none",
-  "workbench.iconTheme": "material-icon-theme",
-  "workbench.editor.empty.hint": "hidden",
-  "workbench.layoutControl.enabled": false,
-
-  // VS Code Extensions Settings
-  "extensions.ignoreRecommendations": true,
-
-  // Todo Highlight Settings
+  // Todo Highlight
   "todohighlight.isEnable": true,
   "todohighlight.keywords": [
     {
@@ -144,32 +148,22 @@
     }
   ],
 
-  // GitHub Pull Requests Settings
-  "githubPullRequests.createOnPublishBranch": "never",
-  "githubPullRequests.assignCreated": "${user}",
-  "githubPullRequests.pullBranch": "never",
-  "githubPullRequests.queries": [
-    {
-      "label": "Waiting For My Review",
-      "query": "is:open review-requested:${user}"
-    },
-    {
-      "label": "Involves Me",
-      "query": "is:open involves:${user}"
-    },
-    {
-      "label": "Created By Me",
-      "query": "is:open author:${user}"
-    }
-  ],
-
-  // Miscellaneous Settings (New/Unsorted)
-  "update.showReleaseNotes": false,
-  "outline.collapseItems": "alwaysCollapse",
-  "redhat.telemetry.enabled": false,
+  // Miscellaneous
+  "explorer.confirmDragAndDrop": false,
+  "files.associations": {
+    "www": "javascript"
+  },
+  "emmet.showAbbreviationSuggestions": false,
+  "settingsSync.ignoredSettings": ["-python.interpreter.infoVisibility"],
+  "settingsSync.ignoredExtensions": [],
+  "extensions.ignoreRecommendations": true,
   "liveServer.settings.donotShowInfoMsg": true,
+  "redhat.telemetry.enabled": false,
+  "outline.collapseItems": "alwaysCollapse",
   "security.promptForLocalFileProtocolHandling": false,
+  "update.showReleaseNotes": false,
   "diffEditor.ignoreTrimWhitespace": true,
-  "diffEditor.renderSideBySide": true,
-  "window.commandCenter": false
+  "diffEditor.renderSideBySide": true
+
+  // New/Unsorted
 }
