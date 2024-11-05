@@ -33,9 +33,9 @@ eval "$(pyenv init -)"
 
 # Git
 alias gp='git pull'
-alias todo='git diff -U0 main.. | awk '\''/^diff --git/{file=$3;sub(/^a\//,"",file);sub(/^.*\//,"",file)} /^@@/{start=$2;sub(/^[^+]*[+]/,"",start);linenum=int(start);linenum=linenum>0?linenum:-linenum;next} /^+.*(TODO|FIXME|BUG|NOTE|MISC)/{gsub(/^[+ ]+/,"",$0);split($0,arr,"#");code=arr[1];comment=arr[2];gsub(/^ +| +$/,"",code);gsub(/^ +| +$/,"",comment);col_1=file":"linenum;if(length(code)>0){col_1=col_1"\x1b[35m|\x1b[0m"code}printf "%s\x1b[35m|\x1b[0m%s\n",col_1,comment} /^[^-]/{linenum++}'\'' | sed -E '\''s/(TODO.*)/\x1b[33m\1\x1b[0m/g;s/(FIXME.*)/\x1b[35m\1\x1b[0m/g;s/(BUG.*)/\x1b[31m\1\x1b[0m/g;s/(NOTE.*)/\x1b[94m\1\x1b[0m/g;s/(MISC.*)/\x1b[32m\1\x1b[0m/g'\'''
+alias todo='git diff -U0 main.. | awk '\''/^diff --git/{file=$3;sub(/^a\//,"",file);rel_path=file;gsub(/.*\//,"",file)} /^@@/{start=$2;sub(/^[^+]*[+]/,"",start);linenum=int(start);linenum=linenum>0?linenum:-linenum;next} /^+.*(TODO|FIXME|BUG|NOTE|MISC)/{gsub(/^[+ ]+/,"",$0);split($0,arr,"#");code=arr[1];comment=arr[2];gsub(/^ +| +$/,"",code);gsub(/^ +| +$/,"",comment);col_1=rel_path":"linenum;if(length(code)>0){col_1=col_1"\x1b[35m|\x1b[0m"code}printf "%s\x1b[35m|\x1b[0m%s\n",col_1,comment} /^[^-]/{linenum++}'\'' | sed -E '\''s/(TODO.*)/\x1b[33m\1\x1b[0m/g;s/(FIXME.*)/\x1b[35m\1\x1b[0m/g;s/(BUG.*)/\x1b[31m\1\x1b[0m/g;s/(NOTE.*)/\x1b[94m\1\x1b[0m/g;s/(MISC.*)/\x1b[32m\1\x1b[0m/g'\'''
 alias remote='gh pr view --web || gh repo view --web -b "$(git branch --show-current)"'
-alias sc='branch=$(git rev-parse --abbrev-ref HEAD); if [[ $branch =~ sc-([0-9]+) ]]; then story_id=$match[1]; open https://app.shortcut.com/tour-amigo/story/$story_id; else echo "No Shortcut story ID found in branch name."; fi'
+alias sc='f() { story_id=${1:-$(git rev-parse --abbrev-ref HEAD | grep -o "sc-[0-9]*" | grep -o "[0-9]*")}; if [ -n "$story_id" ]; then open "https://app.shortcut.com/tour-amigo/story/$story_id"; else echo "No Shortcut story ID found."; fi; }; f'
 alias mainpull="git checkout main && git pull"
 alias mainpullmerge="git checkout main && git pull && git checkout - && GIT_MERGE_AUTOEDIT=no git merge main"
 
