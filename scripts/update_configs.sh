@@ -27,9 +27,13 @@ for i in {1..3}; do
 done
 [[ $i -eq 3 && ! $(grep -q "^mas " "$CONFIG_DIR/Brewfile") ]] && echo "Warning: MAS items are still missing after 3 attempts." || echo "brewfile updated (w/ mas items)"
 
-# push update to repo
-cd "$(dirname "$CONFIG_DIR")" && git add . && git commit -m "run update" && git push
-echo "changes pushed to git"
+# push update to repo (only if --commit flag is provided)
+if [[ "$1" == "--commit" ]]; then
+    cd "$(dirname "$CONFIG_DIR")" && git add . && git commit -m "run update" && git push
+    echo "changes pushed to git"
+else
+    echo "Skipping commit and push as --commit flag was not provided."
+fi
 
 # fin
 echo "--> quick_update.sh completed successfully!"
