@@ -1,4 +1,18 @@
 {
+  // Editor
+  "editor.accessibilitySupport": "off",
+  "editor.fontFamily": "'Cascadia Code', 'Fira Code', Monaco",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 14,
+  "editor.inlineSuggest.enabled": true,
+  "editor.linkedEditing": true,
+  "editor.renderControlCharacters": true,
+  "editor.rulers": [120], // Vertical Line
+  "editor.suggestSelection": "first",
+  "editor.renderWhitespace": "all",
+  "editor.minimap.enabled": false,
+  "editor.formatOnSave": true,
+
   // Language-Specific Formatters
   "[html]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -16,8 +30,7 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[python]": {
-    "editor.defaultFormatter": "charliermarsh.ruff",
-    "editor.formatOnType": true
+    "editor.defaultFormatter": "charliermarsh.ruff"
   },
   "[jinja]": {
     "editor.defaultFormatter": "monosans.djlint"
@@ -28,20 +41,12 @@
   "[cpp]": {
     "editor.defaultFormatter": "ms-vscode.cpptools"
   },
-
-  // Editor
-  "editor.accessibilitySupport": "off",
-  "editor.fontFamily": "'Cascadia Code', 'Fira Code', Monaco",
-  "editor.fontLigatures": true,
-  "editor.fontSize": 14,
-  "editor.inlineSuggest.enabled": true,
-  "editor.linkedEditing": true,
-  "editor.renderControlCharacters": true,
-  "editor.rulers": [120], // Vertical Line
-  "editor.suggestSelection": "first",
-  "editor.renderWhitespace": "all",
-  "editor.minimap.enabled": false,
-  "editor.formatOnSave": true,
+  "[sh]": {
+    "editor.formatOnSave": false
+  },
+  "[sql]": {
+    "editor.formatOnSave": false
+  },
 
   // Workbench
   "workbench.startupEditor": "none",
