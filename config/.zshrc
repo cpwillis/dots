@@ -32,11 +32,11 @@ export PYENV_ROOT="$HOME/.pyenv"
 eval "$(pyenv init -)"
 
 # Git
-alias gp='git pull'
+alias gp='git diff --quiet && git pull || (git stash push && git pull && git stash pop)'
 alias todo='git diff -U0 main.. | awk '\''/^diff --git/{file=$3;sub(/^a\//,"",file);rel_path=file;gsub(/.*\//,"",file)} /^@@/{start=$2;sub(/^[^+]*[+]/,"",start);linenum=int(start);linenum=linenum>0?linenum:-linenum;next} /^+.*(TODO|FIXME|BUG|NOTE|MISC)/{gsub(/^[+ ]+/,"",$0);split($0,arr,"#");code=arr[1];comment=arr[2];gsub(/^ +| +$/,"",code);gsub(/^ +| +$/,"",comment);col_1=rel_path":"linenum;if(length(code)>0){col_1=col_1"\x1b[35m|\x1b[0m"code}printf "%s\x1b[35m|\x1b[0m%s\n",col_1,comment} /^[^-]/{linenum++}'\'' | sed -E '\''s/(TODO.*)/\x1b[33m\1\x1b[0m/g;s/(FIXME.*)/\x1b[35m\1\x1b[0m/g;s/(BUG.*)/\x1b[31m\1\x1b[0m/g;s/(NOTE.*)/\x1b[94m\1\x1b[0m/g;s/(MISC.*)/\x1b[32m\1\x1b[0m/g'\'''
 alias remote='gh pr view --web || gh repo view --web -b "$(git branch --show-current)"'
-alias mainpull="git checkout main && git pull"
-alias mainpullmerge="git checkout main && git pull && git checkout - && GIT_MERGE_AUTOEDIT=no git merge main"
+# alias mainpull="git checkout main && git pull"
+# alias mainpullmerge="git checkout main && git pull && git checkout - && GIT_MERGE_AUTOEDIT=no git merge main"
 
 # Docker
 alias dockerps="docker ps --format 'table {{.Names}}\t{{.Ports}}\t{{.Status}}\t{{.CreatedAt}}'"
@@ -50,6 +50,7 @@ alias zsql="mycli -uroot -proot_password -P3307 -h127.0.0.1"
 
 # Misc
 alias g='git'
+alias b='brew'
 alias h='history'
 alias cl='clear'
 alias rm='rm -i' # prompt before deleting
@@ -58,7 +59,7 @@ alias sudo='sudo ' # attempt alias expansion
 
 # Work
 alias sc='f() { story_id=${1:-$(git rev-parse --abbrev-ref HEAD | grep -o "sc-[0-9]*" | grep -o "[0-9]*")}; if [ -n "$story_id" ]; then open "https://app.shortcut.com/tour-amigo/story/$story_id"; else echo "No Shortcut ID found."; fi; }; f'
-alias startmyday='brewup && z zeus && open -a Docker && g co main && gp && ctl up -d --build && ctl post-deploy' # no unstaged changes required
+alias startmyday='brewup && open -a Docker && z zeus && g co main && g pull && ctl up -d --build && ctl post-deploy' # no unstaged changes required
 
 # Tools
 eval $(thefuck --alias)

@@ -113,7 +113,7 @@ cp -i "$SCRIPT_DIR/.zshrc" ~/.zshrc
 
 
 # LICENSES -------------------------------------------------------------------------------------------------------------
-# using cpwillis/dots repo secrets, auth and then install into various apps (eg alfred, shottr)
+# using cpwillis/dots repo secrets, auth and then install into various apps (alfred, shottr, betterdisplay, cleanmymac x, bruno)
 
 
 # OS UPDATE/RESTART ----------------------------------------------------------------------------------------------------

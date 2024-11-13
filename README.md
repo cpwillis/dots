@@ -11,10 +11,14 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/cpwillis/dots/main/scripts
 <details open>
   <summary>Post-Installation</summary>
 
-- iStat Menus, Import Preferences `(~/Documents/Misc)`
-- Alfred, Set Preferences Folder `(~/Documents/Misc)`
-- Insta360 Link Controller --> [Download](https://www.insta360.com/download/insta360-link)
+- `~/Documents/Misc`;
+  - iTerm2; Preferences > General > Settings > Import All Settings and Data...
+  - iStat Menus; File > Import Settings...
+  - Alfred; Advanced > Set preferences folder...
 - KiCad EDA --> [Download](https://www.kicad.org/download/macos/)
+- CleanMyMac X --> [Download](https://my.macpaw.com/)
+- Licenses; Alfred, Shottr, BetterDisplay, Bruno, CleanMyMac X
+
 </details>
 
 ### About
