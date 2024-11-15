@@ -1,4 +1,4 @@
-# Q pre block. Keep at the top of this file.
+# Amazon Q Pre-Block
 [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
 
 # Oh My Zsh
@@ -74,5 +74,6 @@ export GPG_TTY=$(tty) # ttl in ~/.gnupg/gpg-agent.conf
 alias python=python3
 alias pip=pip3
 
-# Q post block. Keep at the bottom of this file.
+# Amazon Q Post-Block
+export PATH="$PATH:$HOME/.local/bin"
 [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.post.zsh"
