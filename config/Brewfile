@@ -75,7 +75,6 @@ cask "github"
 cask "google-chrome"
 cask "gstreamer-runtime"
 cask "heynote"
-cask "inkscape"
 cask "iterm2"
 cask "itsycal"
 cask "microsoft-teams"
@@ -97,6 +96,9 @@ cask "wireshark"
 cask "xquartz"
 cask "yubico-yubikey-manager"
 cask "zoom"
+mas "Affinity Designer 2", id: 1616831348
+mas "Affinity Photo 2", id: 1616822987
+mas "Affinity Publisher 2", id: 1606941598
 mas "Amphetamine", id: 937984704
 mas "Bitwarden", id: 1352778147
 mas "Chameleon Ultra GUI", id: 6462919364

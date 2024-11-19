@@ -1,5 +1,11 @@
 # dots
 
+### Quick Update
+
+```sh
+./scripts/update_configs.sh --commit
+```
+
 ### Quick Download & Install
 
 Use the following command to handle repository download and call the installer script ([install.sh](install.sh)). It is tailored to swiftly set up my essential tools and applications on macOS.
