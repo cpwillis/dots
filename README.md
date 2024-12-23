@@ -23,6 +23,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/cpwillis/dots/main/scripts
   - Alfred; Advanced > Set preferences folder...
 - KiCad EDA --> [Download](https://www.kicad.org/download/macos/)
 - CleanMyMac X --> [Download](https://my.macpaw.com/)
+- PrusaSlicer --> [Download](https://www.prusa3d.com/page/prusaslicer_424/)
 - Licenses; Alfred, Shottr, BetterDisplay, Bruno, CleanMyMac X
 
 </details>

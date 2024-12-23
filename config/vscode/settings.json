@@ -168,7 +168,19 @@
   "security.promptForLocalFileProtocolHandling": false,
   "update.showReleaseNotes": false,
   "diffEditor.ignoreTrimWhitespace": true,
-  "diffEditor.renderSideBySide": true
+  "diffEditor.renderSideBySide": true,
 
   // New/Unsorted
+  "gitlens.views.scm.grouped.views": {
+    "commits": true,
+    "branches": true,
+    "remotes": true,
+    "stashes": true,
+    "tags": true,
+    "worktrees": true,
+    "contributors": true,
+    "repositories": true,
+    "searchAndCompare": false,
+    "launchpad": false
+  }
 }
