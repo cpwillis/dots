@@ -1,0 +1,33 @@
+#!/bin/bash
+
+# ------------------------------------------------------------------------------------------------
+# This script prevents direct pushes to restricted branches (eg 'main').
+#
+# To install, copy this script to your repo's .git/hooks as 'pre-push', then make it executable;
+#   cd <repo>
+#   code .git/hooks/pre-push
+#   chmod +x .git/hooks/pre-push
+#
+# Note: Hooks aren't tracked by Git and won't be pushed to the remote.
+# ------------------------------------------------------------------------------------------------
+
+# Specify restricted branches
+restricted_branches=("main")
+
+# Get current branch and repo name
+branch=$(git rev-parse --abbrev-ref HEAD)
+repo_name=$(basename "$(git rev-parse --show-toplevel)")
+
+# Check if pushing to a restricted branch in the current repo
+if [[ " ${restricted_branches[@]} " =~ " $branch " ]]; then
+  # Bypass if ALLOW_MAIN_PUSH is set
+  if [ "$ALLOW_MAIN_PUSH" == "true" ]; then
+    echo "⚠️ Bypassing restrictions for '$branch' in '$repo_name'."
+    exit 0
+  fi
+  # Block push and show message
+  echo "🚫 Pushing directly to '$branch' in '$repo_name' is not allowed. Use a PR or set 'ALLOW_MAIN_PUSH=true'."
+  exit 1
+fi
+
+exit 0
