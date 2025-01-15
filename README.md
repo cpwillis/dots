@@ -16,6 +16,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/cpwillis/dots/main/scripts
 ```
 
 </details>
+
 <details open>
   <summary>Post-Installation (Manual)</summary>
 
@@ -77,5 +78,14 @@ Settings > Codespaces > Dotfiles > Automatically install dotfiles
 
 - [How to set up your dotfiles for Codespaces](https://docs.github.com/en/codespaces/setting-your-user-preferences/personalizing-github-codespaces-for-your-account#dotfiles)
 - [unofficial guide to dotfiles](https://dotfiles.github.io/)
+
+</details>
+
+<details>
+  <summary>TODO</summary>
+
+- Add `~/.config/atuin/config.toml`
+  - https://docs.atuin.sh/configuration/config/
+  - `filter_mode = "directory"`
 
 </details>
