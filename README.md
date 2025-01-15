@@ -1,11 +1,5 @@
 # dots
 
-### Quick Update
-
-```sh
-./scripts/update_configs.sh --commit
-```
-
 ### Quick Download & Install
 
 Use the following command to handle repository download and call the installer script ([install.sh](install.sh)). It is tailored to swiftly set up my essential tools and applications on macOS.
@@ -14,17 +8,24 @@ Use the following command to handle repository download and call the installer s
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/cpwillis/dots/main/scripts/repo_download.sh)"
 ```
 
-<details open>
-  <summary>Post-Installation</summary>
+<details>
+  <summary>Quick Update</summary>
 
-- `~/Documents/Misc`;
+```sh
+./scripts/update_configs.sh --commit
+```
+
+</details>
+<details open>
+  <summary>Post-Installation (Manual)</summary>
+
+- Preferences in `~/Documents/Misc`;
   - iTerm2; Preferences > General > Settings > Import All Settings and Data...
   - iStat Menus; File > Import Settings...
   - Alfred; Advanced > Set preferences folder...
-- KiCad EDA --> [Download](https://www.kicad.org/download/macos/)
-- CleanMyMac X --> [Download](https://my.macpaw.com/)
-- PrusaSlicer --> [Download](https://www.prusa3d.com/page/prusaslicer_424/)
+- Install; [KiCad EDA](https://www.kicad.org/download/macos/), [CleanMyMac X](https://my.macpaw.com/), [PrusaSlicer](https://www.prusa3d.com/page/prusaslicer_424/)
 - Licenses; Alfred, Shottr, BetterDisplay, Bruno, CleanMyMac X
+- PII Dotfiles; `.aws`, `.gnupg`
 
 </details>
 

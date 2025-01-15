@@ -1,22 +1,20 @@
 # Amazon Q pre block. Keep at the top of this file.
 [[ -f "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh" ]] && builtin source "${HOME}/Library/Application Support/amazon-q/shell/zshrc.pre.zsh"
 # Amazon Q Pre-Block
+
 # Oh My Zsh
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="robbyrussell"
 plugins=(                   # https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins
     z                       # shortcut to most visited dirs
-    aliases                 # list available aliases with `als`
     colored-man-pages       # colorize man pages
-    command-not-found       # suggest packages when command not found
-    python                  # aliases
-    last-working-dir        # lwd, keeps track of last working dir
+    python                  # py aliases
+    last-working-dir        # new shells open in lwd
     omz-git-branch          # limit git branch name, https://github.com/cpwillis/omz-git-branch
 )
 source $ZSH/oh-my-zsh.sh
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh # https://github.com/zsh-users/zsh-syntax-highlighting
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh # https://github.com/zsh-users/zsh-autosuggestions
-# source /opt/homebrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh # https://github.com/marlonrichert/zsh-autocomplete
 
 # Open VSCode Workspace if Available
 code_path="$(command -v code)"
@@ -36,8 +34,6 @@ eval "$(pyenv init -)"
 alias gp='git diff --quiet && git pull || (git stash push && git pull && git stash pop)'
 alias todo='git diff -U0 main.. | awk '\''/^diff --git/{file=$3;sub(/^a\//,"",file);rel_path=file;gsub(/.*\//,"",file)} /^@@/{start=$2;sub(/^[^+]*[+]/,"",start);linenum=int(start);linenum=linenum>0?linenum:-linenum;next} /^+.*(TODO|FIXME|BUG|NOTE|MISC)/{gsub(/^[+ ]+/,"",$0);split($0,arr,"#");code=arr[1];comment=arr[2];gsub(/^ +| +$/,"",code);gsub(/^ +| +$/,"",comment);col_1=rel_path":"linenum;if(length(code)>0){col_1=col_1"\x1b[35m|\x1b[0m"code}printf "%s\x1b[35m|\x1b[0m%s\n",col_1,comment} /^[^-]/{linenum++}'\'' | sed -E '\''s/(TODO.*)/\x1b[33m\1\x1b[0m/g;s/(FIXME.*)/\x1b[35m\1\x1b[0m/g;s/(BUG.*)/\x1b[31m\1\x1b[0m/g;s/(NOTE.*)/\x1b[94m\1\x1b[0m/g;s/(MISC.*)/\x1b[32m\1\x1b[0m/g'\'''
 alias remote='gh pr view --web || gh repo view --web -b "$(git branch --show-current)"'
-# alias mainpull="git checkout main && git pull"
-# alias mainpullmerge="git checkout main && git pull && git checkout - && GIT_MERGE_AUTOEDIT=no git merge main"
 
 # Docker
 alias dockerps="docker ps --format 'table {{.Names}}\t{{.Ports}}\t{{.Status}}\t{{.CreatedAt}}'"
@@ -64,9 +60,9 @@ alias startmyday='brewup && open -a Docker && z zeus && g co main && g pull && c
 
 # Tools
 eval $(thefuck --alias)
-eval "$(direnv hook zsh)"
+eval "$(direnv hook zsh)" # auto load .env
 eval "$(atuin init zsh)"
-export GPG_TTY=$(tty) # ttl in ~/.gnupg/gpg-agent.conf
+export GPG_TTY=$(tty) # ttl in ~/.gnupg/gpg-agent.conf (5hrs)
 
 # Colors (using brew coreutils)
 # test -r ~/.dircolors && eval $(gdircolors ~/.dircolors)
