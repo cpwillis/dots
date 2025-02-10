@@ -1,15 +1,15 @@
 #!/bin/bash
 
-# ------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 # This script prevents direct pushes to restricted branches (eg 'main').
 #
-# To install, copy this script to your repo's .git/hooks as 'pre-push', then make it executable;
+# To install, copy this script to your local repo's .git/hooks as 'pre-push', then make it executable;
 #   cd <repo>
 #   code .git/hooks/pre-push
 #   chmod +x .git/hooks/pre-push
 #
 # Note: Hooks aren't tracked by Git and won't be pushed to the remote.
-# ------------------------------------------------------------------------------------------------
+# ------------------------------------------------------------------------------------------------------
 
 # Specify restricted branches
 restricted_branches=("main")

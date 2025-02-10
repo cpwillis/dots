@@ -90,15 +90,15 @@
   "githubPullRequests.queries": [
     {
       "label": "Waiting For My Review",
-      "query": "is:open review-requested:${user}"
+      "query": "repo:${owner}/${repository} is:open review-requested:${user}"
     },
     {
       "label": "Involves Me",
-      "query": "is:open involves:${user}"
+      "query": "repo:${owner}/${repository} is:open involves:${user}"
     },
     {
       "label": "Created By Me",
-      "query": "is:open author:${user}"
+      "query": "repo:${owner}/${repository} is:open author:${user}"
     }
   ],
 
