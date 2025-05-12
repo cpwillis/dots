@@ -35,6 +35,7 @@ alias remote='gh pr view --web || gh repo view --web -b "$(git branch --show-cur
 alias dockerps="docker ps --format 'table {{.Names}}\t{{.Ports}}\t{{.Status}}\t{{.CreatedAt}}'"
 alias dockersv='echo "CONTAINER ID \t NAME \t\t SERVICE" && docker ps -q | while read -r container_id; do service=$(docker inspect --format "{{ index .Config.Labels \"com.docker.compose.service\" }}" "$container_id"); name=$(docker inspect --format "{{ .Name }}" "$container_id" | sed "s/\///g"); echo "$container_id \t $name \t $service"; done'
 alias dockerinfo="dockerps; echo ''; dockersv"
+alias docker-compose='docker compose'
 
 # Helpers
 alias brewup="brew update && brew upgrade && brew cleanup && brew doctor"
