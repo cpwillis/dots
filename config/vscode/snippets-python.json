@@ -42,6 +42,20 @@
 		],
 		"description": "Log output to stderr"
 	},
+	"Print Fluoro Red Line": {
+		"prefix": "lne2",
+		"body": [
+			"print('\\033[91m ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ \\033[0m')"
+		],
+		"description": "Print a bright red horizontal line"
+	},
+	"Print Blue Line": {
+		"prefix": "lne3",
+		"body": [
+			"print('\\033[94m **************************************** \\033[0m')"
+		],
+		"description": "Print a blue horizontal line"
+	},
 	"Traceback": {
 		"prefix": "trc",
 		"body": [

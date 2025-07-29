@@ -89,6 +89,10 @@
   "githubPullRequests.pullBranch": "never",
   "githubPullRequests.queries": [
     {
+      "label": "Local Pull Request Branches",
+      "query": "default"
+    },
+    {
       "label": "Waiting For My Review",
       "query": "repo:${owner}/${repository} is:open review-requested:${user}"
     },
@@ -99,6 +103,10 @@
     {
       "label": "Created By Me",
       "query": "repo:${owner}/${repository} is:open author:${user}"
+    },
+    {
+      "label": "All Open",
+      "query": "default"
     }
   ],
 
@@ -183,5 +191,6 @@
     "repositories": true,
     "searchAndCompare": false,
     "launchpad": false
-  }
+  },
+  "github.copilot.nextEditSuggestions.enabled": true
 }

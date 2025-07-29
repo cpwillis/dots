@@ -105,3 +105,4 @@
 	undo = reset HEAD~1 --mixed
 	cleanup = ! "git fetch -p && git for-each-ref --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" {print $1}' | xargs -r git branch -D"
 	sha = "!f() { SHA=$1; printf '\\033[1;35mCommit Info\\033[0m\\n'; git --no-pager show $SHA --name-status --pretty=format:\"%CgreenAuth:%Creset %an (%ae)%n%CgreenDate:%Creset %ad (%ar)%n%CgreenHash:%Creset %H (%h)%n%CgreenSubj:%Creset %s%n%n%CgreenFiles Changed:%Creset\"; printf '\\n\\033[1;35mBranches Containing Commit\\033[0m\\n'; git fetch -a && git --no-pager branch -a --contains $SHA; }; f"
+	track = !git branch --set-upstream-to=origin/$(git symbolic-ref --short HEAD)
