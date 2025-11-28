@@ -53,13 +53,14 @@ alias sudo='sudo ' # attempt alias expansion
 
 # Work
 alias sc='f() { story_id=${1:-$(git rev-parse --abbrev-ref HEAD | grep -o "sc-[0-9]*" | grep -o "[0-9]*")}; if [ -n "$story_id" ]; then open "https://app.shortcut.com/tour-amigo/story/$story_id"; else echo "No Shortcut ID found."; fi; }; f'
-alias startmyday='brewup && open -a Docker && z zeus && g co main && g pull && ctl up -d --build && ctl post-deploy && docker start traefik' # no unstaged changes required
+alias startmyday='open -a Docker && z zeus && g co main && g pull && ctl up -d --build && ctl post-deploy && docker start traefik' # no unstaged changes required
 
 # Tools
 eval $(thefuck --alias)
 eval "$(direnv hook zsh)" # auto load .env
 eval "$(atuin init zsh)"
 export GPG_TTY=$(tty) # ttl in ~/.gnupg/gpg-agent.conf (5hrs)
+export PATH="$PATH:$HOME/.local/bin" # user-level python packages
 
 # Colors (using brew coreutils)
 # test -r ~/.dircolors && eval $(gdircolors ~/.dircolors)
@@ -67,3 +68,4 @@ export GPG_TTY=$(tty) # ttl in ~/.gnupg/gpg-agent.conf (5hrs)
 # Versioning
 alias python=python3
 alias pip=pip3
+

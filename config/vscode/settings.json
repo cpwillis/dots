@@ -192,5 +192,20 @@
     "searchAndCompare": false,
     "launchpad": false
   },
-  "github.copilot.nextEditSuggestions.enabled": true
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "errorLens.messageEnabled": false,
+  "gitlens.views.scm.grouped.hiddenViews": {
+    "commits": false,
+    "worktrees": false,
+    "branches": false,
+    "remotes": false,
+    "stashes": false,
+    "tags": false,
+    "contributors": false,
+    "repositories": false,
+    "fileHistory": false,
+    "launchpad": false,
+    "searchAndCompare": false
+  },
+  "githubIssues.createIssueTriggers": []
 }
