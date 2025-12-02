@@ -54,6 +54,7 @@ alias sudo='sudo ' # attempt alias expansion
 # Work
 alias sc='f() { story_id=${1:-$(git rev-parse --abbrev-ref HEAD | grep -o "sc-[0-9]*" | grep -o "[0-9]*")}; if [ -n "$story_id" ]; then open "https://app.shortcut.com/tour-amigo/story/$story_id"; else echo "No Shortcut ID found."; fi; }; f'
 alias startmyday='open -a Docker && z zeus && g co main && g pull && ctl up -d --build && ctl post-deploy && docker start traefik' # no unstaged changes required
+alias db_rev='for db in hermes athena; do printf "%s: " "$db"; ctl sql <<< "select version_num from ${db}.alembic_version" | awk '\''/^[0-9a-f]{12,}$/ {print; exit}'\''; done'
 
 # Tools
 eval $(thefuck --alias)
