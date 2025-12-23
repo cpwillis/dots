@@ -62,6 +62,7 @@ eval "$(direnv hook zsh)" # auto load .env
 eval "$(atuin init zsh)"
 export GPG_TTY=$(tty) # ttl in ~/.gnupg/gpg-agent.conf (5hrs)
 export PATH="$PATH:$HOME/.local/bin" # user-level python packages
+export VIRTUAL_ENV_DISABLE_PROMPT=1 # disable venv prompt modification (for vscode integrated terminal) --> echo $VIRTUAL_ENV
 
 # Colors (using brew coreutils)
 # test -r ~/.dircolors && eval $(gdircolors ~/.dircolors)

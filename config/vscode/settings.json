@@ -52,9 +52,7 @@
   "workbench.startupEditor": "none",
   "workbench.iconTheme": "material-icon-theme",
   "workbench.editor.empty.hint": "hidden",
-  "workbench.layoutControl.enabled": false,
   "window.title": "[${rootNameShort}] ${activeEditorMedium}",
-  "window.commandCenter": false,
 
   // Terminal
   "terminal.integrated.env.osx": {
@@ -207,5 +205,7 @@
     "launchpad": false,
     "searchAndCompare": false
   },
-  "githubIssues.createIssueTriggers": []
+  "githubIssues.createIssueTriggers": [],
+  "workbench.layoutControl.enabled": false,
+  "window.commandCenter": false
 }
