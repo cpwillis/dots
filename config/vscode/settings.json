@@ -10,7 +10,6 @@
   "editor.rulers": [120], // Vertical Line
   "editor.suggestSelection": "first",
   "editor.renderWhitespace": "all",
-  "editor.minimap.enabled": false,
   "editor.formatOnSave": true,
 
   // Language-Specific Formatters
@@ -207,7 +206,13 @@
   },
   "githubIssues.createIssueTriggers": [],
   "workbench.layoutControl.enabled": false,
-  "window.commandCenter": false,
   "gitlens.ai.model": "vscode",
   "gitlens.ai.vscode.model": "copilot:gpt-4.1",
+  "chat.unifiedAgentsBar.enabled": true,
+  "claudeCode.preferredLocation": "panel",
+  "window.commandCenter": false,
+  "workbench.productIconTheme": "material-product-icons",
+  "workbench.activityBar.compact": true,
+  "editor.minimap.enabled": false,
+  "chat.viewSessions.orientation": "stacked",
 }

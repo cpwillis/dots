@@ -35,6 +35,7 @@ alias remote='gh pr view --web || gh repo view --web -b "$(git branch --show-cur
 alias dockerps="docker ps --format 'table {{.Names}}\t{{.Ports}}\t{{.Status}}\t{{.CreatedAt}}'"
 alias dockersv='echo "CONTAINER ID \t NAME \t\t SERVICE" && docker ps -q | while read -r container_id; do service=$(docker inspect --format "{{ index .Config.Labels \"com.docker.compose.service\" }}" "$container_id"); name=$(docker inspect --format "{{ .Name }}" "$container_id" | sed "s/\///g"); echo "$container_id \t $name \t $service"; done'
 alias dockerinfo="dockerps; echo ''; dockersv"
+alias dockernuke='docuum --keep 1' # keep latest image, remove older unused ones
 alias docker-compose='docker compose'
 
 # Helpers
@@ -60,7 +61,7 @@ alias db_rev='for db in hermes athena; do printf "%s: " "$db"; ctl sql <<< "sele
 eval $(thefuck --alias)
 eval "$(direnv hook zsh)" # auto load .env
 eval "$(atuin init zsh)"
-export GPG_TTY=$(tty) # ttl in ~/.gnupg/gpg-agent.conf (5hrs)
+export GPG_TTY=$(tty) # ttl in ~/.gnupg/gpg-agent.conf
 export PATH="$PATH:$HOME/.local/bin" # user-level python packages
 export VIRTUAL_ENV_DISABLE_PROMPT=1 # disable venv prompt modification (for vscode integrated terminal) --> echo $VIRTUAL_ENV
 
