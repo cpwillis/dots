@@ -4,17 +4,20 @@ Personal macOS dotfiles - automated setup for a fresh Mac install.
 
 ## Quick Start
 
-**On a new machine:**
+### Sync Configs
+
+```sh
+./scripts/update_configs.sh # sync only
+```
+
+```sh
+./scripts/update_configs.sh --commit # sync, commit, and push
+```
+
+### Download and Install
 
 ```sh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/cpwillis/dots/main/scripts/repo_download.sh)"
-```
-
-**Sync current system configs back to the repo:**
-
-```sh
-./scripts/update_configs.sh           # sync only
-./scripts/update_configs.sh --commit  # sync, commit, and push
 ```
 
 ## What's Included
@@ -30,12 +33,12 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/cpwillis/dots/main/scripts
 
 ## Scripts
 
-| Script                                                                     | Purpose                                     |
-| -------------------------------------------------------------------------- | ------------------------------------------- |
-| [`scripts/install.sh`](scripts/install.sh)                                 | Full system setup (run once on a fresh Mac) |
-| [`scripts/update_configs.sh`](scripts/update_configs.sh)                   | Sync current system configs back to repo    |
-| [`scripts/repo_download.sh`](scripts/repo_download.sh)                     | Clone the repo and run the installer        |
-| [`scripts/generate_macOS_settings.sh`](scripts/generate_macOS_settings.sh) | Capture current macOS preferences           |
+| Script                                                                     | Purpose                                                                               |
+| -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| [`scripts/install.sh`](scripts/install.sh)                                 | Full system setup (run once on a fresh Mac)                                           |
+| [`scripts/update_configs.sh`](scripts/update_configs.sh)                   | Sync current system configs back to repo                                              |
+| [`scripts/repo_download.sh`](scripts/repo_download.sh)                     | Clone the repo and run the installer                                                  |
+| [`scripts/generate_macOS_settings.sh`](scripts/generate_macOS_settings.sh) | Capture current macOS preferences - run separately, not called by `update_configs.sh` |
 
 `install.sh` reads [`meta/manifest.csv`](meta/manifest.csv) to deploy all dotfiles - add a row there to include a new file in both install and sync.
 
