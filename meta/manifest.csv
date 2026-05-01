@@ -9,3 +9,4 @@
 "gpg-agent",                 "config/gnupg/gpg-agent.conf",          "$HOME/.gnupg/gpg-agent.conf"
 "dircolors",                 "config/.dircolors",                    "$HOME/.dircolors"
 "atuin",                     "config/atuin/config.toml",              "$HOME/.config/atuin/config.toml"
+"claude-global",             "config/claude/CLAUDE.md",              "$HOME/.claude/CLAUDE.md"
