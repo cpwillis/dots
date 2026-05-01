@@ -1,44 +1,30 @@
-#!/bin/sh
+#!/usr/bin/env bash
+# clone the repo and run the installer
+set -euo pipefail
 
-# Define the repository URL
 REPO_URL="https://github.com/cpwillis/dots.git"
+INSTALL_DIR="${HOME}/Downloads/dots"
 
-# Define the directory where you want to clone the repository
-INSTALL_DIR="$HOME/Downloads/dots"
-
-# If the installation directory already exists, prompt the user to remove it
-if [ -d "$INSTALL_DIR" ]; then
-    printf "The installation directory already exists at %s.\n" "$INSTALL_DIR"
-    printf "Do you want to remove it and proceed with the installation? (y/n) "
-    read -r REPLY
-    case "$(printf "%s" "$REPLY" | tr '[:upper:]' '[:lower:]')" in
-    y | yes)
-        rm -rf "$INSTALL_DIR" || {
-            echo "Failed to remove the existing directory. Check your permissions." >&2
+# Remove existing directory if present
+if [ -d "${INSTALL_DIR}" ]; then
+    printf "Directory already exists at %s.\n" "${INSTALL_DIR}"
+    read -rp "Remove it and continue? (y/n) " reply
+    case "$(printf '%s' "${reply}" | tr '[:upper:]' '[:lower:]')" in
+        y|yes)
+            rm -rf "${INSTALL_DIR}"
+            printf "Removed existing directory.\n"
+            ;;
+        *)
+            printf "Cancelled.\n"
             exit 1
-        }
-        printf "Existing installation directory removed successfully.\n"
-        ;;
-    *)
-        echo "Installation cancelled by the user."
-        exit 1
-        ;;
+            ;;
     esac
 fi
 
-# Clone the repository
-echo "Cloning repository..."
-git clone "$REPO_URL" "$INSTALL_DIR" || { echo "Failed to clone repository"; exit 1; }
+# Clone and run installer
+printf "Cloning %s...\n" "${REPO_URL}"
+git clone "${REPO_URL}" "${INSTALL_DIR}"
 
-# Change directory to the cloned repository
-cd "$INSTALL_DIR" || { echo "Failed to change directory to $INSTALL_DIR"; exit 1; }
-
-# Run install.sh
-if [ -f "install.sh" ]; then
-    echo "Running install.sh..."
-    chmod +x install.sh
-    ./install.sh
-else
-    echo "install.sh not found in the repository."
-    exit 1
-fi
+cd "${INSTALL_DIR}"
+chmod +x scripts/install.sh
+./scripts/install.sh

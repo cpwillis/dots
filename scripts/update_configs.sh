@@ -1,39 +1,73 @@
-#!/bin/sh
-# script to update config files in the repo from the system
+#!/usr/bin/env bash
+# sync current system configs back to the repo
+set -euo pipefail
 
-# repo config folder
-CONFIG_DIR="$(cd "$(dirname "$0")/../config" && pwd)"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
+CONFIG_DIR="${REPO_DIR}/config"
 
-# vscode
-cp ~/Library/Application\ Support/Code/User/settings.json "$CONFIG_DIR/vscode/settings.json"
-cp ~/Library/Application\ Support/Code/User/snippets/python.json "$CONFIG_DIR/vscode/snippets-python.json"
-echo "vscode updated"
+# ── Colors ──────────────────────────────────────────────────────────────────────
+green=$(tput setaf 2); yellow=$(tput setaf 3); cyan=$(tput setaf 6)
+bold=$(tput bold); reset=$(tput sgr0)
+ok()   { printf "%s    ✓ %s%s\n" "${green}" "${1}" "${reset}"; }
+warn() { printf "%s    ! %s%s\n" "${yellow}" "${1}" "${reset}"; }
+info() { printf "\n%s%s%s\n" "${cyan}${bold}" "${1}" "${reset}"; }
 
-# gitconfig, email and signingkey are placeholders
-cp ~/.gitconfig "$CONFIG_DIR/.gitconfig"
-sed -i '' 's/email = .*/email = <github_no_reply>/g' "$CONFIG_DIR/.gitconfig"
-sed -i '' 's/signingkey = .*/signingkey = <public_key>/g' "$CONFIG_DIR/.gitconfig"
-echo "gitconfig updated"
 
-# zshrc
-cp ~/.zshrc "$CONFIG_DIR/.zshrc"
-echo "zshrc updated"
+# ── Dotfiles from manifest.csv ──────────────────────────────────────────────────
+info "Dotfiles"
+while IFS=',' read -r name repo_path system_path; do
+    name=$(printf '%s' "${name}" | tr -d '"' | xargs)
+    repo_path=$(printf '%s' "${repo_path}" | tr -d '"' | xargs)
+    system_path=$(printf '%s' "${system_path}" | tr -d '"' | xargs)
 
-# brewfile, sometimes MAS items are missing upon dump, check and loop
-for i in {1..3}; do
-    brew bundle dump --file="$CONFIG_DIR/Brewfile" --force
-    grep -q "^mas " "$CONFIG_DIR/Brewfile" && break
-    [[ $i -lt 3 ]] && echo "MAS items missing, retrying... (Attempt $((i+1)) of 3)" && brew reinstall mas
+    src=$(eval echo "${system_path}")
+    dst="${REPO_DIR}/${repo_path}"
+
+    if [ ! -f "${src}" ]; then
+        warn "${name}: not found at ${src}"
+        continue
+    fi
+    mkdir -p "$(dirname "${dst}")"
+    cp "${src}" "${dst}"
+    ok "${name}"
+done < <(grep -v '^[[:space:]]*#\|^[[:space:]]*$' "${META_DIR}/manifest.csv")
+
+
+# ── Sanitize .gitconfig ─────────────────────────────────────────────────────────
+info "Sanitizing .gitconfig"
+sed -i '' 's/email = .*/email = <github_no_reply>/g' "${CONFIG_DIR}/.gitconfig"
+sed -i '' 's/signingkey = .*/signingkey = <public_key>/g' "${CONFIG_DIR}/.gitconfig"
+ok "email and signingkey redacted"
+
+
+# ── Brewfile ────────────────────────────────────────────────────────────────────
+info "Brewfile"
+for i in 1 2 3; do
+    brew bundle dump --file="${CONFIG_DIR}/Brewfile" --force
+    if grep -q '^mas ' "${CONFIG_DIR}/Brewfile"; then
+        ok "Brewfile updated (with MAS entries)"
+        break
+    fi
+    if [ "${i}" -lt 3 ]; then
+        warn "MAS entries missing - retrying (attempt $((i+1))/3)"
+        brew reinstall mas
+    else
+        warn "MAS entries still missing after 3 attempts"
+    fi
 done
-[[ $i -eq 3 && ! $(grep -q "^mas " "$CONFIG_DIR/Brewfile") ]] && echo "Warning: MAS items are still missing after 3 attempts." || echo "brewfile updated (w/ mas items)"
 
-# push update to repo (only if --commit flag is provided)
-if [[ "$1" == "--commit" ]]; then
-    cd "$(dirname "$CONFIG_DIR")" && git add . && git commit -m "run update" && git push
-    echo "changes pushed to git"
+
+# ── Git commit + push ───────────────────────────────────────────────────────────
+if [[ "${1:-}" == "--commit" ]]; then
+    info "Committing and pushing"
+    cd "${REPO_DIR}"
+    git add .
+    git commit -m "run update"
+    git push
+    ok "Changes pushed to remote"
 else
-    echo "Skipping commit and push as --commit flag was not provided."
+    info "Skipping commit - pass --commit to auto-push"
 fi
 
-# fin
-echo "--> quick_update.sh completed successfully!"
+printf "\n%s✓ update_configs.sh complete%s\n\n" "${green}${bold}" "${reset}"

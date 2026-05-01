@@ -1,0 +1,9 @@
+# Maps repo dotfiles to their system destinations.
+# A single row here includes the file in both install (deploy) and update (sync back).
+# name, repo_path, system_path
+
+"gitconfig",                  "config/.gitconfig",                     "$HOME/.gitconfig"
+"zshrc",                     "config/.zshrc",                        "$HOME/.zshrc"
+"vscode-settings",           "config/vscode/settings.json",          "$HOME/Library/Application Support/Code/User/settings.json"
+"vscode-snippets-python",    "config/vscode/snippets-python.json",   "$HOME/Library/Application Support/Code/User/snippets/python.json"
+"gpg-agent",                 "config/gnupg/gpg-agent.conf",          "$HOME/.gnupg/gpg-agent.conf"

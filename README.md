@@ -1,91 +1,93 @@
 # dots
 
-### Quick Download & Install
+Personal macOS dotfiles - automated setup for a fresh Mac install.
 
-Use the following command to handle repository download and call the installer script ([install.sh](install.sh)). It is tailored to swiftly set up my essential tools and applications on macOS.
+## Quick Start
+
+**On a new machine:**
 
 ```sh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/cpwillis/dots/main/scripts/repo_download.sh)"
 ```
 
-<details>
-  <summary>Quick Update</summary>
+**Sync current system configs back to the repo:**
 
 ```sh
-./scripts/update_configs.sh --commit
+./scripts/update_configs.sh           # sync only
+./scripts/update_configs.sh --commit  # sync, commit, and push
 ```
 
-</details>
+## What's Included
 
-<details open>
-  <summary>Post-Installation (Manual)</summary>
+| Category           | Examples                                          |
+| ------------------ | ------------------------------------------------- |
+| CLI tools          | git, pyenv, atuin, gh, direnv, awscli, bat, delta |
+| Apps (Cask)        | VSCode, iTerm2, Alfred, Obsidian, Bruno           |
+| App Store          | Xcode, Affinity suite, Office suite, Magnet       |
+| VS Code extensions | GitLens, Ruff, Claude Code, Pylance, GitGraph     |
 
-- Preferences in `~/Documents/Misc`;
-  - iTerm2; Preferences > General > Settings > Import All Settings and Data...
-  - iStat Menus; File > Import Settings...
-  - Alfred; Advanced > Set preferences folder...
-- Install; [KiCad EDA](https://www.kicad.org/download/macos/), [CleanMyMac X](https://my.macpaw.com/), [PrusaSlicer](https://www.prusa3d.com/page/prusaslicer_424/)
-- Licenses; Alfred, Shottr, BetterDisplay, Bruno, CleanMyMac X
-- PII Dotfiles; `.aws`, `.gnupg`
+**Dotfiles:** `.zshrc`, `.gitconfig`, VSCode settings & snippets, GPG agent config.
 
-</details>
+## Scripts
 
-### About
+| Script                                                                     | Purpose                                     |
+| -------------------------------------------------------------------------- | ------------------------------------------- |
+| [`scripts/install.sh`](scripts/install.sh)                                 | Full system setup (run once on a fresh Mac) |
+| [`scripts/update_configs.sh`](scripts/update_configs.sh)                   | Sync current system configs back to repo    |
+| [`scripts/repo_download.sh`](scripts/repo_download.sh)                     | Clone the repo and run the installer        |
+| [`scripts/generate_macOS_settings.sh`](scripts/generate_macOS_settings.sh) | Capture current macOS preferences           |
 
-<details>
-  <summary>Homebrew and Brewfile</summary>
+`install.sh` reads [`meta/manifest.csv`](meta/manifest.csv) to deploy all dotfiles — add a row there to include a new file in both install and sync.
 
-Homebrew is an unofficial package manager for macOS, simplifying the installation, updating, and management of user applications. Utilizing Git and Ruby, it installs packages within its prefix and symlinks them to the appropriate locations on disk, providing flexibility for customization and easy rollback of changes. Accessed via the terminal with the `brew` command, Homebrew also offers an unofficial GUI called Cakebrew. The Brewfile defines a list of packages to install on your system, featuring keywords like `brew`, `cask`, `tap`, and `mas`, each serving specific purposes as detailed in the documentation's terminology section. Lines starting with brew install pre-compiled binary packages, casks install GUI applications, taps add extra repositories, and mas enables installation of apps from the Apple App Store directly within your Brewfile.
+## Post-Installation (Manual)
 
-</details>
+Settings backups are stored in `~/Documents/Misc`:
 
-<details>
-  <summary>Dotfiles</summary>
+- **iTerm2:** Preferences → General → Settings → _Import All Settings and Data..._
+- **Alfred:** Advanced → _Set preferences folder..._
 
-Dotfiles, customizable configuration files typically stored in the user's home directory or `~/.config`, are named with a dot prefix (e.g., `.gitconfig`, `.zshrc`, `.vimrc`). Managed via Git, they enable effortless backups, rollbacks, and synchronization across environments, ensuring a consistent setup on multiple machines and expediting the process of setting up a new system.
+Manual installs:
 
-Prioritizing security when managing dotfiles is paramount due to the potential inclusion of sensitive information like SSH keys or passwords. Solutions encompass utilizing `.gitignore` to prevent committing private files and ensuring setups aren't reliant on them. Encryption options such as `pass` or plain GPG bolster security. Additionally, tools like Git-crypt provide GPG-based encryption tailored for Git repositories, furnishing plaintext fallback versions to prevent errors if GPG keys are absent.
+- [KiCad EDA](https://www.kicad.org/download/macos/)
+- [CleanMyMac X](https://my.macpaw.com/)
+- [PrusaSlicer](https://www.prusa3d.com/page/prusaslicer_424/)
 
-</details>
+Licenses: Alfred, Shottr, BetterDisplay, Bruno, CleanMyMac X
 
-### Misc
+Private dotfiles (`.aws/`, `.gnupg/`) are excluded from the repo - restore manually.
 
-<details>
-  <summary>Brewfile Management Commands</summary>
-
-- Install from Brewfile at current path: `$ brew bundle`
-- Install from specific Brewfile: `$ brew bundle --file=[path/to/file]`
-- Create Brewfile from installed packages: `$ brew bundle dump`
-- Uninstall formulae not in Brewfile: `$ brew bundle cleanup --force`
-- Check for install or upgrade in Brewfile: `$ brew bundle check`
-- Output all Brewfile entries: `$ brew bundle list --all`
-</details>
+## Reference
 
 <details>
-  <summary>Test Script in VM</summary>
+<summary>Brewfile commands</summary>
 
-It's advisable to test your script on a fresh Mac VM to ensure proper functionality. Installing on a clean Mac install allows you to identify potential issues that may not surface when repeatedly running the script on your own computer.
-
-- **Intel**: Install Intel Mac OS VMs using [Virtualbox](https://github.com/myspaghetti/macos-virtualbox).
-- **Apple Silicon (M1/M2)**: Utilize [VirtualBuddy](https://github.com/insidegui/VirtualBuddy) to run Mac OS VMs using Apple's Virtualization framework.
-
-</details>
-
-<details>
-  <summary>GitHub Codespaces</summary>
-
-Settings > Codespaces > Dotfiles > Automatically install dotfiles
-
-- [How to set up your dotfiles for Codespaces](https://docs.github.com/en/codespaces/setting-your-user-preferences/personalizing-github-codespaces-for-your-account#dotfiles)
-- [unofficial guide to dotfiles](https://dotfiles.github.io/)
+| Command                       | Description                                |
+| ----------------------------- | ------------------------------------------ |
+| `brew bundle`                 | Install from Brewfile in current directory |
+| `brew bundle --file=path`     | Install from a specific Brewfile           |
+| `brew bundle dump`            | Create Brewfile from installed packages    |
+| `brew bundle cleanup --force` | Remove packages not listed in Brewfile     |
+| `brew bundle check`           | Check all Brewfile entries are installed   |
+| `brew bundle list --all`      | Print all entries in the Brewfile          |
 
 </details>
 
 <details>
-  <summary>TODO</summary>
+<summary>Testing in a VM</summary>
 
-- Add `~/.config/atuin/config.toml`
-  - https://docs.atuin.sh/configuration/config/
-  - `filter_mode = "directory"`
+Test on a clean Mac before running on your own machine:
+
+- **Intel:** [macos-virtualbox](https://github.com/myspaghetti/macos-virtualbox)
+- **Apple Silicon:** [VirtualBuddy](https://github.com/insidegui/VirtualBuddy)
+
+</details>
+
+<details>
+<summary>GitHub Codespaces</summary>
+
+Settings → Codespaces → Dotfiles → _Automatically install dotfiles_
+
+- [How to set up dotfiles for Codespaces](https://docs.github.com/en/codespaces/setting-your-user-preferences/personalizing-github-codespaces-for-your-account#dotfiles)
+- [dotfiles.github.io](https://dotfiles.github.io/)
 
 </details>
