@@ -4,120 +4,156 @@
   "editor.fontFamily": "'Cascadia Code', 'Fira Code', Monaco",
   "editor.fontLigatures": true,
   "editor.fontSize": 14,
+  "editor.formatOnSave": true,
   "editor.inlineSuggest.enabled": true,
   "editor.linkedEditing": true,
+  "editor.minimap.enabled": false,
   "editor.renderControlCharacters": true,
+  "editor.renderWhitespace": "all",
   "editor.rulers": [120], // Vertical Line
   "editor.suggestSelection": "first",
-  "editor.renderWhitespace": "all",
-  "editor.formatOnSave": true,
 
   // Language-Specific Formatters
-  "[html]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-  },
-  "[javascript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features",
-  },
-  "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-  },
-  "[jsonc]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-  },
-  "[markdown]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-  },
-  "[python]": {
-    "editor.defaultFormatter": "charliermarsh.ruff",
-  },
-  "[jinja]": {
-    "editor.defaultFormatter": "monosans.djlint",
+  "[cpp]": {
+    "editor.defaultFormatter": "ms-vscode.cpptools"
   },
   "[django-html]": {
-    "editor.defaultFormatter": "monosans.djlint",
+    "editor.defaultFormatter": "monosans.djlint"
   },
-  "[cpp]": {
-    "editor.defaultFormatter": "ms-vscode.cpptools",
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
+  "[jinja]": {
+    "editor.defaultFormatter": "monosans.djlint"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff"
   },
   "[sh]": {
-    "editor.formatOnSave": false,
+    "editor.formatOnSave": false
   },
   "[sql]": {
-    "editor.formatOnSave": false,
+    "editor.formatOnSave": false
   },
 
   // Workbench
-  "workbench.startupEditor": "none",
-  "workbench.iconTheme": "material-icon-theme",
-  "workbench.editor.empty.hint": "hidden",
+  "window.commandCenter": false,
   "window.title": "[${rootNameShort}] ${activeEditorMedium}",
+  "workbench.activityBar.compact": true,
+  "workbench.colorTheme": "Dark Modern",
+  "workbench.editor.empty.hint": "hidden",
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.layoutControl.enabled": false,
+  "workbench.productIconTheme": "material-product-icons",
+  "workbench.startupEditor": "none",
 
   // Terminal
-  "terminal.integrated.env.osx": {
-    "FIG_NEW_SESSION": "1",
-    "CW_NEW_SESSION": "1",
-    "Q_NEW_SESSION": "1",
-  },
   "terminal.integrated.defaultProfile.osx": "zsh",
+  "terminal.integrated.env.osx": {
+    "CW_NEW_SESSION": "1",
+    "FIG_NEW_SESSION": "1",
+    "Q_NEW_SESSION": "1"
+  },
   "terminal.integrated.fontFamily": "MesloLGS NF", // OMZ Powerlevel10k Font
+  "terminal.integrated.initialHint": false,
   "terminal.integrated.tabs.enabled": true,
 
   // Git
   "git.autofetch": true,
-  "git.confirmSync": false,
-  "git.openRepositoryInParentFolders": "never",
-  "git.ignoreRebaseWarning": true,
-  "git.enableSmartCommit": true,
   "git.branchProtection": ["main"], // DON'T PUSH TO MAIN
+  "git.confirmSync": false,
+  "git.enableSmartCommit": true,
+  "git.ignoreRebaseWarning": true,
+  "git.openRepositoryInParentFolders": "never",
 
   // GitLens
   "gitlens.advanced.messages": {
-    "suppressGitMissingWarning": true,
+    "suppressGitMissingWarning": true
   },
-  "gitlens.views.repositories.showContributors": false,
-  "gitlens.views.repositories.showWorktrees": false,
-  "gitlens.views.repositories.showTags": false,
+  "gitlens.ai.model": "vscode",
+  "gitlens.ai.vscode.model": "copilot:gpt-4.1",
   "gitlens.views.repositories.files.layout": "tree",
+  "gitlens.views.repositories.showContributors": false,
+  "gitlens.views.repositories.showTags": false,
+  "gitlens.views.repositories.showWorktrees": false,
+  "gitlens.views.scm.grouped.hiddenViews": {
+    "branches": false,
+    "commits": false,
+    "contributors": false,
+    "fileHistory": false,
+    "launchpad": false,
+    "remotes": false,
+    "repositories": false,
+    "searchAndCompare": false,
+    "stashes": false,
+    "tags": false,
+    "worktrees": false
+  },
+  "gitlens.views.scm.grouped.views": {
+    "branches": true,
+    "commits": true,
+    "contributors": true,
+    "launchpad": false,
+    "remotes": true,
+    "repositories": true,
+    "searchAndCompare": false,
+    "stashes": true,
+    "tags": true,
+    "worktrees": true
+  },
 
-  // GitHub Pull Requests
-  "githubPullRequests.createOnPublishBranch": "never",
+  // GitHub
+  "github.copilot.nextEditSuggestions.enabled": true,
+  "githubIssues.createIssueTriggers": [],
   "githubPullRequests.assignCreated": "${user}",
+  "githubPullRequests.createOnPublishBranch": "never",
   "githubPullRequests.pullBranch": "never",
   "githubPullRequests.queries": [
     {
       "label": "Local Pull Request Branches",
-      "query": "default",
+      "query": "default"
     },
     {
       "label": "Waiting For My Review",
-      "query": "repo:${owner}/${repository} is:open review-requested:${user}",
+      "query": "repo:${owner}/${repository} is:open review-requested:${user}"
     },
     {
       "label": "Involves Me",
-      "query": "repo:${owner}/${repository} is:open involves:${user}",
+      "query": "repo:${owner}/${repository} is:open involves:${user}"
     },
     {
       "label": "Created By Me",
-      "query": "repo:${owner}/${repository} is:open author:${user}",
+      "query": "repo:${owner}/${repository} is:open author:${user}"
     },
     {
       "label": "All Open",
-      "query": "default",
-    },
+      "query": "default"
+    }
   ],
 
   // Python
-  "python.analysis.diagnosticSeverityOverrides": {
-    "reportMissingImports": "none",
-  },
   "flake8.args": [
     "--max-line-length=120",
-    "--ignore=E122,E128,E201,E202,E203,E261,E303,F401,E402,E501,W291,W503,W605,E711,E712",
+    "--ignore=E122,E128,E201,E202,E203,E261,E303,F401,E402,E501,W291,W503,W605,E711,E712"
     // E122: Missing indentation, E128: Mixed indentation (tabs and spaces), E201: Whitespace after '(', E202: Whitespace before ')', E203: Whitespace before ':', E261: Space before inline comment
     // E303: Too many blank lines, F401: Imported but unused (duplicated by Pylance), E402: Module level import not at top, E501: Line too long, W291: Trailing whitespace, W503: Line break occurred before a binary operator
     // W605: Invalid escape sequence, E711: Comparison to False should be 'if cond is False', E712: Comparison to None should be 'if cond is not None:'
   ],
+  "python.analysis.diagnosticSeverityOverrides": {
+    "reportMissingImports": "none"
+  },
 
   // Todo Highlight
   "todohighlight.isEnable": true,
@@ -127,95 +163,61 @@
       "color": "#ecf0f1",
       "border": "1px solid #f39c12",
       "borderRadius": "4px",
-      "backgroundColor": "#f1c40f",
+      "backgroundColor": "#f1c40f"
     },
     {
       "text": "FIXME",
       "color": "#ecf0f1",
       "border": "1px solid #8e44ad",
       "borderRadius": "4px",
-      "backgroundColor": "#9b59b6",
+      "backgroundColor": "#9b59b6"
     },
     {
       "text": "BUG",
       "color": "#ecf0f1",
       "border": "1px solid #c0392b",
       "borderRadius": "4px",
-      "backgroundColor": "#e74c3c",
+      "backgroundColor": "#e74c3c"
     },
     {
       "text": "NOTE",
       "color": "#ecf0f1",
       "border": "1px solid #2980b9",
       "borderRadius": "4px",
-      "backgroundColor": "#3498db",
+      "backgroundColor": "#3498db"
     },
     {
       "text": "MISC",
       "color": "#ecf0f1",
       "border": "1px solid #27ae60",
       "borderRadius": "4px",
-      "backgroundColor": "#2ecc71",
-    },
+      "backgroundColor": "#2ecc71"
+    }
   ],
 
+  // Chat
+  "chat.tips.enabled": false,
+  "chat.unifiedAgentsBar.enabled": true,
+  "chat.viewSessions.orientation": "stacked",
+
   // Miscellaneous
-  "explorer.confirmDragAndDrop": false,
-  "files.associations": {
-    "www": "javascript",
-  },
-  "emmet.showAbbreviationSuggestions": false,
-  "settingsSync.ignoredSettings": ["-python.interpreter.infoVisibility"],
-  "settingsSync.ignoredExtensions": [],
-  "extensions.ignoreRecommendations": true,
-  "liveServer.settings.donotShowInfoMsg": true,
-  "redhat.telemetry.enabled": false,
-  "outline.collapseItems": "alwaysCollapse",
-  "security.promptForLocalFileProtocolHandling": false,
-  "update.showReleaseNotes": false,
+  "claudeCode.preferredLocation": "panel",
   "diffEditor.ignoreTrimWhitespace": false,
   "diffEditor.renderSideBySide": true,
+  "emmet.showAbbreviationSuggestions": false,
+  "errorLens.messageEnabled": false,
+  "explorer.confirmDragAndDrop": false,
+  "extensions.ignoreRecommendations": true,
+  "files.associations": {
+    "www": "javascript"
+  },
+  "liveServer.settings.donotShowInfoMsg": true,
+  "outline.collapseItems": "alwaysCollapse",
+  "redhat.telemetry.enabled": false,
+  "security.promptForLocalFileProtocolHandling": false,
+  "settingsSync.ignoredExtensions": [],
+  "settingsSync.ignoredSettings": ["-python.interpreter.infoVisibility"],
+  "update.showReleaseNotes": false
 
   // New/Unsorted
-  "gitlens.views.scm.grouped.views": {
-    "commits": true,
-    "branches": true,
-    "remotes": true,
-    "stashes": true,
-    "tags": true,
-    "worktrees": true,
-    "contributors": true,
-    "repositories": true,
-    "searchAndCompare": false,
-    "launchpad": false,
-  },
-  "github.copilot.nextEditSuggestions.enabled": true,
-  "errorLens.messageEnabled": false,
-  "gitlens.views.scm.grouped.hiddenViews": {
-    "commits": false,
-    "worktrees": false,
-    "branches": false,
-    "remotes": false,
-    "stashes": false,
-    "tags": false,
-    "contributors": false,
-    "repositories": false,
-    "fileHistory": false,
-    "launchpad": false,
-    "searchAndCompare": false,
-  },
-  "githubIssues.createIssueTriggers": [],
-  "workbench.layoutControl.enabled": false,
-  "gitlens.ai.model": "vscode",
-  "gitlens.ai.vscode.model": "copilot:gpt-4.1",
-  "chat.unifiedAgentsBar.enabled": true,
-  "claudeCode.preferredLocation": "panel",
-  "window.commandCenter": false,
-  "workbench.productIconTheme": "material-product-icons",
-  "workbench.activityBar.compact": true,
-  "editor.minimap.enabled": false,
-  "chat.viewSessions.orientation": "stacked",
-  "terminal.integrated.initialHint": false,
-  "workbench.colorTheme": "Dark Modern",
-  "chat.tips.enabled": false,
 }
