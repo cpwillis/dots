@@ -5,6 +5,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_DIR="$(cd "${SCRIPT_DIR}/.." && pwd)"
 CONFIG_DIR="${REPO_DIR}/config"
+META_DIR="${REPO_DIR}/meta"
 
 # ── Colors ──────────────────────────────────────────────────────────────────────
 green=$(tput setaf 2); yellow=$(tput setaf 3); cyan=$(tput setaf 6)
