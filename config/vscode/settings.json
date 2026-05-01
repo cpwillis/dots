@@ -173,7 +173,7 @@
   "outline.collapseItems": "alwaysCollapse",
   "security.promptForLocalFileProtocolHandling": false,
   "update.showReleaseNotes": false,
-  "diffEditor.ignoreTrimWhitespace": true,
+  "diffEditor.ignoreTrimWhitespace": false,
   "diffEditor.renderSideBySide": true,
 
   // New/Unsorted
@@ -215,4 +215,7 @@
   "workbench.activityBar.compact": true,
   "editor.minimap.enabled": false,
   "chat.viewSessions.orientation": "stacked",
+  "terminal.integrated.initialHint": false,
+  "workbench.colorTheme": "Dark Modern",
+  "chat.tips.enabled": false,
 }
