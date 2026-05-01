@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# full macOS setup — installs packages, applies settings, and deploys dotfiles
+# full macOS setup - installs packages, applies settings, and deploys dotfiles
 set -euo pipefail
 
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"

@@ -37,7 +37,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/cpwillis/dots/main/scripts
 | [`scripts/repo_download.sh`](scripts/repo_download.sh)                     | Clone the repo and run the installer        |
 | [`scripts/generate_macOS_settings.sh`](scripts/generate_macOS_settings.sh) | Capture current macOS preferences           |
 
-`install.sh` reads [`meta/manifest.csv`](meta/manifest.csv) to deploy all dotfiles — add a row there to include a new file in both install and sync.
+`install.sh` reads [`meta/manifest.csv`](meta/manifest.csv) to deploy all dotfiles - add a row there to include a new file in both install and sync.
 
 ## Post-Installation (Manual)
 

@@ -24,9 +24,9 @@ defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 28 '{ena
 defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 30 '{enabled = 0; value = {parameters = (52, 21, 1179648); type = standard; }; }'
 # apply symbolic hotkey changes
 /System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u
-# key repeat rate — lower is faster (default: 6)
-# delay before key repeat begins — lower is shorter (default: 25)
-# press-and-hold shows accent menu — false enables key repeat in editors
+# key repeat rate - lower is faster (default: 6)
+# delay before key repeat begins - lower is shorter (default: 25)
+# press-and-hold shows accent menu - false enables key repeat in editors
 
 # TRACKPAD
 # tap to click

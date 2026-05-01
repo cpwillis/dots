@@ -5,7 +5,7 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SETTINGS_FILE="${SCRIPT_DIR}/../meta/macOS_settings.sh"
 
-# helpers — silently skip keys not present in defaults db
+# helpers - silently skip keys not present in defaults db
 write_int() {
     local v
     if v=$(defaults read "$1" "$2" 2>/dev/null); then
@@ -50,9 +50,9 @@ write_string() {
     printf "%s 30 '{enabled = 0; value = {parameters = (52, 21, 1179648); type = standard; }; }'\n" "${HK}"
     printf '# apply symbolic hotkey changes\n'
     printf '/System/Library/PrivateFrameworks/SystemAdministration.framework/Resources/activateSettings -u\n'
-    printf '# key repeat rate — lower is faster (default: 6)\n';           write_int  NSGlobalDomain KeyRepeat
-    printf '# delay before key repeat begins — lower is shorter (default: 25)\n'; write_int  NSGlobalDomain InitialKeyRepeat
-    printf '# press-and-hold shows accent menu — false enables key repeat in editors\n'; write_bool NSGlobalDomain ApplePressAndHoldEnabled
+    printf '# key repeat rate - lower is faster (default: 6)\n';           write_int  NSGlobalDomain KeyRepeat
+    printf '# delay before key repeat begins - lower is shorter (default: 25)\n'; write_int  NSGlobalDomain InitialKeyRepeat
+    printf '# press-and-hold shows accent menu - false enables key repeat in editors\n'; write_bool NSGlobalDomain ApplePressAndHoldEnabled
 
     # ── TRACKPAD ────────────────────────────────────────────────────────────────
     printf '\n# TRACKPAD\n'
