@@ -4,9 +4,12 @@
 
 "gitconfig",                  "config/.gitconfig",                     "$HOME/.gitconfig"
 "zshrc",                     "config/.zshrc",                        "$HOME/.zshrc"
-"vscode-settings",           "config/vscode/settings.json",          "$HOME/Library/Application Support/Code/User/settings.json"
-"vscode-snippets-python",    "config/vscode/snippets-python.json",   "$HOME/Library/Application Support/Code/User/snippets/python.json"
 "gpg-agent",                 "config/gnupg/gpg-agent.conf",          "$HOME/.gnupg/gpg-agent.conf"
 "dircolors",                 "config/.dircolors",                    "$HOME/.dircolors"
 "atuin",                     "config/atuin/config.toml",              "$HOME/.config/atuin/config.toml"
+
+"vscode-settings",           "config/vscode/settings.json",          "$HOME/Library/Application Support/Code/User/settings.json"
+"vscode-snippets-python",    "config/vscode/snippets-python.json",   "$HOME/Library/Application Support/Code/User/snippets/python.json"
+
 "claude-global",             "config/claude/CLAUDE.md",              "$HOME/.claude/CLAUDE.md"
+"claude-settings",           "config/claude/settings.json",          "$HOME/.claude/settings.json"
