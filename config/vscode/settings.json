@@ -203,7 +203,7 @@
   // Miscellaneous
   "claudeCode.preferredLocation": "panel",
   "diffEditor.ignoreTrimWhitespace": false,
-  "diffEditor.renderSideBySide": true,
+  "diffEditor.renderSideBySide": false,
   "emmet.showAbbreviationSuggestions": false,
   "errorLens.messageEnabled": false,
   "explorer.confirmDragAndDrop": false,
