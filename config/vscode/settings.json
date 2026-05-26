@@ -199,11 +199,14 @@
   "chat.tips.enabled": false,
   "chat.unifiedAgentsBar.enabled": true,
   "chat.viewSessions.orientation": "stacked",
+  "github.copilot.chat.enabled": false,
+  "github.copilot.inlineSuggest.enable": true,
+  "github.copilot.suggestions.enabled": true,
 
   // Miscellaneous
   "claudeCode.preferredLocation": "panel",
   "diffEditor.ignoreTrimWhitespace": false,
-  "diffEditor.renderSideBySide": false,
+  "diffEditor.renderSideBySide": true,
   "emmet.showAbbreviationSuggestions": false,
   "errorLens.messageEnabled": false,
   "explorer.confirmDragAndDrop": false,
@@ -220,4 +223,5 @@
   "update.showReleaseNotes": false,
 
   // New/Unsorted
+  "chat.extensionUnification.enabled": false,
 }

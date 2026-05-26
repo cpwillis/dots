@@ -55,7 +55,7 @@ Manual installs:
 - [CleanMyMac X](https://my.macpaw.com/)
 - [PrusaSlicer](https://www.prusa3d.com/page/prusaslicer_424/)
 
-Licenses: Alfred, Shottr, BetterDisplay, Bruno, CleanMyMac X
+Licenses: Alfred, Shottr, BetterDisplay, Bruno, CleanMyMac X, TablePlus
 
 Private dotfiles (`.aws/`, `.gnupg/`) are excluded from the repo - restore manually.
 
