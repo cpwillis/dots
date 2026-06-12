@@ -91,6 +91,7 @@
 	tabs                          = 4
 
 [alias]
+	b = branch
 	st = status -sb
 	rb = rebase
 	lg = log --graph --oneline --pretty=format:\"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset\" --abbrev-commit

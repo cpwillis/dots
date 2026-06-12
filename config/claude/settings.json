@@ -1,7 +1,14 @@
 {
-  "effortLevel": "high",
   "attribution": {
     "commit": "",
     "pr": ""
-  }
+  },
+  "permissions": {
+    "allow": [
+      "Bash(git --no-pager log --oneline -3)",
+      "Bash(git --no-pager log --oneline -4)"
+    ]
+  },
+  "model": "claude-fable-5[1m]",
+  "effortLevel": "xhigh"
 }
