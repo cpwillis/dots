@@ -1,4 +1,4 @@
-tap "rfidresearchgroup/proxmark3"
+tap "rfidresearchgroup/proxmark3", "https://github.com/RfidResearchGroup/homebrew-proxmark3"
 # Improved shell history for zsh, bash, fish and nushell
 brew "atuin"
 # Library for command-line editing
@@ -185,9 +185,11 @@ vscode "samuelcolvin.jinjahtml"
 vscode "tamasfe.even-better-toml"
 vscode "tomoki1207.pdf"
 vscode "usernamehw.errorlens"
+vscode "vue.volar"
 vscode "wayou.vscode-todo-highlight"
 vscode "wyattferguson.jinja2-snippet-kit"
 vscode "xabikos.javascriptsnippets"
 vscode "yoavbls.pretty-ts-errors"
 vscode "yzhang.markdown-all-in-one"
 npm "alfred-open-in-vscode"
+npm "pnpm"

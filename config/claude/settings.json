@@ -9,6 +9,33 @@
       "Bash(git --no-pager log --oneline -4)"
     ]
   },
-  "model": "claude-fable-5[1m]",
-  "effortLevel": "xhigh"
+  "enabledPlugins": {
+    "ponytail@ponytail": true,
+    "cloudflare@cloudflare": true,
+    "obsidian@obsidian-skills": true
+  },
+  "extraKnownMarketplaces": {
+    "ponytail": {
+      "source": {
+        "source": "github",
+        "repo": "DietrichGebert/ponytail"
+      }
+    },
+    "cloudflare": {
+      "source": {
+        "source": "github",
+        "repo": "cloudflare/skills"
+      }
+    },
+    "obsidian-skills": {
+      "source": {
+        "source": "github",
+        "repo": "kepano/obsidian-skills"
+      }
+    }
+  },
+  "effortLevel": "medium",
+  "tui": "fullscreen",
+  "skipWorkflowUsageWarning": true,
+  "theme": "auto"
 }

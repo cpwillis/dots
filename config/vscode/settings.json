@@ -206,7 +206,7 @@
   // Miscellaneous
   "claudeCode.preferredLocation": "panel",
   "diffEditor.ignoreTrimWhitespace": false,
-  "diffEditor.renderSideBySide": false,
+  "diffEditor.renderSideBySide": true,
   "emmet.showAbbreviationSuggestions": false,
   "errorLens.messageEnabled": false,
   "explorer.confirmDragAndDrop": false,
