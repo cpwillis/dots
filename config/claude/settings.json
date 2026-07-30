@@ -12,7 +12,10 @@
   "enabledPlugins": {
     "ponytail@ponytail": true,
     "cloudflare@cloudflare": true,
-    "obsidian@obsidian-skills": true
+    "obsidian@obsidian-skills": true,
+    "superpowers@superpowers-marketplace": true,
+    "autoresearch@autoresearch": true,
+    "paddle@claude-community": true
   },
   "extraKnownMarketplaces": {
     "ponytail": {
@@ -32,10 +35,29 @@
         "source": "github",
         "repo": "kepano/obsidian-skills"
       }
+    },
+    "superpowers-marketplace": {
+      "source": {
+        "source": "github",
+        "repo": "obra/superpowers-marketplace"
+      }
+    },
+    "autoresearch": {
+      "source": {
+        "source": "github",
+        "repo": "uditgoenka/autoresearch"
+      }
+    },
+    "claude-community": {
+      "source": {
+        "source": "github",
+        "repo": "anthropics/claude-plugins-community"
+      }
     }
   },
-  "effortLevel": "medium",
+  "effortLevel": "high",
   "tui": "fullscreen",
   "skipWorkflowUsageWarning": true,
-  "theme": "auto"
+  "theme": "auto",
+  "agentPushNotifEnabled": true
 }

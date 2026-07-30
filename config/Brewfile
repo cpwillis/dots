@@ -1,4 +1,5 @@
 tap "rfidresearchgroup/proxmark3", "https://github.com/RfidResearchGroup/homebrew-proxmark3"
+tap "stripe/stripe-cli"
 # Improved shell history for zsh, bash, fish and nushell
 brew "atuin"
 # Library for command-line editing
@@ -27,6 +28,8 @@ brew "difftastic"
 brew "direnv"
 # Perform least recently used (LRU) eviction of Docker images
 brew "docuum"
+# GNU compiler collection
+brew "gcc"
 # GitHub command-line tool
 brew "gh"
 # Distributed revision control system
@@ -69,6 +72,8 @@ brew "tree"
 brew "zsh-autosuggestions"
 # Fish shell like syntax highlighting for zsh
 brew "zsh-syntax-highlighting"
+# Stripe CLI utility
+brew "stripe/stripe-cli/stripe", trusted: true
 # Application launcher and productivity software
 cask "alfred"
 # Display management tool

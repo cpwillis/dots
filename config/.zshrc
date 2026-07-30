@@ -72,3 +72,7 @@ export VIRTUAL_ENV_DISABLE_PROMPT=1 # disable venv prompt modification (for vsco
 # Versioning
 alias python=python3
 alias pip=pip3
+
+# Xcode Command Line Tools: warn if the active developer dir is Xcode.app instead of the standalone Command Line Tools
+alias fix-xcode-select='sudo xcode-select --switch /Library/Developer/CommandLineTools'
+[[ $(xcode-select -p 2>/dev/null) == /Library/Developer/CommandLineTools ]] || echo "Warning: xcode-select points at $(xcode-select -p), run 'fix-xcode-select'"
