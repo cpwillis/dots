@@ -47,15 +47,11 @@
   "[sql]": {
     "editor.formatOnSave": false,
   },
-
-  // Workbench
-  "window.commandCenter": false,
   "window.title": "[${rootNameShort}] ${activeEditorMedium}",
   "workbench.activityBar.compact": true,
   "workbench.colorTheme": "Dark Modern",
   "workbench.editor.empty.hint": "hidden",
   "workbench.iconTheme": "material-icon-theme",
-  "workbench.layoutControl.enabled": false,
   "workbench.productIconTheme": "material-product-icons",
   "workbench.startupEditor": "none",
 
@@ -199,14 +195,11 @@
   "chat.tips.enabled": false,
   "chat.unifiedAgentsBar.enabled": true,
   "chat.viewSessions.orientation": "stacked",
-  "github.copilot.chat.enabled": false,
-  "github.copilot.inlineSuggest.enable": true,
-  "github.copilot.suggestions.enabled": true,
 
   // Miscellaneous
-  "claudeCode.preferredLocation": "panel",
+  "claudeCode.preferredLocation": "sidebar",
   "diffEditor.ignoreTrimWhitespace": false,
-  "diffEditor.renderSideBySide": true,
+  "diffEditor.renderSideBySide": false,
   "emmet.showAbbreviationSuggestions": false,
   "errorLens.messageEnabled": false,
   "explorer.confirmDragAndDrop": false,
@@ -224,4 +217,8 @@
 
   // New/Unsorted
   "chat.extensionUnification.enabled": false,
+  "workbench.browser.showInTitleBar": false,
+  "chat.titleBar.openInAgentsWindow.enabled": false,
+  "window.commandCenter": false,
+  "workbench.layoutControl.enabled": false,
 }
