@@ -78,8 +78,6 @@
   "gitlens.advanced.messages": {
     "suppressGitMissingWarning": true,
   },
-  "gitlens.ai.model": "vscode",
-  "gitlens.ai.vscode.model": "copilot:gpt-4.1",
   "gitlens.views.repositories.files.layout": "tree",
   "gitlens.views.repositories.showContributors": false,
   "gitlens.views.repositories.showTags": false,
