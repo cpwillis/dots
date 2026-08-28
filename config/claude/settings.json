@@ -32,7 +32,7 @@
   "enabledPlugins": {
     "ponytail@ponytail": true,
     "cloudflare@cloudflare": true,
-    "obsidian@obsidian-skills": false,
+    "obsidian@obsidian-skills": true,
     "superpowers@superpowers-marketplace": true,
     "ta@touramigo": true,
     "autoresearch@autoresearch": true,
@@ -73,12 +73,6 @@
       "source": {
         "source": "github",
         "repo": "anthropics/claude-plugins-community"
-      }
-    },
-    "touramigo": {
-      "source": {
-        "source": "directory",
-        "path": "/Users/cpw/dev/touramigo/agent-tooling"
       }
     }
   },

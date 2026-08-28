@@ -1,5 +1,5 @@
 [user]
-	name = Chris
+	name = cpwillis
 	email = <github_no_reply>
 	signingkey = <public_key>
 
@@ -13,6 +13,7 @@
 
 [oh-my-zsh]
 	prefix-regex = [^-]*-
+	max-branch-length = 25
 
 [filter "lfs"]
 	clean = git-lfs clean -- %f

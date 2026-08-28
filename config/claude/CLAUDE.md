@@ -9,6 +9,18 @@
 - GPG-sign commits with my key (`commit.gpgsign` is enabled). Do not use `git commit --no-gpg-sign`.
 - If signing fails or needs my passphrase / agent unlock, pause and let me verify/unlock first before you auto-commit. Do not fall back to an unsigned commit without asking.
 
+## PII and identifying data
+
+- Never write PII into code, comments, docstrings, commit messages, tests, fixtures, docs, config, or filenames.
+- `cpwillis` is the only identifier permitted, and only for authorship and attribution (licences, package metadata, repo URLs). Nothing beyond it.
+- Never commit my legal name, personal email addresses, phone numbers, postal addresses, date of birth, employer or client names on personal projects, home or office IPs, or device names.
+- No absolute local paths that leak my OS account (eg `/Users/cpw/...`). Use relative paths, `~`, or env vars.
+- Use the GitHub noreply email only where git itself requires it. Never hardcode any email address in source, docs, or package metadata.
+- Third-party PII is subject to the same rule and matters more. Never commit real people's data as fixtures, sample data, or examples, especially in OSINT, scraping, or investigation projects. Synthesise it.
+- Use reserved placeholders: `example.com` for domains, RFC 5737 (`192.0.2.0/24`, `198.51.100.0/24`, `203.0.113.0/24`) for IPv4, RFC 3849 (`2001:db8::/32`) for IPv6, obviously fictional names for people.
+- No tokens, keys, or passwords in code or committed files. Key names only, in `.env.example`.
+- If a task appears to need real PII, stop and ask. Do not substitute mine and do not invent a real-looking person.
+
 ## Style
 
 - Never use em dashes. Use commas, parentheses, colons, or rewrite the sentence instead.
