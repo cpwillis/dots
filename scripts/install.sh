@@ -94,7 +94,7 @@ while true; do
     [[ "${r}" =~ ^[yY]$ ]] && break
     warn "Sign in and press y, or Ctrl+C to skip"
 done
-run brew bundle --file="${CONFIG_DIR}/Brewfile" --no-lock
+run brew bundle --file="${CONFIG_DIR}/Brewfile"
 run brew cleanup
 ok "All packages installed"
 
