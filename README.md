@@ -1,96 +1,80 @@
 # dots
 
-Personal macOS dotfiles - automated setup for a fresh Mac install.
+Personal macOS dotfiles plus a one-shot setup script for a fresh Mac. Opinionated and single-user, not built to be
+configurable.
 
-## Quick Start
+## What install.sh does to a machine
 
-### Sync Configs
+Irreversible. Read `scripts/install.sh` before running it.
+
+- `sudo rm -rf` on `/Applications/{GarageBand,Pages,Numbers,Keynote}.app`
+- Copies every file in `meta/manifest.csv` over its system path, no backup of what was there
+- Runs every `defaults write` line in `meta/macOS_settings.sh`, then `killall Dock Finder SystemUIServer`
+- Installs Homebrew, Xcode Command Line Tools, Oh My Zsh
+- `brew update && brew upgrade` (upgrades packages you already had), installs `config/Brewfile`, then `brew cleanup`
+- `chsh -s /bin/zsh`
+- Offers `sudo softwareupdate -ia --restart` at the end
+
+Test in a VM first: [VirtualBuddy](https://github.com/insidegui/VirtualBuddy) on Apple Silicon,
+[macos-virtualbox](https://github.com/myspaghetti/macos-virtualbox) on Intel.
+
+## Run
 
 ```sh
-./scripts/update_configs.sh # sync only
+./scripts/install.sh --dry-run   # print commands, change nothing
+./scripts/install.sh
 ```
 
-```sh
-./scripts/update_configs.sh --commit # sync, commit, and push
-```
+Both prompt for confirmation, then open the App Store and block until you confirm you are signed in, since the
+Brewfile has `mas` entries. `--dry-run` still prompts and still opens the App Store.
 
-### Download and Install
+From a Mac with nothing checked out (clones to `~/Downloads/dots`, deleting any existing copy, then runs the
+installer):
 
 ```sh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/cpwillis/dots/main/scripts/repo_download.sh)"
 ```
 
-## What's Included
+## Sync back
 
-| Category           | Examples                                          |
-| ------------------ | ------------------------------------------------- |
-| CLI tools          | git, pyenv, atuin, gh, direnv, awscli, bat, delta |
-| Apps (Cask)        | VSCode, iTerm2, Alfred, Obsidian, Bruno           |
-| App Store          | Xcode, Affinity suite, Office suite, Magnet       |
-| VS Code extensions | GitLens, Ruff, Claude Code, Pylance, GitGraph     |
+`scripts/update_configs.sh` pulls live config into the repo, overwriting:
 
-**Dotfiles:** `.zshrc`, `.gitconfig`, VSCode settings & snippets, GPG agent config.
+- every `repo_path` in `meta/manifest.csv`, from its system path
+- `config/Brewfile`, via `brew bundle dump --force`; if the dump has no `mas` lines it reinstalls `mas` and retries,
+  up to 3 attempts
 
-## Scripts
+It then rewrites `email` and `signingkey` in `config/.gitconfig` to placeholders, so real values never reach the repo.
 
-| Script                                                                     | Purpose                                                                               |
-| -------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| [`scripts/install.sh`](scripts/install.sh)                                 | Full system setup (run once on a fresh Mac)                                           |
-| [`scripts/update_configs.sh`](scripts/update_configs.sh)                   | Sync current system configs back to repo                                              |
-| [`scripts/repo_download.sh`](scripts/repo_download.sh)                     | Clone the repo and run the installer                                                  |
-| [`scripts/generate_macOS_settings.sh`](scripts/generate_macOS_settings.sh) | Capture current macOS preferences - run separately, not called by `update_configs.sh` |
+```sh
+./scripts/update_configs.sh            # sync only
+./scripts/update_configs.sh --commit   # sync, then git add . && git commit && git push
+```
 
-`install.sh` reads [`meta/manifest.csv`](meta/manifest.csv) to deploy all dotfiles - add a row there to include a new file in both install and sync.
+`scripts/generate_macOS_settings.sh` regenerates `meta/macOS_settings.sh` from the current system, overwriting it.
+Run it yourself, `update_configs.sh` does not call it. Keys missing from the defaults database are skipped silently,
+which is why some comments in that file have no command under them.
 
-## Post-Installation (Manual)
+## Adding a dotfile
 
-Settings backups are stored in `~/Documents/Misc`:
+Add a row to `meta/manifest.csv`: `name, repo_path, system_path`. Install and sync both read it, so one row covers
+deploy and sync back. `system_path` is `eval`'d, so `$HOME` expands.
 
-- **iTerm2:** Preferences → General → Settings → _Import All Settings and Data..._
-- **Alfred:** Advanced → _Set preferences folder..._
+## Not installed for you
 
-Manual installs:
+`config/git-hooks/pre-push` blocks direct pushes to `main` (bypass with `ALLOW_MAIN_PUSH=true`). Nothing deploys it.
+Copy it into a repo's `.git/hooks/` and `chmod +x` it.
 
-- [KiCad EDA](https://www.kicad.org/download/macos/)
-- [CleanMyMac X](https://my.macpaw.com/)
-- [PrusaSlicer](https://www.prusa3d.com/page/prusaslicer_424/)
+`config/gnupg/gpg-agent.conf` is deployed, but GPG keys, SSH keys and `~/.aws` are not in this repo. Restore those
+by hand.
 
-Licenses: Alfred, Shottr, BetterDisplay, Bruno, CleanMyMac X, TablePlus
+## Manual, after install
 
-Private dotfiles (`.aws/`, `.gnupg/`) are excluded from the repo - restore manually.
+Restore from backups in `~/Documents/Misc`:
 
-## Reference
+- iTerm2: Preferences → General → Settings → Import All Settings and Data
+- Alfred: Advanced → Set preferences folder
 
-<details>
-<summary>Brewfile commands</summary>
+Install by hand: [KiCad](https://www.kicad.org/download/macos/), [CleanMyMac](https://my.macpaw.com/),
+[PrusaSlicer](https://www.prusa3d.com/page/prusaslicer_424/).
 
-| Command                       | Description                                |
-| ----------------------------- | ------------------------------------------ |
-| `brew bundle`                 | Install from Brewfile in current directory |
-| `brew bundle --file=path`     | Install from a specific Brewfile           |
-| `brew bundle dump`            | Create Brewfile from installed packages    |
-| `brew bundle cleanup --force` | Remove packages not listed in Brewfile     |
-| `brew bundle check`           | Check all Brewfile entries are installed   |
-| `brew bundle list --all`      | Print all entries in the Brewfile          |
-
-</details>
-
-<details>
-<summary>Testing in a VM</summary>
-
-Test on a clean Mac before running on your own machine:
-
-- **Intel:** [macos-virtualbox](https://github.com/myspaghetti/macos-virtualbox)
-- **Apple Silicon:** [VirtualBuddy](https://github.com/insidegui/VirtualBuddy)
-
-</details>
-
-<details>
-<summary>GitHub Codespaces</summary>
-
-Settings → Codespaces → Dotfiles → _Automatically install dotfiles_
-
-- [How to set up dotfiles for Codespaces](https://docs.github.com/en/codespaces/setting-your-user-preferences/personalizing-github-codespaces-for-your-account#dotfiles)
-- [dotfiles.github.io](https://dotfiles.github.io/)
-
-</details>
+Re-enter licenses: Alfred, Shottr, BetterDisplay, Bruno, CleanMyMac, TablePlus.
