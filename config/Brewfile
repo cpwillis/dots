@@ -16,6 +16,8 @@ brew "bat"
 brew "pycparser"
 # C Foreign Function Interface for Python
 brew "cffi"
+# Cloudflare Tunnel client (formerly Argo Tunnel)
+brew "cloudflared"
 # GNU File, Shell, and Text utilities
 brew "coreutils"
 # Cryptographic recipes and primitives for Python
@@ -28,6 +30,8 @@ brew "difftastic"
 brew "direnv"
 # Perform least recently used (LRU) eviction of Docker images
 brew "docuum"
+# Play, record, convert, and stream select audio and video codecs
+brew "ffmpeg"
 # GNU compiler collection
 brew "gcc"
 # GitHub command-line tool

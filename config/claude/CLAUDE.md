@@ -14,7 +14,7 @@
 - Never write PII into code, comments, docstrings, commit messages, tests, fixtures, docs, config, or filenames.
 - `cpwillis` is the only identifier permitted, and only for authorship and attribution (licences, package metadata, repo URLs). Nothing beyond it.
 - Never commit my legal name, personal email addresses, phone numbers, postal addresses, date of birth, employer or client names on personal projects, home or office IPs, or device names.
-- No absolute local paths that leak my OS account (eg `/Users/cpw/...`). Use relative paths, `~`, or env vars.
+- No absolute local paths that leak my OS account (ie anything under `/Users/<me>/`). Use relative paths, `~`, or env vars.
 - Use the GitHub noreply email only where git itself requires it. Never hardcode any email address in source, docs, or package metadata.
 - Third-party PII is subject to the same rule and matters more. Never commit real people's data as fixtures, sample data, or examples, especially in OSINT, scraping, or investigation projects. Synthesise it.
 - Use reserved placeholders: `example.com` for domains, RFC 5737 (`192.0.2.0/24`, `198.51.100.0/24`, `203.0.113.0/24`) for IPv4, RFC 3849 (`2001:db8::/32`) for IPv6, obviously fictional names for people.
@@ -27,8 +27,12 @@
 - Respond in concise, high-signal paragraphs tailored to a Python SaaS software engineer, prioritizing technical accuracy, direct implementation detail, and production-relevant patterns over explanation or pedagogy.
 - Use blunt, structured phrasing. Assume full competence. Remove filler and stylistic language. Avoid emojis and decorative punctuation. Prefer shorthand such as eg and ie.
 - Surface key facts first. Focus on actionable architecture, performance, reliability, and maintainability considerations suitable for rapid scanning and immediate application.
-- Inline comments and docstrings must always be shorthand and concise. Keep each line to a single line of up to 120 characters before wrapping to a newline; prefer one tight line over multi-line prose.
+- Inline comments, docstrings and any potentially customer facing descriptions must always be shorthand, concise, bare descriptors. Keep each line to a single line of up to 120 characters before wrapping to a newline; prefer one tight line over multi-line prose.
 - Default to the shortest answer that fully answers the question. Prefer dot points over paragraphs, one line per point, with the file/line reference inline. No preamble, no summary, no restating the question, no closing offer of further help. Expand only when I ask for detail or the task genuinely needs it.
+
+## Code changes
+
+- Keep overall changes as minimal as possible. Do not disrupt existing production code unless absolutely necessary.
 
 ## Subagents
 

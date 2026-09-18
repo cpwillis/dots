@@ -219,4 +219,5 @@
   "chat.titleBar.openInAgentsWindow.enabled": false,
   "window.commandCenter": false,
   "workbench.layoutControl.enabled": false,
+  "claudeCode.hideOnboarding": true,
 }

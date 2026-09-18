@@ -13,36 +13,157 @@
   },
   "skillOverrides": {
     "agents-sdk": "off",
+    "banner-design": "off",
+    "brand": "off",
     "cloudflare": "off",
     "cloudflare-email-service": "off",
+    "design": "off",
+    "design-system": "off",
     "durable-objects": "off",
     "sandbox-sdk": "off",
+    "slides": "off",
     "turnstile-spin": "off",
+    "ui-styling": "off",
+    "ui-ux-pro-max": "off",
     "web-perf": "off",
     "workers-best-practices": "off",
-    "wrangler": "off",
-    "ui-ux-pro-max": "off",
-    "design": "off",
-    "banner-design": "off",
-    "ui-styling": "off",
-    "design-system": "off",
-    "brand": "off",
-    "slides": "off"
+    "wrangler": "off"
+  },
+  "hooks": {
+    "Notification": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/cpw/.config/iterm2/cc-status"
+          }
+        ]
+      }
+    ],
+    "PermissionRequest": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/cpw/.config/iterm2/cc-status"
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/cpw/.config/iterm2/cc-status"
+          }
+        ]
+      }
+    ],
+    "PreToolUse": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/cpw/.config/iterm2/cc-status"
+          }
+        ]
+      }
+    ],
+    "SessionEnd": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/cpw/.config/iterm2/cc-status"
+          }
+        ]
+      }
+    ],
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/cpw/.config/iterm2/cc-status"
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/cpw/.config/iterm2/cc-status"
+          }
+        ]
+      }
+    ],
+    "StopFailure": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/cpw/.config/iterm2/cc-status"
+          }
+        ]
+      }
+    ],
+    "SubagentStop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/cpw/.config/iterm2/cc-status"
+          }
+        ]
+      }
+    ],
+    "UserPromptSubmit": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/cpw/.config/iterm2/cc-status"
+          }
+        ]
+      }
+    ]
   },
   "enabledPlugins": {
-    "ponytail@ponytail": true,
+    "autoresearch@autoresearch": true,
+    "chrome-devtools-mcp@chrome-devtools-plugins": true,
     "cloudflare@cloudflare": true,
     "obsidian@obsidian-skills": true,
+    "paddle@claude-community": true,
+    "ponytail@ponytail": true,
     "superpowers@superpowers-marketplace": true,
-    "ta@touramigo": true,
-    "autoresearch@autoresearch": true,
-    "paddle@claude-community": true
+    "ecc@ecc": true
   },
   "extraKnownMarketplaces": {
-    "ponytail": {
+    "autoresearch": {
       "source": {
         "source": "github",
-        "repo": "DietrichGebert/ponytail"
+        "repo": "uditgoenka/autoresearch"
+      }
+    },
+    "brag": {
+      "source": {
+        "source": "github",
+        "repo": "latent-spaces/brag"
+      }
+    },
+    "chrome-devtools-plugins": {
+      "source": {
+        "source": "github",
+        "repo": "ChromeDevTools/chrome-devtools-mcp"
+      }
+    },
+    "claude-community": {
+      "source": {
+        "source": "github",
+        "repo": "anthropics/claude-plugins-community"
       }
     },
     "cloudflare": {
@@ -57,22 +178,22 @@
         "repo": "kepano/obsidian-skills"
       }
     },
+    "ponytail": {
+      "source": {
+        "source": "github",
+        "repo": "DietrichGebert/ponytail"
+      }
+    },
     "superpowers-marketplace": {
       "source": {
         "source": "github",
         "repo": "obra/superpowers-marketplace"
       }
     },
-    "autoresearch": {
+    "ecc": {
       "source": {
-        "source": "github",
-        "repo": "uditgoenka/autoresearch"
-      }
-    },
-    "claude-community": {
-      "source": {
-        "source": "github",
-        "repo": "anthropics/claude-plugins-community"
+        "source": "git",
+        "url": "https://github.com/affaan-m/ECC.git"
       }
     }
   },
@@ -81,5 +202,13 @@
   "skipWorkflowUsageWarning": true,
   "theme": "auto",
   "editorMode": "normal",
-  "agentPushNotifEnabled": true
+  "agentPushNotifEnabled": true,
+  "pluginConfigs": {
+    "ecc@ecc": {
+      "options": {
+        "hooks_enabled": true,
+        "hook_profile": "standard"
+      }
+    }
+  }
 }
