@@ -107,7 +107,8 @@ step_packages() {
     local log; log=$(mktemp)
     "${DRY_RUN}" || rm -f "${FAILED_FILE}"
     # an item that fails (eg a cask Homebrew disabled) is skipped and listed at the end; any other failure stops here
-    if ! run brew bundle --file="${CONFIG_DIR}/Brewfile" 2>&1 | tee "${log}"; then
+    # </dev/null: installers it runs must not read answers meant for later prompts
+    if ! run brew bundle --file="${CONFIG_DIR}/Brewfile" </dev/null 2>&1 | tee "${log}"; then
         grep -o '[A-Z][a-z]* .* has failed!' "${log}" | sed 's/^[A-Za-z]* //; s/ has failed!$//' > "${FAILED_FILE}" || true
         [[ -s "${FAILED_FILE}" ]] || { rm -f "${log}"; return 1; }
         warn "Skipped, could not install: $(paste -sd, "${FAILED_FILE}" | sed 's/,/, /g')"
