@@ -1,6 +1,7 @@
 name,repo_path,system_path
 "gitconfig","config/.gitconfig","$HOME/.gitconfig"
 "zshrc","config/.zshrc","$HOME/.zshrc"
+"zprofile","config/.zprofile","$HOME/.zprofile"
 "gpg-agent","config/gnupg/gpg-agent.conf","$HOME/.gnupg/gpg-agent.conf"
 "dircolors","config/.dircolors","$HOME/.dircolors"
 "atuin","config/atuin/config.toml","$HOME/.config/atuin/config.toml"
