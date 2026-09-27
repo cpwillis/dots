@@ -42,7 +42,7 @@ alias dockernuke='docker image prune -a' # remove all images not used by a conta
 alias docker-compose='docker compose'
 
 # Helpers
-alias brewup="brew update && brew upgrade && brew cleanup && brew doctor"
+alias brewup="brew update && brew upgrade --greedy && mas upgrade && brew cleanup && brew doctor"
 uuid() { python3 -c 'import sys,timeflake;[print(timeflake.random().hex.lower()) for _ in range(int(sys.argv[1]))]' "${1:-1}"; } # Generate Timeflake UUID
 alias zsql="mycli -uroot -proot_password -P3307 -h127.0.0.1"
 
