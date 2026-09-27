@@ -94,6 +94,7 @@ cask "devutils"
 cask "discord"
 # Web browser
 cask "firefox"
+cask "font-cascadia-code"
 # Desktop client for GitHub repositories
 cask "github"
 # Web browser
@@ -179,7 +180,6 @@ vscode "mjmlio.vscode-mjml"
 vscode "monosans.djlint"
 vscode "mquandalle.graphql"
 vscode "ms-python.debugpy"
-vscode "ms-python.flake8"
 vscode "ms-python.python"
 vscode "ms-python.vscode-pylance"
 vscode "ms-python.vscode-python-envs"
