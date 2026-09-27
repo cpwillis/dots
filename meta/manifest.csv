@@ -1,5 +1,6 @@
 name,repo_path,system_path
 "gitconfig","config/.gitconfig","$HOME/.gitconfig"
+"git-ignore","config/git/ignore","$HOME/.config/git/ignore"
 "zshrc","config/.zshrc","$HOME/.zshrc"
 "zprofile","config/.zprofile","$HOME/.zprofile"
 "gpg-agent","config/gnupg/gpg-agent.conf","$HOME/.gnupg/gpg-agent.conf"
