@@ -29,7 +29,7 @@ done
 
 # ── Colors ──────────────────────────────────────────────────────────────────────
 red=$(tput setaf 1); green=$(tput setaf 2); yellow=$(tput setaf 3); cyan=$(tput setaf 6); bold=$(tput bold); reset=$(tput sgr0)
-cecho() { printf "%s%s%s\n" "${2}" "${1}" "${reset}"; } # $1=msg $2=col
+cecho() { printf "%s%b%s\n" "${2}" "${1}" "${reset}"; } # $1=msg (\n expanded) $2=col
 
 STEP=0
 CURRENT=""
