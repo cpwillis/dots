@@ -109,7 +109,8 @@ step_packages() {
     "${DRY_RUN}" || rm -f "${FAILED_FILE}"
     # an item that fails (eg a cask Homebrew disabled) is skipped and listed at the end; any other failure stops here
     # </dev/null: installers it runs must not read answers meant for later prompts
-    if ! run brew bundle --file="${CONFIG_DIR}/Brewfile" </dev/null 2>&1 | tee "${log}"; then
+    # stdout stays on the terminal so output is live; only stderr, where failures go, is copied to the log
+    if ! { run brew bundle --file="${CONFIG_DIR}/Brewfile" </dev/null 2>&1 1>&3 3>&- | tee "${log}" >&2; } 3>&1; then
         grep -o '[A-Z][a-z]* .* has failed!' "${log}" | sed 's/^[A-Za-z]* //; s/ has failed!$//' > "${FAILED_FILE}" || true
         [[ -s "${FAILED_FILE}" ]] || { rm -f "${log}"; return 1; }
         warn "Skipped, could not install: $(paste -sd, "${FAILED_FILE}" | sed 's/,/, /g')"
