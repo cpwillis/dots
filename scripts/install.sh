@@ -73,7 +73,8 @@ read -rp "$(cecho 'Have you reviewed the script and understood its impact? (y/n)
 # ── Sudo keep-alive ─────────────────────────────────────────────────────────────
 if ! "${DRY_RUN}"; then
     sudo -v
-    while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+    # no stdout: a held pipe would stall `install.sh | tee` for up to 60s after it finishes
+    while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done &>/dev/null &
 fi
 
 
