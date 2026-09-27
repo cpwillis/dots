@@ -1,0 +1,35 @@
+# runs install.sh end to end on a macOS runner made to look like a fresh Mac; manual dispatch only
+name: install test
+on: workflow_dispatch
+
+jobs:
+  install:
+    runs-on: macos-26
+    timeout-minutes: 180
+    env:
+      TERM: xterm-256color # tput needs it
+      SHELL: /bin/zsh      # skips chsh, which would prompt for the runner's password
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Make the runner look like a fresh Mac
+        run: |
+          # runner ships Homebrew and these apps; brew won't install a cask over an existing app
+          sudo rm -rf /opt/homebrew "/Applications/Google Chrome.app" "/Applications/Firefox.app" "/Applications/Visual Studio Code.app"
+          # CLT only, as on a new Mac; .zshrc warns when xcode-select points at Xcode
+          sudo xcode-select --switch /Library/Developer/CommandLineTools
+          # no Apple ID or GitHub login here: skip App Store apps and the gh ssh key step
+          echo "HOMEBREW_BUNDLE_MAS_SKIP=$(sed -n 's/^mas .*id: \([0-9]*\).*/\1/p' config/Brewfile | xargs)" >> "$GITHUB_ENV"
+          mkdir -p ~/.ssh && touch ~/.ssh/id_ed25519
+
+      - name: install.sh
+        run: printf 'y\ny\nn\n' | ./scripts/install.sh
+
+      - name: Rerun has nothing to do
+        run: printf 'y\n' | ./scripts/install.sh | tee rerun.txt && grep -q 'Nothing to run' rerun.txt
+
+      - name: New shell starts without errors
+        run: |
+          script -q shell.txt zsh -i -c exit
+          cat shell.txt
+          ! grep -Eiq 'not found|error|warning' shell.txt

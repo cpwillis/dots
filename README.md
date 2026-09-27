@@ -16,7 +16,7 @@ Irreversible. Read `scripts/install.sh` before running it.
 - `chsh -s /bin/zsh`
 - Offers `sudo softwareupdate -ia --restart` at the end
 
-Test in a VM first, see [Test in a VM](#test-in-a-vm).
+Test it on CI first, see [Test on CI](#test-on-ci).
 
 ## Run
 
@@ -42,36 +42,23 @@ deleting any existing copy, then runs the installer):
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/cpwillis/dots/main/scripts/repo_download.sh)"
 ```
 
-## Test in a VM
+## Test on CI
 
-[tart](https://tart.run) runs a throwaway macOS VM on Apple Silicon. On the host:
-
-```sh
-brew install cirruslabs/cli/tart
-tart clone ghcr.io/cirruslabs/macos-tahoe-vanilla:latest dots-test   # ~24 GB download
-tart run dots-test &                                                 # opens the VM window
-ssh admin@"$(tart ip --wait 120 dots-test)"                          # password (and sudo): admin
-```
-
-In the VM, over that SSH session:
+`.github/workflows/install-test.yml` runs `install.sh` end to end on a GitHub macOS runner. It only runs when
+dispatched by hand:
 
 ```sh
-mkdir -p ~/.ssh && touch ~/.ssh/id_ed25519   # skips gh login, so no VM key lands on your GitHub account
-export HOMEBREW_BUNDLE_MAS_SKIP="$(curl -fsSL https://raw.githubusercontent.com/cpwillis/dots/main/config/Brewfile \
-  | sed -n 's/^mas .*id: \([0-9]*\).*/\1/p' | xargs)"   # no Apple ID in the VM, so skip App Store apps
-bash -c "$(curl -fsSL https://raw.githubusercontent.com/cpwillis/dots/main/scripts/repo_download.sh)"
+gh workflow run install-test.yml
+gh run watch
 ```
 
-Click Install on the Command Line Tools dialog in the VM window, and answer `y` at the App Store prompt without
-signing in. Afterwards `zsh -i -c exit` should start a clean shell with no errors.
+First it makes the runner look like a fresh Mac: it deletes the runner's Homebrew and its preinstalled Chrome,
+Firefox and VS Code, and points `xcode-select` at the Command Line Tools. It skips App Store apps via
+`HOMEBREW_BUNDLE_MAS_SKIP` (no Apple ID) and pre-creates `~/.ssh/id_ed25519` so the `gh` login is skipped. After the
+install it checks that a rerun has nothing to do and that a new zsh starts without errors.
 
-Clean up on the host:
-
-```sh
-tart stop dots-test && tart delete dots-test
-rm -rf ~/.tart/cache   # cached image
-brew uninstall tart    # keeps it out of the Brewfile on the next sync
-```
+Not covered: `repo_download.sh` and the Command Line Tools install (the runner already has them), App Store apps, and
+the `gh` SSH key login.
 
 ## Sync back
 
