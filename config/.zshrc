@@ -15,6 +15,7 @@ source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh # https:/
 # Open VSCode Workspace if Available
 code_path="$(whence -p code)"
 code() {
+    [[ -d "$1" ]] || { "$code_path" "$@"; return; } # no args, files and flags pass straight through
     local project_dir=$(realpath "$1")
     local project_name=$(basename "$project_dir")
     [[ -f "$project_dir/.vscode/$project_name.code-workspace" ]] && { echo "Found $project_name.code-workspace, opening that instead..."; "$code_path" "$project_dir/.vscode/$project_name.code-workspace"; return; }
