@@ -33,7 +33,9 @@ Steps, in order: `homebrew packages omz macos dotfiles ssh shell update`. Each f
 `--dry-run` reads that file but never writes it.
 
 Every run prompts for confirmation. The `packages` step opens the App Store and blocks until you confirm you are
-signed in, since the Brewfile has `mas` entries, even under `--dry-run`.
+signed in, since the Brewfile has `mas` entries, even under `--dry-run`. If `brew bundle` can't install an item (eg a
+cask Homebrew has since disabled), the install skips it, carries on, and lists it at the end; fix it and rerun with
+`--only packages`.
 
 From a Mac with nothing checked out (installs the Xcode Command Line Tools if missing, clones to `~/Downloads/dots`,
 deleting any existing copy, then runs the installer):

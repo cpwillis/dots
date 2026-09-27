@@ -6,6 +6,7 @@ REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 CONFIG_DIR="${REPO_DIR}/config"
 META_DIR="${REPO_DIR}/meta"
 STATE_FILE="${HOME}/.local/state/dots/install-done" # finished steps, one per line; outside the repo so reclones keep it
+FAILED_FILE="${HOME}/.local/state/dots/packages-failed" # Brewfile items brew bundle couldn't install, shown at the end
 STEPS=(homebrew packages omz macos dotfiles ssh shell update)
 
 # ── Script Overrides ────────────────────────────────────────────────────────────
@@ -103,9 +104,17 @@ step_packages() {
         [[ "${r}" =~ ^[yY]$ ]] && break
         warn "Sign in and press y, or Ctrl+C and rerun with --skip packages"
     done
-    run brew bundle --file="${CONFIG_DIR}/Brewfile"
+    local log; log=$(mktemp)
+    "${DRY_RUN}" || rm -f "${FAILED_FILE}"
+    # an item that fails (eg a cask Homebrew disabled) is skipped and listed at the end; any other failure stops here
+    if ! run brew bundle --file="${CONFIG_DIR}/Brewfile" 2>&1 | tee "${log}"; then
+        grep -o '[A-Z][a-z]* .* has failed!' "${log}" | sed 's/^[A-Za-z]* //; s/ has failed!$//' > "${FAILED_FILE}" || true
+        [[ -s "${FAILED_FILE}" ]] || { rm -f "${log}"; return 1; }
+        warn "Skipped, could not install: $(paste -sd, "${FAILED_FILE}" | sed 's/,/, /g')"
+    fi
+    rm -f "${log}"
     run brew cleanup
-    ok "All packages installed"
+    ok "Packages installed"
 }
 
 
@@ -240,6 +249,11 @@ for s in "${STEPS[@]}"; do
     ran=$((ran+1))
 done
 CURRENT=""
+
+if [[ -s "${FAILED_FILE}" ]]; then
+    cecho "\nNot installed by brew bundle: $(paste -sd, "${FAILED_FILE}" | sed 's/,/, /g')." "${yellow}"
+    cecho "Fix or install by hand, then rerun with --only packages." "${yellow}"
+fi
 
 left=""
 for s in "${STEPS[@]}"; do recorded "${s}" || left+="${s} "; done
