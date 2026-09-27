@@ -8,8 +8,9 @@ plugins=(                   # https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins
     last-working-dir        # new shells open in lwd
     omz-git-branch          # limit git branch name, https://github.com/cpwillis/omz-git-branch
 )
+test -r ~/.dircolors && eval "$(gdircolors -b ~/.dircolors)" # LS_COLORS for gls + completion, set before omz
+zstyle ':omz:lib:theme-and-appearance' gnu-ls yes # omz aliases ls='gls --color=tty'
 source $ZSH/oh-my-zsh.sh
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh # https://github.com/zsh-users/zsh-syntax-highlighting
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh # https://github.com/zsh-users/zsh-autosuggestions
 
 # Open VSCode Workspace if Available
@@ -28,7 +29,7 @@ export PYENV_ROOT="$HOME/.pyenv"
 eval "$(pyenv init -)"
 
 # Git
-alias gp='git diff --quiet && git pull || (git stash push && git pull && git stash pop)'
+alias gp='git pull --autostash'
 alias todo='git diff -U0 main.. | awk '\''/^diff --git/{file=$3;sub(/^a\//,"",file);rel_path=file;gsub(/.*\//,"",file)} /^@@/{start=$2;sub(/^[^+]*[+]/,"",start);linenum=int(start);linenum=linenum>0?linenum:-linenum;next} /^+.*(TODO|FIXME|BUG|NOTE|MISC)/{gsub(/^[+ ]+/,"",$0);split($0,arr,"#");code=arr[1];comment=arr[2];gsub(/^ +| +$/,"",code);gsub(/^ +| +$/,"",comment);col_1=rel_path":"linenum;if(length(code)>0){col_1=col_1"\x1b[35m|\x1b[0m"code}printf "%s\x1b[35m|\x1b[0m%s\n",col_1,comment} /^[^-]/{linenum++}'\'' | sed -E '\''s/(TODO.*)/\x1b[33m\1\x1b[0m/g;s/(FIXME.*)/\x1b[35m\1\x1b[0m/g;s/(BUG.*)/\x1b[31m\1\x1b[0m/g;s/(NOTE.*)/\x1b[94m\1\x1b[0m/g;s/(MISC.*)/\x1b[32m\1\x1b[0m/g'\'''
 alias remote='gh pr view --web || gh repo view --web -b "$(git branch --show-current)"'
 alias repo='gh repo view --web'
@@ -37,12 +38,12 @@ alias repo='gh repo view --web'
 alias dockerps="docker ps --format 'table {{.Names}}\t{{.Ports}}\t{{.Status}}\t{{.CreatedAt}}'"
 alias dockersv='echo "CONTAINER ID \t NAME \t\t SERVICE" && docker ps -q | while read -r container_id; do service=$(docker inspect --format "{{ index .Config.Labels \"com.docker.compose.service\" }}" "$container_id"); name=$(docker inspect --format "{{ .Name }}" "$container_id" | sed "s/\///g"); echo "$container_id \t $name \t $service"; done'
 alias dockerinfo="dockerps; echo ''; dockersv"
-alias dockernuke='docuum --keep 1' # keep latest image, remove older unused ones
+alias dockernuke='docker image prune -a' # remove all images not used by a container
 alias docker-compose='docker compose'
 
 # Helpers
 alias brewup="brew update && brew upgrade && brew cleanup && brew doctor"
-alias uuid='c=${1:-1};python3 -c "import timeflake" >/dev/null 2>&1||{ echo -n "Install timeflake? [y/n] ";read -r i;[ "$i" != "y" ]&&exit;pip3 install timeflake;};for ((j=0;j<c;j++));do python3 -c "import timeflake;print(timeflake.random().hex.lower())";done' # Generate Timeflake UUID
+uuid() { python3 -c 'import sys,timeflake;[print(timeflake.random().hex.lower()) for _ in range(int(sys.argv[1]))]' "${1:-1}"; } # Generate Timeflake UUID
 alias zsql="mycli -uroot -proot_password -P3307 -h127.0.0.1"
 
 # Misc
@@ -55,25 +56,24 @@ alias mv='mv -i' # prompt before overwriting
 alias sudo='sudo ' # attempt alias expansion
 
 # Work
-alias sc='f() { story_id=${1:-$(git rev-parse --abbrev-ref HEAD | grep -o "sc-[0-9]*" | grep -o "[0-9]*")}; if [ -n "$story_id" ]; then open "https://app.shortcut.com/tour-amigo/story/$story_id"; else echo "No Shortcut ID found."; fi; }; f'
+sc() {
+    local story_id=${1:-$(git rev-parse --abbrev-ref HEAD 2>/dev/null | grep -o "sc-[0-9]*" | grep -o "[0-9]*")}
+    [[ -n "$story_id" ]] && open "https://app.shortcut.com/tour-amigo/story/$story_id" || echo "No Shortcut ID found."
+}
 alias startmyday='open -a Docker && z zeus && g co main && g pull && ctl up -d --build && ctl post-deploy && docker start traefik' # no unstaged changes required
 alias db_rev='for db in hermes athena; do printf "%s: " "$db"; ctl sql <<< "select version_num from ${db}.alembic_version" | awk '\''/^[0-9a-f]{12,}$/ {print; exit}'\''; done'
 
 # Tools
-eval $(thefuck --alias)
+fuck() { unfunction fuck; eval "$(thefuck --alias)"; fuck "$@"; } # lazy-load, saves ~80ms startup
 eval "$(direnv hook zsh)" # auto load .env
 eval "$(atuin init zsh)"
 export GPG_TTY=$(tty) # ttl in ~/.gnupg/gpg-agent.conf
-export PATH="$PATH:$HOME/.local/bin" # user-level python packages
+export PATH="$PATH:$HOME/.local/bin" # pipx, uv, claude
 export VIRTUAL_ENV_DISABLE_PROMPT=1 # disable venv prompt modification (for vscode integrated terminal) --> echo $VIRTUAL_ENV
-
-# Colors (using brew coreutils)
-# test -r ~/.dircolors && eval $(gdircolors ~/.dircolors)
-
-# Versioning
-alias python=python3
-alias pip=pip3
 
 # Xcode Command Line Tools: warn if the active developer dir is Xcode.app instead of the standalone Command Line Tools
 alias fix-xcode-select='sudo xcode-select --switch /Library/Developer/CommandLineTools'
 [[ $(xcode-select -p 2>/dev/null) == /Library/Developer/CommandLineTools ]] || echo "Warning: xcode-select points at $(xcode-select -p), run 'fix-xcode-select'"
+
+# Must be sourced last
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh # https://github.com/zsh-users/zsh-syntax-highlighting
