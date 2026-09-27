@@ -16,7 +16,7 @@ Irreversible. Read `scripts/install.sh` before running it.
 - `chsh -s /bin/zsh`
 - Offers `sudo softwareupdate -ia --restart` at the end
 
-Test it on CI first, see [Test on CI](#test-on-ci).
+Test it first, see [Test locally](#test-locally) and [Test on CI](#test-on-ci).
 
 ## Run
 
@@ -42,6 +42,17 @@ deleting any existing copy, then runs the installer):
 
 ```sh
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/cpwillis/dots/main/scripts/repo_download.sh)"
+```
+
+## Test locally
+
+`tests/sandbox.sh` runs `repo_download.sh`, `install.sh` and `update_configs.sh` against a throwaway home, with
+`brew`, `sudo`, `defaults` and the other system commands stubbed out, so nothing on your Mac changes. It covers
+resuming after a failure or Ctrl+C, `--skip`/`--only`, skipped Brewfile items and the sync's commit guards, in about
+20 seconds. macOS only, needs network. It exits non-zero and keeps the sandbox if any check fails.
+
+```sh
+./tests/sandbox.sh
 ```
 
 ## Test on CI
