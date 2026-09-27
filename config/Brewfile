@@ -56,6 +56,8 @@ brew "mono-libgdiplus"
 brew "mycli"
 # Open-source, cross-platform JavaScript runtime environment
 brew "node"
+# Pinentry for GPG on Mac
+brew "pinentry-mac"
 # Python dependency management tool
 brew "pipenv"
 # Execute binaries from Python packages in isolated environments
