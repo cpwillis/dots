@@ -68,9 +68,13 @@ if [[ "${1:-}" == "--commit" ]]; then
     fi
     cd "${REPO_DIR}"
     git add .
-    git commit -m "run update"
-    git push
-    ok "Changes pushed to remote"
+    if git diff --cached --quiet; then
+        ok "Nothing to commit"
+    else
+        git commit -m "run update"
+        git push
+        ok "Changes pushed to remote"
+    fi
 else
     info "Skipping commit - pass --commit to auto-push"
 fi
