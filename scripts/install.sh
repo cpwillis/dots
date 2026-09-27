@@ -101,7 +101,8 @@ plugin_dir="${HOME}/.oh-my-zsh/custom/plugins/omz-git-branch"
 if [ -d "${plugin_dir}" ]; then
     ok "omz-git-branch already installed"
 else
-    run git clone https://github.com/cpwillis/omz-git-branch.git "${plugin_dir}"
+    # skip ~/.gitconfig so its https->ssh rewrite can't require SSH keys
+    run env GIT_CONFIG_GLOBAL=/dev/null git clone https://github.com/cpwillis/omz-git-branch.git "${plugin_dir}"
     ok "omz-git-branch installed"
 fi
 

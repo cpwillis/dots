@@ -30,7 +30,7 @@ fi
 
 # Clone and run installer
 printf "Cloning %s...\n" "${REPO_URL}"
-git clone "${REPO_URL}" "${INSTALL_DIR}"
+GIT_CONFIG_GLOBAL=/dev/null git clone "${REPO_URL}" "${INSTALL_DIR}" # skip ~/.gitconfig https->ssh rewrite
 
 cd "${INSTALL_DIR}"
 chmod +x scripts/install.sh
