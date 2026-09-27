@@ -7,13 +7,12 @@ CONFIG_DIR="${REPO_DIR}/config"
 META_DIR="${REPO_DIR}/meta"
 
 # ── Script Overrides ────────────────────────────────────────────────────────────
-# TODO: accept args to run only certain steps e.g. ./install.sh --dotfiles
 DRY_RUN=false
 for arg in "$@"; do [[ "${arg}" == "--dry-run" ]] && DRY_RUN=true; done
 
 
 # ── Colors ──────────────────────────────────────────────────────────────────────
-black=$(tput setaf 0); red=$(tput setaf 1); green=$(tput setaf 2); yellow=$(tput setaf 3); blue=$(tput setaf 4); magenta=$(tput setaf 5); cyan=$(tput setaf 6); white=$(tput setaf 7); bold=$(tput bold); reset=$(tput sgr0)
+red=$(tput setaf 1); green=$(tput setaf 2); yellow=$(tput setaf 3); cyan=$(tput setaf 6); bold=$(tput bold); reset=$(tput sgr0)
 cecho() { printf "%s%s%s\n" "${2}" "${1}" "${reset}"; } # $1=msg $2=col
 
 STEP=0
@@ -150,14 +149,6 @@ while IFS=',' read -r name repo_path system_path; do
     run cp "${src}" "${dst}"
     ok "${name} → ${dst}"
 done < <(grep -v '^[[:space:]]*#\|^[[:space:]]*$\|^name,' "${META_DIR}/manifest.csv")
-
-
-# ── GitHub SSH Keys ─────────────────────────────────────────────────────────────
-# TODO: generate SSH keys & add to ssh-agent, add SSH key to GitHub via API
-
-
-# ── Licenses ────────────────────────────────────────────────────────────────────
-# TODO: using cpwillis/dots repo secrets, auth and install into apps (Alfred, Shottr, BetterDisplay, CleanMyMac X, Bruno)
 
 
 # ── Default Shell ───────────────────────────────────────────────────────────────
