@@ -35,7 +35,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/Users/cpw/.config/iterm2/cc-status"
+            "command": "~/.config/iterm2/cc-status"
           }
         ]
       }
@@ -45,7 +45,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/Users/cpw/.config/iterm2/cc-status"
+            "command": "~/.config/iterm2/cc-status"
           }
         ]
       }
@@ -55,7 +55,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/Users/cpw/.config/iterm2/cc-status"
+            "command": "~/.config/iterm2/cc-status"
           }
         ]
       }
@@ -65,7 +65,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/Users/cpw/.config/iterm2/cc-status"
+            "command": "~/.config/iterm2/cc-status"
           }
         ]
       }
@@ -75,7 +75,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/Users/cpw/.config/iterm2/cc-status"
+            "command": "~/.config/iterm2/cc-status"
           }
         ]
       }
@@ -85,7 +85,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/Users/cpw/.config/iterm2/cc-status"
+            "command": "~/.config/iterm2/cc-status"
           }
         ]
       }
@@ -95,7 +95,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/Users/cpw/.config/iterm2/cc-status"
+            "command": "~/.config/iterm2/cc-status"
           }
         ]
       }
@@ -105,7 +105,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/Users/cpw/.config/iterm2/cc-status"
+            "command": "~/.config/iterm2/cc-status"
           }
         ]
       }
@@ -115,7 +115,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/Users/cpw/.config/iterm2/cc-status"
+            "command": "~/.config/iterm2/cc-status"
           }
         ]
       }
@@ -125,7 +125,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "/Users/cpw/.config/iterm2/cc-status"
+            "command": "~/.config/iterm2/cc-status"
           }
         ]
       }

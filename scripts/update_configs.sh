@@ -62,6 +62,10 @@ done
 # ── Git commit + push ───────────────────────────────────────────────────────────
 if [[ "${1:-}" == "--commit" ]]; then
     info "Committing and pushing"
+    if grep -rlF "${HOME}" "${CONFIG_DIR}" "${META_DIR}"; then
+        warn "home path found in the files above, not committing"
+        exit 1
+    fi
     cd "${REPO_DIR}"
     git add .
     git commit -m "run update"

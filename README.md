@@ -44,6 +44,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/cpwillis/dots/main/scripts
   up to 3 attempts
 
 It then rewrites `email` and `signingkey` in `config/.gitconfig` to placeholders, so real values never reach the repo.
+`--commit` refuses to commit if any file under `config/` or `meta/` contains your `$HOME` path.
 
 ```sh
 ./scripts/update_configs.sh            # sync only
