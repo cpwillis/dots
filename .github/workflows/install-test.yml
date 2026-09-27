@@ -23,7 +23,10 @@ jobs:
           mkdir -p ~/.ssh && touch ~/.ssh/id_ed25519
 
       - name: install.sh
-        run: printf 'y\ny\nn\n' | ./scripts/install.sh
+        run: |
+          printf 'y\ny\nn\n' | ./scripts/install.sh
+          f=~/.local/state/dots/packages-failed
+          [ ! -s "$f" ] || echo "::warning title=brew bundle skipped::$(paste -sd, "$f" | sed 's/,/, /g')"
 
       - name: Rerun has nothing to do
         run: printf 'y\n' | ./scripts/install.sh | tee rerun.txt && grep -q 'Nothing to run' rerun.txt
