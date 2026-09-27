@@ -21,12 +21,19 @@ Test in a VM first, see [Test in a VM](#test-in-a-vm).
 ## Run
 
 ```sh
-./scripts/install.sh --dry-run   # print commands, change nothing
-./scripts/install.sh
+./scripts/install.sh --dry-run            # print commands, change nothing
+./scripts/install.sh                      # run every step not yet done
+./scripts/install.sh --skip ssh           # leave steps for later, a plain rerun picks them up
+./scripts/install.sh --only ssh,dotfiles  # run just these, even if already done
+./scripts/install.sh --fresh              # forget progress and run every step again
 ```
 
-Both prompt for confirmation, then open the App Store and block until you confirm you are signed in, since the
-Brewfile has `mas` entries. `--dry-run` still prompts and still opens the App Store.
+Steps, in order: `homebrew packages omz macos dotfiles ssh shell update`. Each finished step is recorded in
+`~/.local/state/dots/install-done`, so a run that fails or is stopped with Ctrl+C resumes at the step it stopped on.
+`--dry-run` reads that file but never writes it.
+
+Every run prompts for confirmation. The `packages` step opens the App Store and blocks until you confirm you are
+signed in, since the Brewfile has `mas` entries, even under `--dry-run`.
 
 From a Mac with nothing checked out (installs the Xcode Command Line Tools if missing, clones to `~/Downloads/dots`,
 deleting any existing copy, then runs the installer):
