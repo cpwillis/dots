@@ -14,20 +14,21 @@
 # Specify restricted branches
 restricted_branches=("main")
 
-# Get current branch and repo name
-branch=$(git rev-parse --abbrev-ref HEAD)
 repo_name=$(basename "$(git rev-parse --show-toplevel)")
 
-# Check if pushing to a restricted branch in the current repo
-if [[ " ${restricted_branches[@]} " =~ " $branch " ]]; then
-  # Bypass if ALLOW_MAIN_PUSH is set
-  if [ "$ALLOW_MAIN_PUSH" == "true" ]; then
-    echo "⚠️ Bypassing restrictions for '$branch' in '$repo_name'."
-    exit 0
+# Check each target ref; git passes one "<local ref> <local sha> <remote ref> <remote sha>" line per ref on stdin
+while read -r _ _ remote_ref _; do
+  branch="${remote_ref#refs/heads/}"
+  if [[ " ${restricted_branches[@]} " =~ " $branch " ]]; then
+    # Bypass if ALLOW_MAIN_PUSH is set
+    if [ "$ALLOW_MAIN_PUSH" == "true" ]; then
+      echo "⚠️ Bypassing restrictions for '$branch' in '$repo_name'."
+      continue
+    fi
+    # Block push and show message
+    echo "🚫 Pushing directly to '$branch' in '$repo_name' is not allowed. Use a PR or set 'ALLOW_MAIN_PUSH=true'."
+    exit 1
   fi
-  # Block push and show message
-  echo "🚫 Pushing directly to '$branch' in '$repo_name' is not allowed. Use a PR or set 'ALLOW_MAIN_PUSH=true'."
-  exit 1
-fi
+done
 
 exit 0
