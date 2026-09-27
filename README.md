@@ -16,8 +16,7 @@ Irreversible. Read `scripts/install.sh` before running it.
 - `chsh -s /bin/zsh`
 - Offers `sudo softwareupdate -ia --restart` at the end
 
-Test in a VM first: [VirtualBuddy](https://github.com/insidegui/VirtualBuddy) on Apple Silicon,
-[macos-virtualbox](https://github.com/myspaghetti/macos-virtualbox) on Intel.
+Test in a VM first, see [Test in a VM](#test-in-a-vm).
 
 ## Run
 
@@ -34,6 +33,37 @@ deleting any existing copy, then runs the installer):
 
 ```sh
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/cpwillis/dots/main/scripts/repo_download.sh)"
+```
+
+## Test in a VM
+
+[tart](https://tart.run) runs a throwaway macOS VM on Apple Silicon. On the host:
+
+```sh
+brew install cirruslabs/cli/tart
+tart clone ghcr.io/cirruslabs/macos-tahoe-vanilla:latest dots-test   # ~24 GB download
+tart run dots-test &                                                 # opens the VM window
+ssh admin@"$(tart ip --wait 120 dots-test)"                          # password (and sudo): admin
+```
+
+In the VM, over that SSH session:
+
+```sh
+mkdir -p ~/.ssh && touch ~/.ssh/id_ed25519   # skips gh login, so no VM key lands on your GitHub account
+export HOMEBREW_BUNDLE_MAS_SKIP="$(curl -fsSL https://raw.githubusercontent.com/cpwillis/dots/main/config/Brewfile \
+  | sed -n 's/^mas .*id: \([0-9]*\).*/\1/p' | xargs)"   # no Apple ID in the VM, so skip App Store apps
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/cpwillis/dots/main/scripts/repo_download.sh)"
+```
+
+Click Install on the Command Line Tools dialog in the VM window, and answer `y` at the App Store prompt without
+signing in. Afterwards `zsh -i -c exit` should start a clean shell with no errors.
+
+Clean up on the host:
+
+```sh
+tart stop dots-test && tart delete dots-test
+rm -rf ~/.tart/cache   # cached image
+brew uninstall tart    # keeps it out of the Brewfile on the next sync
 ```
 
 ## Sync back

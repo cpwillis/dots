@@ -220,4 +220,5 @@
   "window.commandCenter": false,
   "workbench.layoutControl.enabled": false,
   "claudeCode.hideOnboarding": true,
+  "djlint.showInstallError": false,
 }
