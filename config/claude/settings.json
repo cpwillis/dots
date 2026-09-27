@@ -4,30 +4,11 @@
     "pr": ""
   },
   "permissions": {
-    "allow": [
-      "Bash(git --no-pager log --oneline -3)",
-      "Bash(git --no-pager log --oneline -4)",
-      "Bash(ruff check *)"
-    ],
+    "allow": ["Bash(git --no-pager log *)", "Bash(ruff check *)"],
     "defaultMode": "auto"
   },
-  "skillOverrides": {
-    "agents-sdk": "off",
-    "banner-design": "off",
-    "brand": "off",
-    "cloudflare": "off",
-    "cloudflare-email-service": "off",
-    "design": "off",
-    "design-system": "off",
-    "durable-objects": "off",
-    "sandbox-sdk": "off",
-    "slides": "off",
-    "turnstile-spin": "off",
-    "ui-styling": "off",
-    "ui-ux-pro-max": "off",
-    "web-perf": "off",
-    "workers-best-practices": "off",
-    "wrangler": "off"
+  "env": {
+    "ECC_DISABLED_HOOKS": "pre:bash:gateguard-fact-force,pre:edit-write:gateguard-fact-force"
   },
   "hooks": {
     "Notification": [
@@ -133,7 +114,6 @@
   },
   "enabledPlugins": {
     "autoresearch@autoresearch": true,
-    "chrome-devtools-mcp@chrome-devtools-plugins": true,
     "cloudflare@cloudflare": true,
     "obsidian@obsidian-skills": true,
     "paddle@claude-community": true,
@@ -146,18 +126,6 @@
       "source": {
         "source": "github",
         "repo": "uditgoenka/autoresearch"
-      }
-    },
-    "brag": {
-      "source": {
-        "source": "github",
-        "repo": "latent-spaces/brag"
-      }
-    },
-    "chrome-devtools-plugins": {
-      "source": {
-        "source": "github",
-        "repo": "ChromeDevTools/chrome-devtools-mcp"
       }
     },
     "claude-community": {
