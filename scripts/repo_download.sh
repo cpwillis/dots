@@ -21,6 +21,13 @@ if [ -d "${INSTALL_DIR}" ]; then
     esac
 fi
 
+# git is a stub until the Xcode Command Line Tools are installed
+if ! xcode-select -p &>/dev/null; then
+    xcode-select --install
+    printf "Waiting for Xcode Command Line Tools to finish installing...\n"
+    until xcode-select -p &>/dev/null; do sleep 5; done
+fi
+
 # Clone and run installer
 printf "Cloning %s...\n" "${REPO_URL}"
 git clone "${REPO_URL}" "${INSTALL_DIR}"

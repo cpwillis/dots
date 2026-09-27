@@ -72,20 +72,6 @@ run brew update && run brew upgrade
 ok "Homebrew up to date"
 
 
-# ── Xcode Command Line Tools ────────────────────────────────────────────────────
-step "Xcode Command Line Tools"
-if xcode-select -p &>/dev/null; then
-    ok "Already installed"
-else
-    run xcode-select --install
-    if ! "${DRY_RUN}"; then
-        cecho "    Waiting for Xcode CLT to finish..." "${yellow}"
-        until xcode-select -p &>/dev/null; do sleep 5; done
-    fi
-    ok "Installed"
-fi
-
-
 # ── Brew Bundle ─────────────────────────────────────────────────────────────────
 step "Installing packages (Brewfile)"
 open -a "App Store"
@@ -110,6 +96,14 @@ else
         RUNZSH=no CHSH=no sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     fi
     ok "Installed"
+fi
+
+plugin_dir="${HOME}/.oh-my-zsh/custom/plugins/omz-git-branch"
+if [ -d "${plugin_dir}" ]; then
+    ok "omz-git-branch already installed"
+else
+    run git clone https://github.com/cpwillis/omz-git-branch.git "${plugin_dir}"
+    ok "omz-git-branch installed"
 fi
 
 

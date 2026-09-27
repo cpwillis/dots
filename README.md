@@ -10,7 +10,7 @@ Irreversible. Read `scripts/install.sh` before running it.
 - `sudo rm -rf` on `/Applications/{GarageBand,Pages,Numbers,Keynote}.app`
 - Copies every file in `meta/manifest.csv` over its system path, no backup of what was there
 - Runs every `defaults write` line in `meta/macOS_settings.sh`, then `killall Dock Finder SystemUIServer`
-- Installs Homebrew, Xcode Command Line Tools, Oh My Zsh
+- Installs Homebrew (which brings the Xcode Command Line Tools), Oh My Zsh and the `omz-git-branch` plugin
 - `brew update && brew upgrade` (upgrades packages you already had), installs `config/Brewfile`, then `brew cleanup`
 - `chsh -s /bin/zsh`
 - Offers `sudo softwareupdate -ia --restart` at the end
@@ -28,11 +28,11 @@ Test in a VM first: [VirtualBuddy](https://github.com/insidegui/VirtualBuddy) on
 Both prompt for confirmation, then open the App Store and block until you confirm you are signed in, since the
 Brewfile has `mas` entries. `--dry-run` still prompts and still opens the App Store.
 
-From a Mac with nothing checked out (clones to `~/Downloads/dots`, deleting any existing copy, then runs the
-installer):
+From a Mac with nothing checked out (installs the Xcode Command Line Tools if missing, clones to `~/Downloads/dots`,
+deleting any existing copy, then runs the installer):
 
 ```sh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/cpwillis/dots/main/scripts/repo_download.sh)"
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/cpwillis/dots/main/scripts/repo_download.sh)"
 ```
 
 ## Sync back
@@ -69,6 +69,9 @@ Copy it into a repo's `.git/hooks/` and `chmod +x` it.
 by hand.
 
 ## Manual, after install
+
+Set `email` and `signingkey` in `~/.gitconfig`. It deploys with placeholders and `gpgSign = true`, so commits fail
+until both are set.
 
 Restore from backups in `~/Documents/Misc`:
 
