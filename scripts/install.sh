@@ -155,7 +155,7 @@ while IFS=',' read -r name repo_path system_path; do
     run mkdir -p "$(dirname "${dst}")"
     run cp "${src}" "${dst}"
     ok "${name} → ${dst}"
-done < <(grep -v '^[[:space:]]*#\|^[[:space:]]*$' "${META_DIR}/manifest.csv")
+done < <(grep -v '^[[:space:]]*#\|^[[:space:]]*$\|^name,' "${META_DIR}/manifest.csv")
 
 
 # ── GitHub SSH Keys ─────────────────────────────────────────────────────────────

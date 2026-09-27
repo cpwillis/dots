@@ -32,7 +32,7 @@ while IFS=',' read -r name repo_path system_path; do
     mkdir -p "$(dirname "${dst}")"
     cp "${src}" "${dst}"
     ok "${name}"
-done < <(grep -v '^[[:space:]]*#\|^[[:space:]]*$' "${META_DIR}/manifest.csv")
+done < <(grep -v '^[[:space:]]*#\|^[[:space:]]*$\|^name,' "${META_DIR}/manifest.csv")
 
 
 # ── Sanitize .gitconfig ─────────────────────────────────────────────────────────
