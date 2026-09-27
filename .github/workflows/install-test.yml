@@ -31,8 +31,9 @@ jobs:
       - name: Rerun has nothing to do
         run: printf 'y\n' | ./scripts/install.sh | tee rerun.txt && grep -q 'Nothing to run' rerun.txt
 
-      - name: New shell starts without errors
+      - name: New login shell starts without errors
         run: |
-          script -q shell.txt zsh -i -c exit
+          # clean env login shell, as Terminal opens it: PATH must come from ~/.zprofile, not the runner
+          script -q shell.txt env -i HOME="$HOME" TERM="$TERM" zsh -lic exit
           cat shell.txt
           ! grep -Eiq 'not found|error|warning' shell.txt

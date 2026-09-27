@@ -57,7 +57,8 @@ gh run watch
 First it makes the runner look like a fresh Mac: it deletes the runner's Homebrew and its preinstalled Chrome,
 Firefox and VS Code, and points `xcode-select` at the Command Line Tools. It skips App Store apps via
 `HOMEBREW_BUNDLE_MAS_SKIP` (no Apple ID) and pre-creates `~/.ssh/id_ed25519` so the `gh` login is skipped. After the
-install it checks that a rerun has nothing to do and that a new zsh starts without errors.
+install it checks that a rerun has nothing to do and that a new login shell, with a clean environment as Terminal
+opens it, starts without errors.
 
 Not covered: `repo_download.sh` and the Command Line Tools install (the runner already has them), App Store apps, and
 the `gh` SSH key login.
