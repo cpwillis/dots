@@ -12,6 +12,7 @@ Irreversible. Read `scripts/install.sh` before running it.
 - Runs every `defaults write` line in `meta/macOS_settings.sh`, then `killall Dock Finder SystemUIServer`
 - Installs Homebrew (which brings the Xcode Command Line Tools), Oh My Zsh and the `omz-git-branch` plugin
 - `brew update && brew upgrade` (upgrades packages you already had), installs `config/Brewfile`, then `brew cleanup`
+- Unless `~/.ssh/id_ed25519` exists, `gh auth login` (browser) generates an SSH key and adds it to your GitHub account
 - `chsh -s /bin/zsh`
 - Offers `sudo softwareupdate -ia --restart` at the end
 
@@ -65,8 +66,7 @@ deploy and sync back. `system_path` is `eval`'d, so `$HOME` expands.
 `config/git-hooks/pre-push` blocks direct pushes to `main` (bypass with `ALLOW_MAIN_PUSH=true`). Nothing deploys it.
 Copy it into a repo's `.git/hooks/` and `chmod +x` it.
 
-`config/gnupg/gpg-agent.conf` is deployed, but GPG keys, SSH keys and `~/.aws` are not in this repo. Restore those
-by hand.
+`config/gnupg/gpg-agent.conf` is deployed, but GPG keys and `~/.aws` are not in this repo. Restore those by hand.
 
 ## Manual, after install
 

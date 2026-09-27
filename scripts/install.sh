@@ -152,6 +152,17 @@ while IFS=',' read -r name repo_path system_path; do
 done < <(grep -v '^[[:space:]]*#\|^[[:space:]]*$\|^name,' "${META_DIR}/manifest.csv")
 
 
+# ── GitHub SSH Key ──────────────────────────────────────────────────────────────
+step "GitHub SSH key"
+if [ -f "${HOME}/.ssh/id_ed25519" ]; then
+    ok "Already exists"
+else
+    # gh generates the key and uploads it to GitHub as part of login
+    run gh auth login --hostname github.com --git-protocol ssh --web
+    ok "Key generated and added to GitHub"
+fi
+
+
 # ── Default Shell ───────────────────────────────────────────────────────────────
 step "Default shell"
 if [[ "${SHELL}" != "/bin/zsh" ]]; then
