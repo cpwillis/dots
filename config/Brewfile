@@ -1,4 +1,4 @@
-tap "rfidresearchgroup/proxmark3", "https://github.com/RfidResearchGroup/homebrew-proxmark3"
+tap "rfidresearchgroup/proxmark3", "https://github.com/RfidResearchGroup/homebrew-proxmark3", trusted: { formulae: ["arm-none-eabi-gcc"] }
 tap "stripe/stripe-cli"
 # Improved shell history for zsh, bash, fish and nushell
 brew "atuin"
