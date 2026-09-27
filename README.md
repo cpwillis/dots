@@ -46,8 +46,8 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/cpwillis/dots/main/scrip
 
 ## Test on CI
 
-`.github/workflows/install-test.yml` runs `install.sh` end to end on a GitHub macOS runner. It only runs when
-dispatched by hand:
+`.github/workflows/install-test.yml` ("Fresh macOS Install" in the Actions tab) runs `install.sh` end to end on a
+GitHub macOS runner. It only runs when dispatched by hand, one run at a time:
 
 ```sh
 gh workflow run install-test.yml

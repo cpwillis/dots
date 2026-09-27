@@ -1,11 +1,14 @@
 # runs install.sh end to end on a macOS runner made to look like a fresh Mac; manual dispatch only
-name: install test
+name: Fresh macOS Install
 on: workflow_dispatch
+concurrency:
+  group: ${{ github.workflow }}
+  cancel-in-progress: true # a new dispatch replaces one still running
 
 jobs:
   install:
     runs-on: macos-26
-    timeout-minutes: 180
+    timeout-minutes: 30 # a full run takes ~6 min; this caps a hung step instead of burning 3 hours
     env:
       TERM: xterm-256color # tput needs it
       SHELL: /bin/zsh      # skips chsh, which would prompt for the runner's password
