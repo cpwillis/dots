@@ -13,7 +13,7 @@ source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh #
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh # https://github.com/zsh-users/zsh-autosuggestions
 
 # Open VSCode Workspace if Available
-code_path="$(command -v code)"
+code_path="$(whence -p code)"
 code() {
     local project_dir=$(realpath "$1")
     local project_name=$(basename "$project_dir")
