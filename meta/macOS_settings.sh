@@ -2,16 +2,16 @@
 # icon size in pixels
 defaults write com.apple.dock tilesize -int 16
 # enable icon magnification on hover
-defaults write com.apple.dock magnification -bool 1
+defaults write com.apple.dock magnification -bool true
 # magnified icon size
 defaults write com.apple.dock largesize -int 30
 # auto-hide the Dock
-defaults write com.apple.dock autohide -bool 0
+defaults write com.apple.dock autohide -bool false
 # dock position: left, bottom, right
 # minimize animation: genie, scale
 # minimize windows into their app icon
 # show recently opened apps section
-defaults write com.apple.dock show-recents -bool 0
+defaults write com.apple.dock show-recents -bool false
 
 # KEYBOARD
 # Spotlight Search → opt-space (frees cmd-space for Alfred)
@@ -30,13 +30,13 @@ defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 30 '{ena
 
 # TRACKPAD
 # tap to click
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool 1
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
 # three-finger drag
-defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -bool 0
+defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerDrag -bool false
 # two-finger swipe for back/forward in browsers
-defaults write NSGlobalDomain AppleEnableSwipeNavigateWithScrolls -bool 0
+defaults write NSGlobalDomain AppleEnableSwipeNavigateWithScrolls -bool false
 # force click and haptic feedback
-defaults write com.apple.AppleMultitouchTrackpad ActuateDetents -bool 1
+defaults write com.apple.AppleMultitouchTrackpad ActuateDetents -bool true
 # silent clicking (no click sound)
 
 # FINDER
@@ -45,9 +45,9 @@ defaults write com.apple.finder NewWindowTarget -string "PfDo"
 # show hidden dotfiles
 # show full path in title bar
 # show path bar at the bottom
-defaults write com.apple.finder ShowPathbar -bool 1
+defaults write com.apple.finder ShowPathbar -bool true
 # show status bar at the bottom
-defaults write com.apple.finder ShowStatusBar -bool 0
+defaults write com.apple.finder ShowStatusBar -bool false
 # default view: Nlsv=list, icnv=icon, clmv=column, glyv=gallery
 defaults write com.apple.finder FXPreferredViewStyle -string "clmv"
 # keep folders on top when sorting by name
@@ -55,9 +55,9 @@ defaults write com.apple.finder FXPreferredViewStyle -string "clmv"
 defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
 # warn before changing a file extension
 # show external drives on desktop
-defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool 0
+defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool false
 # show removable media on desktop
-defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool 0
+defaults write com.apple.finder ShowRemovableMediaOnDesktop -bool false
 
 # GENERAL
 # screenshot save location
@@ -69,14 +69,14 @@ defaults write NSGlobalDomain AppleShowScrollBars -string "WhenScrolling"
 # expand save dialog by default
 # expand print dialog by default
 # auto-capitalise first letter of sentences
-defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool 1
+defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool true
 # substitute -- with em dash automatically
 # substitute straight quotes with curly quotes
 # auto-correct spelling
 
 # MISSION CONTROL
 # auto-rearrange Spaces based on most recent use
-defaults write com.apple.dock mru-spaces -bool 0
+defaults write com.apple.dock mru-spaces -bool false
 # group windows by app in Mission Control
 
 # Apply changes

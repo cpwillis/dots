@@ -15,6 +15,7 @@ write_int() {
 write_bool() {
     local v
     if v=$(defaults read "$1" "$2" 2>/dev/null); then
+        case "$v" in 1) v=true ;; 0) v=false ;; esac # read prints 1/0, write only takes true/false
         printf 'defaults write %s %s -bool %s\n' "$1" "$2" "$v"
     fi
 }
