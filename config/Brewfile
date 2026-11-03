@@ -1,5 +1,8 @@
+tap "hashicorp/tap"
 tap "rfidresearchgroup/proxmark3", "https://github.com/RfidResearchGroup/homebrew-proxmark3", trusted: { formulae: ["arm-none-eabi-gcc"] }
 tap "stripe/stripe-cli"
+# Static checker for GitHub Actions workflow files
+brew "actionlint"
 # Improved shell history for zsh, bash, fish and nushell
 brew "atuin"
 # Official Amazon AWS command-line interface
@@ -34,10 +37,14 @@ brew "grep"
 brew "jq"
 # Mac App Store command-line interface
 brew "mas"
+# Simple tool to make locally trusted development certificates
+brew "mkcert"
 # CLI for MySQL with auto-completion and syntax highlighting
 brew "mycli"
 # Open-source, cross-platform JavaScript runtime environment
 brew "node"
+# Libraries for security-enabled client and server applications
+brew "nss"
 # Pinentry for GPG on Mac
 brew "pinentry-mac"
 # Python dependency management tool
@@ -50,10 +57,14 @@ brew "pyenv"
 brew "thefuck"
 # Display directories as trees (with optional color/HTML output)
 brew "tree"
+# Watch files and take action when they change
+brew "watchman"
 # Fish-like fast/unobtrusive autosuggestions for zsh
 brew "zsh-autosuggestions"
 # Fish shell like syntax highlighting for zsh
 brew "zsh-syntax-highlighting"
+# Terraform
+brew "hashicorp/tap/terraform", trusted: true
 # RRG/Iceman Proxmark3 client, CDC flasher and firmware bundle
 brew "rfidresearchgroup/proxmark3/proxmark3", args: ["with-blueshark"], trusted: true
 # Stripe CLI utility
@@ -129,7 +140,6 @@ mas "Color Picker", id: 1545870783
 mas "iMovie", id: 408981434
 mas "Magnet", id: 441258766
 mas "Microsoft Excel", id: 462058435
-mas "Microsoft OneNote", id: 784801555
 mas "Microsoft PowerPoint", id: 462062816
 mas "Microsoft Word", id: 462054704
 mas "Ping", id: 1532271726
@@ -184,4 +194,4 @@ vscode "xabikos.javascriptsnippets"
 vscode "yoavbls.pretty-ts-errors"
 vscode "yzhang.markdown-all-in-one"
 npm "alfred-open-in-vscode"
-npm "pnpm"
+npm "corepack"

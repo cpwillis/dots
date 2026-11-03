@@ -174,7 +174,7 @@
   "claudeCode.hideOnboarding": true,
   "claudeCode.preferredLocation": "sidebar",
   "diffEditor.ignoreTrimWhitespace": false,
-  "diffEditor.renderSideBySide": false,
+  "diffEditor.renderSideBySide": true,
   "emmet.showAbbreviationSuggestions": false,
   "errorLens.messageEnabled": false,
   "explorer.confirmDragAndDrop": false,
@@ -187,4 +187,5 @@
   "redhat.telemetry.enabled": false,
   "settingsSync.ignoredSettings": ["-python.interpreter.infoVisibility"],
   "update.showReleaseNotes": false,
+  "diffEditor.useInlineViewWhenSpaceIsLimited": true,
 }

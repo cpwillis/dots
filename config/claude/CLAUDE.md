@@ -8,6 +8,13 @@
 
 - GPG-sign commits with my key (`commit.gpgsign` is enabled). Do not use `git commit --no-gpg-sign`.
 - If signing fails or needs my passphrase / agent unlock, pause and let me verify/unlock first before you auto-commit. Do not fall back to an unsigned commit without asking.
+- When work is done, commit it locally in logical groups (one change per commit), in the order the changes were made, with bare shorthand subjects (eg `Show crawl results per page`). Never finish with uncommitted or unstaged files. Pushing stays with me.
+
+## Git branches
+
+- Branches I create on repos I don't own (origin owner is not `cpwillis`) are prefixed `chris/`, eg `chris/local-setup-tweaks`.
+  Exception to the PII rule: `chris` is permitted in branch names only.
+- On my own repos, no prefix.
 
 ## PII and identifying data
 

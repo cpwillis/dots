@@ -1,4 +1,8 @@
 {
+  "env": {
+    "ECC_DISABLED_HOOKS": "pre:bash:gateguard-fact-force,pre:edit-write:gateguard-fact-force",
+    "AR_DISABLE_SCOUT_BLOCK": "1"
+  },
   "attribution": {
     "commit": "",
     "pr": ""
@@ -6,9 +10,6 @@
   "permissions": {
     "allow": ["Bash(git --no-pager log *)", "Bash(ruff check *)"],
     "defaultMode": "auto"
-  },
-  "env": {
-    "ECC_DISABLED_HOOKS": "pre:bash:gateguard-fact-force,pre:edit-write:gateguard-fact-force"
   },
   "hooks": {
     "Notification": [
@@ -115,11 +116,11 @@
   "enabledPlugins": {
     "autoresearch@autoresearch": true,
     "cloudflare@cloudflare": true,
+    "ecc@ecc": true,
     "obsidian@obsidian-skills": true,
     "paddle@claude-community": true,
     "ponytail@ponytail": true,
-    "superpowers@superpowers-marketplace": true,
-    "ecc@ecc": true
+    "superpowers@superpowers-marketplace": true
   },
   "extraKnownMarketplaces": {
     "autoresearch": {
@@ -140,6 +141,12 @@
         "repo": "cloudflare/skills"
       }
     },
+    "ecc": {
+      "source": {
+        "source": "git",
+        "url": "https://github.com/affaan-m/ECC.git"
+      }
+    },
     "obsidian-skills": {
       "source": {
         "source": "github",
@@ -157,26 +164,21 @@
         "source": "github",
         "repo": "obra/superpowers-marketplace"
       }
-    },
-    "ecc": {
-      "source": {
-        "source": "git",
-        "url": "https://github.com/affaan-m/ECC.git"
-      }
     }
   },
   "effortLevel": "high",
+  "pluginConfigs": {
+    "ecc@ecc": {
+      "options": {
+        "hook_profile": "standard",
+        "hooks_enabled": true
+      }
+    }
+  },
   "tui": "fullscreen",
   "skipWorkflowUsageWarning": true,
   "theme": "auto",
   "editorMode": "normal",
   "agentPushNotifEnabled": true,
-  "pluginConfigs": {
-    "ecc@ecc": {
-      "options": {
-        "hooks_enabled": true,
-        "hook_profile": "standard"
-      }
-    }
-  }
+  "switchModelsOnFlag": true
 }

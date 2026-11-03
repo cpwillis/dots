@@ -10,8 +10,16 @@ plugins=(                   # https://github.com/ohmyzsh/ohmyzsh/wiki/Plugins
 )
 test -r ~/.dircolors && eval "$(gdircolors -b ~/.dircolors)" # LS_COLORS for gls + completion, set before omz
 zstyle ':omz:lib:theme-and-appearance' gnu-ls yes # omz aliases ls='gls --color=tty'
+DISABLE_AUTO_TITLE="true" # tab title set by tab_title below
 source $ZSH/oh-my-zsh.sh
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh # https://github.com/zsh-users/zsh-autosuggestions
+
+# Tab Title: git repo root name, else current dir (~ for home)
+tab_title() {
+    local root=$(git rev-parse --show-toplevel 2>/dev/null)
+    printf '\e]1;%s\a' "${${root:t}:-$(print -P '%1~')}"
+}
+add-zsh-hook precmd tab_title
 
 # Open VSCode Workspace if Available
 code_path="$(whence -p code)"
@@ -56,9 +64,22 @@ alias mv='mv -i' # prompt before overwriting
 alias sudo='sudo ' # attempt alias expansion
 
 # Work
-sc() {
-    local story_id=${1:-$(git rev-parse --abbrev-ref HEAD 2>/dev/null | grep -o "sc-[0-9]*" | grep -o "[0-9]*")}
-    [[ -n "$story_id" ]] && open "https://app.shortcut.com/tour-amigo/story/$story_id" || echo "No Shortcut ID found."
+# Open TA links: ta [sc|epic|obj|pr][id], eg ta sc102317, ta epic 100447, ta obj102520, ta pr3625; no id = current branch
+ta() {
+    local kind=${${1%%[0-9]*}%-} id=${1##*[^0-9]}
+    [[ -z $id ]] && id=$2
+    case $kind in
+        sc|"")
+            [[ -z $id && $(git branch --show-current 2>/dev/null) =~ 'sc-([0-9]+)' ]] && id=$match[1]
+            [[ -n $id ]] && open "https://app.shortcut.com/tour-amigo/story/$id" || echo "No Shortcut ID found." ;;
+        epic|objective|obj)
+            [[ $kind == obj ]] && kind=objective
+            [[ -n $id ]] && open "https://app.shortcut.com/tour-amigo/$kind/$id" || echo "Usage: ta $kind<id>" ;;
+        pr)
+            gh pr view ${id:+"$id"} --web ;; # current repo; no id = current branch PR
+        *)
+            echo "Usage: ta [sc|epic|obj|pr][id]" ;;
+    esac
 }
 alias startmyday='open -a Docker && z zeus && g co main && g pull && ctl up -d --build && ctl post-deploy && docker start traefik' # no unstaged changes required
 alias db_rev='for db in hermes athena; do printf "%s: " "$db"; ctl sql <<< "select version_num from ${db}.alembic_version" | awk '\''/^[0-9a-f]{12,}$/ {print; exit}'\''; done'
