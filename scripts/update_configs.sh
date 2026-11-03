@@ -42,6 +42,12 @@ sed -i '' 's/signingkey = .*/signingkey = <public_key>/g' "${CONFIG_DIR}/.gitcon
 ok "email and signingkey redacted"
 
 
+# ── Sanitize claude settings.json ───────────────────────────────────────────────
+info "Sanitizing claude settings.json"
+sed -i '' "s#${HOME}/#~/#g" "${CONFIG_DIR}/claude/settings.json"
+ok "home paths replaced with ~"
+
+
 # ── Brewfile ────────────────────────────────────────────────────────────────────
 info "Brewfile"
 for i in 1 2 3; do
